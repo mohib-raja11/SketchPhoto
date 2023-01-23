@@ -1,4 +1,4 @@
-package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.Activities
+package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI
 
 import android.app.Activity
 import android.content.Context
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.databinding.ActivityMygalleryBinding
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.databinding.ItemGalleryBinding
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.Activities.MyGalleryActivity.RecyclerAdapter.MyHolderView
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.MyGalleryActivity.RecyclerAdapter.MyHolderView
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.Utils.AppUtils
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso

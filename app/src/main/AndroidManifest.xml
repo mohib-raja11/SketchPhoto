@@ -32,7 +32,7 @@
 
 
         <activity
-            android:name=".sketchphoto.UI.Activities.DashboardActivity"
+            android:name=".sketchphoto.UI.DashboardActivity"
 
             android:theme="@style/AppTheme">
 
@@ -52,14 +52,14 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode" />
 
         <activity
-            android:name=".sketchphoto.UI.Activities.PhotoShare_Activity"
+            android:name=".sketchphoto.UI.PhotoShare_Activity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode" />
 
-        <activity android:name=".sketchphoto.UI.Activities.MyGalleryActivity" />
+        <activity android:name=".sketchphoto.UI.MyGalleryActivity" />
 
-        <activity android:name=".sketchphoto.UI.Activities.ViewImageActivity" />
+        <activity android:name=".sketchphoto.UI.ViewImageActivity" />
 
-        <activity android:name=".sketchphoto.UI.Activities.FullScreenImageActivity" />
+        <activity android:name=".sketchphoto.UI.FullScreenImageActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
