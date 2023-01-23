@@ -41,4 +41,30 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation 'com.edmodo:cropper:1.0.1'
+    implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+    implementation 'com.squareup.picasso:picasso:2.8'
+
+    implementation 'com.github.esafirm:android-image-picker:3.0.0'
+
+
+/*
+    implementation 'com.edmodo:cropper:1.0.1'
+    implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.facebook.android:audience-network-sdk:5.4.1'
+//    implementation 'com.google.firebase:firebase-database:11.8.0'
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+    implementation 'com.crashlytics.sdk.android:crashlytics-ndk:2.1.0'
+
+    // admob ads sdk
+    implementation 'com.google.android.gms:play-services-ads:18.0.0'
+    implementation 'com.google.android.gms:play-services-measurement:17.0.0'
+    implementation 'com.google.android.gms:play-services-measurement-sdk:17.0.0'
+
+    */
+
+
 }

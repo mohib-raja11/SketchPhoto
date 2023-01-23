@@ -6,11 +6,14 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
         google()
+        jcenter()
         mavenCentral()
+        maven { url "https://www.jitpack.io" } // MR android legacy library
+
     }
 }
-rootProject.name = "SketchPhoto"
+rootProject.name = "SketchPhotoV2"
 include ':app'
