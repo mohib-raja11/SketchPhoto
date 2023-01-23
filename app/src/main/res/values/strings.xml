@@ -1,5 +1,5 @@
 <resources>
-    <string name="admob_app_id">ca-app-pub-2680165054071022~2955108584</string>
+
     <string name="app_name">Sketch Photo</string>
     <string name="pic_reset_txt">Reset</string>
     <string name="pic_exit_txt">Wait! You did not save your image. Are you sure to close this editor?</string>

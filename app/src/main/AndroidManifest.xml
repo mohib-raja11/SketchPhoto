@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SketchPhoto"
         tools:targetApi="s">
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -26,12 +27,13 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
         </activity>
 
 
         <activity
             android:name=".sketchphoto.UI.Activities.DashboardActivity"
-            android:screenOrientation="portrait"
+
             android:theme="@style/AppTheme">
 
         </activity>
@@ -43,37 +45,21 @@
                 <activity
                     android:name=".sketchphoto.UI.Activities.ChoosePhotoFragmentActivity"
                     android:configChanges="orientation|screenSize"
-                    android:screenOrientation="portrait" />-->
+                    />-->
 
         <activity
             android:name=".sketchphoto.pencil.ImageRemakeActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode"
-            android:screenOrientation="portrait" />
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode" />
 
         <activity
             android:name=".sketchphoto.UI.Activities.PhotoShare_Activity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode"
-            android:screenOrientation="portrait" />
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode" />
 
-        <activity
-            android:name=".sketchphoto.UI.Activities.MyGalleryActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".sketchphoto.UI.Activities.MyGalleryActivity" />
 
-        <activity
-            android:name=".sketchphoto.UI.Activities.ViewImageActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".sketchphoto.UI.Activities.ViewImageActivity" />
 
-        <activity
-            android:name=".sketchphoto.UI.Activities.FullScreenImageActivity"
-            android:screenOrientation="portrait" />
-
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="85e59f5ffbb14b82816d75021c2ff93f12cd3fa4" />
-
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/admob_app_id" />
+        <activity android:name=".sketchphoto.UI.Activities.FullScreenImageActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
