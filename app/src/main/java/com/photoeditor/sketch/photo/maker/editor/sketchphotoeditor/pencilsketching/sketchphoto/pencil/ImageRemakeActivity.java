@@ -89,10 +89,8 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
     private TextView txt_editor;
     private final BitmapHelper bitmapHelper;
     private final ActivityHandler activityHelper;
-    private final String[] as = {"Color", "Pencil 1", "Color 2", "Pencil 2", "Pencil 3",
-            "Pencil 4", "Pencil 5", "Sepia"};
-    private Bitmap colorPencilBitmap = null, colorPencil2Bitmap,
-            pencilsketchBitmap = null;
+    private final String[] as = {"Color", "Pencil 1", "Color 2", "Pencil 2", "Pencil 3", "Pencil 4", "Pencil 5", "Sepia"};
+    private Bitmap colorPencilBitmap = null, colorPencil2Bitmap, pencilsketchBitmap = null;
     private Bitmap pencil2Bitmap = null;
     private Bitmap simpleSketchbitmap1 = null;
     private Bitmap simpleSketchbitmap2 = null;
@@ -100,9 +98,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
     private final Bitmap grainBitmap = null;
     private FrameLayout viewContainer;
     private Dialog exit_dialog;
-    private final Integer[] effectImages = {R.drawable.pic_eff_0, R.drawable.pic_eff_1,
-            R.drawable.pic_eff_2, R.drawable.pic_eff_3, R.drawable.pic_eff_4,
-            R.drawable.pic_eff_5, R.drawable.pic_eff_6, R.drawable.pic_eff_7};
+    private final Integer[] effectImages = {R.drawable.pic_eff_0, R.drawable.pic_eff_1, R.drawable.pic_eff_2, R.drawable.pic_eff_3, R.drawable.pic_eff_4, R.drawable.pic_eff_5, R.drawable.pic_eff_6, R.drawable.pic_eff_7};
     private Canvas bitmapCanvas;
     private int intensity = 1;
     private final boolean filterApplyed = false;
@@ -132,9 +128,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         boolean flag;
         flag = ((ActivityManager) getSystemService("activity")).getDeviceConfigurationInfo().reqGlEsVersion >= 0x20000;
         if (!flag) {
-            Toast.makeText(getApplicationContext(),
-                    "Editor is not supported in this device.",
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Editor is not supported in this device.", Toast.LENGTH_SHORT).show();
             finish();
         }
         DisplayMetrics displaymetrics = new DisplayMetrics();
@@ -180,18 +174,12 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
     private void startAnimations() {
         (new LoadImageAsycTask()).execute();
 
-        animhidebtn = AnimationUtils.loadAnimation(this,
-                R.anim.hide_button_anims);
-        animsgallerybtn = AnimationUtils.loadAnimation(this,
-                R.anim.rightleft_gallery_anims);
-        animshowbtnup = AnimationUtils.loadAnimation(this,
-                R.anim.show_button_anims_up);
-        anim_btnapply = AnimationUtils.loadAnimation(this,
-                R.anim.show_button_anims_up);
-        animshowbtndown = AnimationUtils.loadAnimation(this,
-                R.anim.show_button_anims_down);
-        anim_bottom_show = AnimationUtils.loadAnimation(this,
-                R.anim.hide_button_anims_up);
+        animhidebtn = AnimationUtils.loadAnimation(this, R.anim.hide_button_anims);
+        animsgallerybtn = AnimationUtils.loadAnimation(this, R.anim.rightleft_gallery_anims);
+        animshowbtnup = AnimationUtils.loadAnimation(this, R.anim.show_button_anims_up);
+        anim_btnapply = AnimationUtils.loadAnimation(this, R.anim.show_button_anims_up);
+        animshowbtndown = AnimationUtils.loadAnimation(this, R.anim.show_button_anims_down);
+        anim_bottom_show = AnimationUtils.loadAnimation(this, R.anim.hide_button_anims_up);
 
     }
 
@@ -255,13 +243,11 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                 options.inScaled = false;
                 options.inPreferredConfig = Config.ARGB_8888;
                 try {
-                    bitmap = BitmapFactory.decodeStream(new FileInputStream(s),
-                            null, options);
+                    bitmap = BitmapFactory.decodeStream(new FileInputStream(s), null, options);
                     matrix = new Matrix();
                     matrix.postScale(f, f1);
                     matrix.postRotate(f2);
-                    return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
-                            bitmap.getHeight(), matrix, true);
+                    return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
                 } catch (FileNotFoundException e) {
 
                     e.printStackTrace();
@@ -271,8 +257,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
             i /= 2;
             j /= 2;
             i1 *= 2;
-        }
-        while (true);
+        } while (true);
 
     }
 
@@ -282,7 +267,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
             return uri.getPath();
         } else {
             cursor.moveToFirst();
-            String s = cursor.getString(cursor.getColumnIndex("_data"));
+            @SuppressLint("Range") String s = cursor.getString(cursor.getColumnIndex("_data"));
             cursor.close();
             return s;
         }
@@ -311,6 +296,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         return f;
     }
 
+    @SuppressLint("ResourceType")
     private void stringMatching() {
         String[] as = tool_array;
         int i = as.length;
@@ -320,10 +306,8 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                 return;
             }
             String s = as[j];
-            View view = getLayoutInflater().inflate(R.layout.pic_btn_layout,
-                    null);
-            ImageButton imagebutton = view
-                    .findViewById(R.id.btn_image);
+            View view = getLayoutInflater().inflate(R.layout.pic_btn_layout, null);
+            ImageButton imagebutton = view.findViewById(R.id.btn_image);
             TextView textview = view.findViewById(R.id.btn_txt);
             imagebutton.setOnClickListener(this);
             textview.setOnClickListener(this);
@@ -337,8 +321,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
 
             pic_btn_gallery.addView(view);
             j++;
-        }
-        while (true);
+        } while (true);
     }
 
     private void setIcon_Crop() {
@@ -348,98 +331,91 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         pic_cropImageView.setVisibility(View.VISIBLE);
         Animationview(pic_btn_gallery, crop_gallery);
         AnimationviewTop(pic_apply_layout, pic_donelayout, 2);
-        String[] as = {"custom", "1:1", "2:1", "1:2", "3:2", "2:3", "4:3",
-                "4:6", "4:5", "5:6", "5:7", "9:16", "16:9"};
+        String[] as = {"custom", "1:1", "2:1", "1:2", "3:2", "2:3", "4:3", "4:6", "4:5", "5:6", "5:7", "9:16", "16:9"};
         int i = 0;
         do {
             if (i >= as.length) {
                 return;
             }
-            View view = getLayoutInflater().inflate(R.layout.pic_crop_layout,
-                    null);
+            View view = getLayoutInflater().inflate(R.layout.pic_crop_layout, null);
             final Button btn_crop = view.findViewById(R.id.crop_btn);
             btn_crop.setId(i);
-            btn_crop.setLayoutParams(new LinearLayout.LayoutParams(
-                    -2, -2));
+            btn_crop.setLayoutParams(new LinearLayout.LayoutParams(-2, -2));
             btn_crop.setText(as[i]);
             crop_gallery.addView(view);
 
-            btn_crop.setOnClickListener(new OnClickListener() {
+            btn_crop.setOnClickListener(view1 -> {
+                switch (btn_crop.getId()) {
+                    default:
+                        return;
 
-                public void onClick(View view1) {
-                    switch (btn_crop.getId()) {
-                        default:
-                            return;
+                    case 0: // '\0'
+                        pic_cropImageView.setFixedAspectRatio(false);
+                        return;
 
-                        case 0: // '\0'
-                            pic_cropImageView.setFixedAspectRatio(false);
-                            return;
+                    case 1: // '\001'
+                        pic_cropImageView.setFixedAspectRatio(true);
+                        pic_cropImageView.setAspectRatio(1, 1);
+                        return;
 
-                        case 1: // '\001'
-                            pic_cropImageView.setFixedAspectRatio(true);
-                            pic_cropImageView.setAspectRatio(1, 1);
-                            return;
+                    case 2: // '\002'
+                        pic_cropImageView.setFixedAspectRatio(true);
+                        pic_cropImageView.setAspectRatio(2, 1);
+                        return;
 
-                        case 2: // '\002'
-                            pic_cropImageView.setFixedAspectRatio(true);
-                            pic_cropImageView.setAspectRatio(2, 1);
-                            return;
+                    case 3: // '\003'
+                        pic_cropImageView.setFixedAspectRatio(true);
+                        pic_cropImageView.setAspectRatio(1, 2);
+                        return;
 
-                        case 3: // '\003'
-                            pic_cropImageView.setFixedAspectRatio(true);
-                            pic_cropImageView.setAspectRatio(1, 2);
-                            return;
+                    case 4: // '\004'
+                        pic_cropImageView.setFixedAspectRatio(true);
+                        pic_cropImageView.setAspectRatio(3, 2);
+                        return;
 
-                        case 4: // '\004'
-                            pic_cropImageView.setFixedAspectRatio(true);
-                            pic_cropImageView.setAspectRatio(3, 2);
-                            return;
+                    case 5: // '\005'
+                        pic_cropImageView.setFixedAspectRatio(true);
+                        pic_cropImageView.setAspectRatio(2, 3);
+                        return;
 
-                        case 5: // '\005'
-                            pic_cropImageView.setFixedAspectRatio(true);
-                            pic_cropImageView.setAspectRatio(2, 3);
-                            return;
+                    case 6: // '\006'
+                        pic_cropImageView.setFixedAspectRatio(true);
+                        pic_cropImageView.setAspectRatio(4, 3);
+                        return;
 
-                        case 6: // '\006'
-                            pic_cropImageView.setFixedAspectRatio(true);
-                            pic_cropImageView.setAspectRatio(4, 3);
-                            return;
+                    case 7: // '\007'
+                        pic_cropImageView.setFixedAspectRatio(true);
+                        pic_cropImageView.setAspectRatio(4, 6);
+                        return;
 
-                        case 7: // '\007'
-                            pic_cropImageView.setFixedAspectRatio(true);
-                            pic_cropImageView.setAspectRatio(4, 6);
-                            return;
+                    case 8: // '\b'
+                        pic_cropImageView.setFixedAspectRatio(true);
+                        pic_cropImageView.setAspectRatio(4, 5);
+                        return;
 
-                        case 8: // '\b'
-                            pic_cropImageView.setFixedAspectRatio(true);
-                            pic_cropImageView.setAspectRatio(4, 5);
-                            return;
+                    case 9: // '\t'
+                        pic_cropImageView.setFixedAspectRatio(true);
+                        pic_cropImageView.setAspectRatio(5, 6);
+                        return;
 
-                        case 9: // '\t'
-                            pic_cropImageView.setFixedAspectRatio(true);
-                            pic_cropImageView.setAspectRatio(5, 6);
-                            return;
+                    case 10: // '\n'
+                        pic_cropImageView.setFixedAspectRatio(true);
+                        pic_cropImageView.setAspectRatio(5, 7);
+                        return;
 
-                        case 10: // '\n'
-                            pic_cropImageView.setFixedAspectRatio(true);
-                            pic_cropImageView.setAspectRatio(5, 7);
-                            return;
+                    case 11: // '\013'
+                        pic_cropImageView.setFixedAspectRatio(true);
+                        pic_cropImageView.setAspectRatio(8, 10);
+                        return;
 
-                        case 11: // '\013'
-                            pic_cropImageView.setFixedAspectRatio(true);
-                            pic_cropImageView.setAspectRatio(8, 10);
-                            return;
-
-                        case 12: // '\f'
-                            pic_cropImageView.setFixedAspectRatio(true);
-                            break;
-                    }
-                    pic_cropImageView.setAspectRatio(16, 9);
+                    case 12: // '\f'
+                        pic_cropImageView.setFixedAspectRatio(true);
+                        break;
                 }
+                pic_cropImageView.setAspectRatio(16, 9);
             });
             i++;
-        }
-        while (true);
+        } while (true);
     }
 
     private void setIcon_Effects() {
@@ -466,60 +442,51 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                     switch (imageView.getId()) {
                         case 0:
                             if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView
-                                        .getId());
+                                new SketchAsnyTask().execute(imageView.getId());
                             }
 
                             break;
 
                         case 1:
                             if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView
-                                        .getId());
+                                new SketchAsnyTask().execute(imageView.getId());
                             }
                             break;
                         case 2:
                             if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView
-                                        .getId());
+                                new SketchAsnyTask().execute(imageView.getId());
                             }
                             break;
 
                         case 3:
                             if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView
-                                        .getId());
+                                new SketchAsnyTask().execute(imageView.getId());
                             }
                             break;
                         case 4:
                             if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView
-                                        .getId());
+                                new SketchAsnyTask().execute(imageView.getId());
                             }
                             break;
 
                         case 5:
                             if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView
-                                        .getId());
+                                new SketchAsnyTask().execute(imageView.getId());
                             }
                             break;
                         case 6:
                             if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView
-                                        .getId());
+                                new SketchAsnyTask().execute(imageView.getId());
                             }
                             break;
                         case 7:
                             if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView
-                                        .getId());
+                                new SketchAsnyTask().execute(imageView.getId());
                             }
                             break;
                         default:
                             if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView
-                                        .getId());
+                                new SketchAsnyTask().execute(imageView.getId());
                             }
                             break;
 
@@ -528,8 +495,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                 }
             });
             i++;
-        }
-        while (true);
+        } while (true);
     }
 
     @Override
@@ -541,88 +507,84 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
 
     public void Animationview(final View hideanimview, final View showanimview) {
         hideanimview.startAnimation(animhidebtn);
-        animhidebtn
-                .setAnimationListener(new AnimationListener() {
+        animhidebtn.setAnimationListener(new AnimationListener() {
 
-                    public void onAnimationEnd(Animation animation) {
-                        hideanimview.setVisibility(View.GONE);
-                        showanimview.startAnimation(animsgallerybtn);
-                        showanimview.setVisibility(View.VISIBLE);
-                    }
+            public void onAnimationEnd(Animation animation) {
+                hideanimview.setVisibility(View.GONE);
+                showanimview.startAnimation(animsgallerybtn);
+                showanimview.setVisibility(View.VISIBLE);
+            }
 
-                    public void onAnimationRepeat(Animation animation) {
-                    }
+            public void onAnimationRepeat(Animation animation) {
+            }
 
-                    public void onAnimationStart(Animation animation) {
-                        hideanimview.setVisibility(View.VISIBLE);
-                    }
+            public void onAnimationStart(Animation animation) {
+                hideanimview.setVisibility(View.VISIBLE);
+            }
 
-                });
+        });
     }
 
-    public void AnimationviewTop(final View showanimview,
-                                 final View hideanimview, final int Btnid) {
+    public void AnimationviewTop(final View showanimview, final View hideanimview, final int Btnid) {
         hideanimview.startAnimation(animshowbtnup);
         txt_editor.startAnimation(animshowbtnup);
-        animshowbtnup
-                .setAnimationListener(new AnimationListener() {
+        animshowbtnup.setAnimationListener(new AnimationListener() {
 
-                    public void onAnimationEnd(Animation animation) {
-                        txt_editor.startAnimation(animshowbtndown);
-                        hideanimview.setVisibility(View.GONE);
-                        showanimview.setVisibility(View.VISIBLE);
-                        showanimview.startAnimation(animshowbtndown);
-                        switch (Btnid) {
-                            default:
-                                txt_editor.setText(getString(R.string.edt_editor));
-                                return;
+            public void onAnimationEnd(Animation animation) {
+                txt_editor.startAnimation(animshowbtndown);
+                hideanimview.setVisibility(View.GONE);
+                showanimview.setVisibility(View.VISIBLE);
+                showanimview.startAnimation(animshowbtndown);
+                switch (Btnid) {
+                    default:
+                        txt_editor.setText(getString(R.string.edt_editor));
+                        return;
 
-                            case 1:
-                                txt_editor.setText(getString(R.string.edt_effect));
-                                return;
+                    case 1:
+                        txt_editor.setText(getString(R.string.edt_effect));
+                        return;
 
-                            case 2:
-                                txt_editor.setText(getString(R.string.edt_crop));
-                                return;
+                    case 2:
+                        txt_editor.setText(getString(R.string.edt_crop));
+                        return;
 
-                            case 3:
-                                txt_editor.setText(getString(R.string.edt_vintage));
-                                return;
+                    case 3:
+                        txt_editor.setText(getString(R.string.edt_vintage));
+                        return;
 
-                            case 4:
-                                txt_editor.setText(getString(R.string.edt_frame));
-                                return;
+                    case 4:
+                        txt_editor.setText(getString(R.string.edt_frame));
+                        return;
 
-                            case 5:
-                                txt_editor.setText(getString(R.string.edt_overlay));
-                                return;
+                    case 5:
+                        txt_editor.setText(getString(R.string.edt_overlay));
+                        return;
 
-                            case 6:
-                                txt_editor.setText(getString(R.string.edt_reset));
-                                return;
+                    case 6:
+                        txt_editor.setText(getString(R.string.edt_reset));
+                        return;
 
-                            case 7:
-                                txt_editor.setText(getString(R.string.edt_border));
-                                return;
+                    case 7:
+                        txt_editor.setText(getString(R.string.edt_border));
+                        return;
 
-                            case 8:
-                                txt_editor
-                                        .setText(getString(R.string.edt_orientation));
-                                return;
+                    case 8:
+                        txt_editor.setText(getString(R.string.edt_orientation));
+                        return;
 
-                            case 9:
-                                txt_editor.setText(getString(R.string.edt_editor));
-                                break;
-                        }
-                    }
+                    case 9:
+                        txt_editor.setText(getString(R.string.edt_editor));
+                        break;
+                }
+            }
 
-                    public void onAnimationRepeat(Animation animation) {
-                    }
+            public void onAnimationRepeat(Animation animation) {
+            }
 
-                    public void onAnimationStart(Animation animation) {
-                    }
+            public void onAnimationStart(Animation animation) {
+            }
 
-                });
+        });
     }
 
     public void ExitDidalog(String s) {
@@ -630,10 +592,8 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         exit_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         exit_dialog.setContentView(R.layout.pic_reset_dialog);
         ((TextView) exit_dialog.findViewById(R.id.pic_reset_txt)).setText(s);
-        TextView textview = exit_dialog
-                .findViewById(R.id.pic_dialog_yes);
-        TextView textview1 = exit_dialog
-                .findViewById(R.id.pic_dialog_no);
+        TextView textview = exit_dialog.findViewById(R.id.pic_dialog_yes);
+        TextView textview1 = exit_dialog.findViewById(R.id.pic_dialog_no);
         textview.setText(getString(R.string.leave_edt));
         textview1.setText(getString(R.string.keep_edt));
         textview.setOnClickListener(new OnClickListener() {
@@ -673,12 +633,9 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         final Dialog picmaker_dialog = new Dialog(this);
         picmaker_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         picmaker_dialog.setContentView(R.layout.pic_reset_dialog);
-        ((TextView) picmaker_dialog.findViewById(R.id.pic_reset_txt))
-                .setText(s);
-        TextView textview = picmaker_dialog
-                .findViewById(R.id.pic_dialog_yes);
-        TextView textview1 = picmaker_dialog
-                .findViewById(R.id.pic_dialog_no);
+        ((TextView) picmaker_dialog.findViewById(R.id.pic_reset_txt)).setText(s);
+        TextView textview = picmaker_dialog.findViewById(R.id.pic_dialog_yes);
+        TextView textview1 = picmaker_dialog.findViewById(R.id.pic_dialog_no);
         textview.setText(getString(R.string.reset_edt));
         textview1.setText(getString(R.string.continue_edt));
         textview.setOnClickListener(new OnClickListener() {
@@ -690,21 +647,17 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
 
                     Orientation = Float.valueOf(getImageOrientation(Imagepath));
                     getAspectRatio(Imagepath, MaxResolution);
-                    pic_result = getResizedOriginalBitmap(Imagepath,
-                            Orientation.floatValue());
+                    pic_result = getResizedOriginalBitmap(Imagepath, Orientation.floatValue());
 
                     pic_imageview.setImageBitmap(pic_result);
-                    Toast.makeText(getApplicationContext(),
-                            "Your original image is back !!!",
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Your original image is back !!!", Toast.LENGTH_SHORT).show();
                     if (bitmap != null && !bitmap.isRecycled()) {
                         bitmap.recycle();
                         System.gc();
                     }
                     return;
                 } else {
-                    Toast.makeText(getApplicationContext(),
-                            "Invalid image path.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Invalid image path.", Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
@@ -781,12 +734,9 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
 
             if (crop_gallery.getVisibility() == View.VISIBLE) {
                 Bitmap bitmap = pic_cropImageView.getCroppedImage();
-                pic_result = bitmap.copy(
-                        Config.ARGB_8888, true);
-                pic_forSketch = bitmap.copy(
-                        Config.ARGB_8888, true);
-                pic_forDraw = bitmap.copy(
-                        Config.ARGB_8888, true);
+                pic_result = bitmap.copy(Config.ARGB_8888, true);
+                pic_forSketch = bitmap.copy(Config.ARGB_8888, true);
+                pic_forDraw = bitmap.copy(Config.ARGB_8888, true);
                 crop_gallery.setVisibility(View.GONE);
                 pic_cropImageView.setVisibility(View.GONE);
                 pic_cropImageView.setImageResource(0);
@@ -804,8 +754,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
             pic_btn_gallery.startAnimation(anim_bottom_show);
             pic_btn_gallery.setVisibility(View.VISIBLE);
 
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
-                    R.drawable.pic_eff_image);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pic_eff_image);
             setIcon_Effects();
             if (bitmap != null && !bitmap.isRecycled()) {
                 bitmap.recycle();
@@ -835,8 +784,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
     public void onDestroy() {
         super.onDestroy();
 
-        if (GPUImageFilterTools.overlayBmp != null
-                && !GPUImageFilterTools.overlayBmp.isRecycled()) {
+        if (GPUImageFilterTools.overlayBmp != null && !GPUImageFilterTools.overlayBmp.isRecycled()) {
             GPUImageFilterTools.overlayBmp.recycle();
             GPUImageFilterTools.overlayBmp = null;
             System.gc();
@@ -862,8 +810,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
             }
 
             j++;
-        }
-        while (true);
+        } while (true);
     }
 
     private void unbindDrawables(View view) {
@@ -890,8 +837,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         File file;
         boolean flag;
         (new BitmapFactory.Options()).inSampleSize = 5;
-        sendimagepath = (new StringBuilder(s1))
-                .append(File.separator).append(s).append(".jpg").toString();
+        sendimagepath = (new StringBuilder(s1)).append(File.separator).append(s).append(".jpg").toString();
         file = new File(sendimagepath);
         flag = file.exists();
         String[] as = null;
@@ -904,11 +850,9 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
             }
 
             FileOutputStream fileoutputstream = new FileOutputStream(file);
-            BufferedOutputStream bufferedoutputstream = new BufferedOutputStream(
-                    fileoutputstream);
+            BufferedOutputStream bufferedoutputstream = new BufferedOutputStream(fileoutputstream);
 
-            bitmap.compress(Bitmap.CompressFormat.PNG, i,
-                    bufferedoutputstream);
+            bitmap.compress(Bitmap.CompressFormat.PNG, i, bufferedoutputstream);
             bufferedoutputstream.flush();
             bufferedoutputstream.close();
             as = new String[1];
@@ -918,16 +862,11 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
 
             e.printStackTrace();
         }
-        MediaScannerConnection
-                .scanFile(
-                        this,
-                        as,
-                        null,
-                        new MediaScannerConnection.OnScanCompletedListener() {
-                            public void onScanCompleted(String s1, Uri uri) {
+        MediaScannerConnection.scanFile(this, as, null, new MediaScannerConnection.OnScanCompletedListener() {
+            public void onScanCompleted(String s1, Uri uri) {
 
-                            }
-                        });
+            }
+        });
         return true;
     }
 
@@ -935,12 +874,10 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         Bitmap SketchBitmap = bm1;
         switch (type) {
             case 0:
-                SketchColorFilter2 sketchColorFilter2 = new SketchColorFilter2(
-                        ImageRemakeActivity.this, activityHelper);
+                SketchColorFilter2 sketchColorFilter2 = new SketchColorFilter2(ImageRemakeActivity.this, activityHelper);
                 if (colorPencil2Bitmap == null) {
                     try {
-                        colorPencil2Bitmap = sketchColorFilter2
-                                .getSketchFromBH(bm1);
+                        colorPencil2Bitmap = sketchColorFilter2.getSketchFromBH(bm1);
                         SketchBitmap = colorPencil2Bitmap;
                     } catch (Throwable e) {
 
@@ -953,8 +890,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                 break;
 
             case 1:
-                SketchFilter sketchFilter = new SketchFilter(ImageRemakeActivity.this,
-                        activityHelper);
+                SketchFilter sketchFilter = new SketchFilter(ImageRemakeActivity.this, activityHelper);
                 if (pencilsketchBitmap == null) {
                     try {
                         pencilsketchBitmap = sketchFilter.getSketchFromBH(bm1);
@@ -969,8 +905,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
 
                 break;
             case 2:
-                SketchColorFilter printFilter = new SketchColorFilter(
-                        ImageRemakeActivity.this, activityHelper);
+                SketchColorFilter printFilter = new SketchColorFilter(ImageRemakeActivity.this, activityHelper);
 
                 if (colorPencilBitmap == null) {
                     try {
@@ -985,8 +920,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                 }
                 break;
             case 3:
-                SketchFilter2 sketchFilter2 = new SketchFilter2(ImageRemakeActivity.this,
-                        activityHelper);
+                SketchFilter2 sketchFilter2 = new SketchFilter2(ImageRemakeActivity.this, activityHelper);
 
                 if (pencil2Bitmap == null) {
                     try {
@@ -1001,8 +935,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                 }
                 break;
             case 4:
-                CSketchFilter cSketchFilter = new CSketchFilter(ImageRemakeActivity.this,
-                        activityHelper);
+                CSketchFilter cSketchFilter = new CSketchFilter(ImageRemakeActivity.this, activityHelper);
 
                 if (comicBitmap == null) {
                     try {
@@ -1029,8 +962,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                             invertCopy.recycle();
                             System.gc();
                         }
-                        simpleSketchbitmap1 = ColorDodgeBlend(blurImage,
-                                greyScaleCoppy);
+                        simpleSketchbitmap1 = ColorDodgeBlend(blurImage, greyScaleCoppy);
                         if (greyScaleCoppy != null && !greyScaleCoppy.isRecycled()) {
                             greyScaleCoppy.recycle();
                             System.gc();
@@ -1055,8 +987,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
 
                 if (simpleSketchbitmap2 == null) {
                     try {
-                        simpleSketchbitmap2 = secondSketchFilter
-                                .getSimpleSketch(bm1);
+                        simpleSketchbitmap2 = secondSketchFilter.getSimpleSketch(bm1);
 
                         SketchBitmap = simpleSketchbitmap2;
                     } catch (Throwable e) {
@@ -1072,8 +1003,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                 if (simpleSketchbitmap2 == null) {
                     try {
                         SecondSketchFilter secondSketchFilter1 = new SecondSketchFilter();
-                        simpleSketchbitmap2 = secondSketchFilter1
-                                .getSimpleSketch(bm1);
+                        simpleSketchbitmap2 = secondSketchFilter1.getSimpleSketch(bm1);
 
                         SketchBitmap = ConvertToSepia(simpleSketchbitmap2);
 
@@ -1087,14 +1017,12 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                 break;
             case 8:
 
-                SketchBitmap = BitmapFilter
-                        .changeStyle(bm1, BitmapFilter.OIL_STYLE);
+                SketchBitmap = BitmapFilter.changeStyle(bm1, BitmapFilter.OIL_STYLE);
 
                 break;
             case 9:
 
-                SketchBitmap = BitmapFilter.changeStyle(bm1,
-                        BitmapFilter.SKETCH_STYLE);
+                SketchBitmap = BitmapFilter.changeStyle(bm1, BitmapFilter.SKETCH_STYLE);
 
                 break;
         }
@@ -1104,15 +1032,10 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
     }
 
     public Bitmap ConvertToSepia(Bitmap sampleBitmap) {
-        float[] sepMat = {0.3930000066757202f, 0.7689999938011169f,
-                0.1889999955892563f, 0, 0, 0.3490000069141388f,
-                0.6859999895095825f, 0.1679999977350235f, 0, 0,
-                0.2720000147819519f, 0.5339999794960022f, 0.1309999972581863f,
-                0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1};
+        float[] sepMat = {0.3930000066757202f, 0.7689999938011169f, 0.1889999955892563f, 0, 0, 0.3490000069141388f, 0.6859999895095825f, 0.1679999977350235f, 0, 0, 0.2720000147819519f, 0.5339999794960022f, 0.1309999972581863f, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1};
         ColorMatrix sepiaMatrix = new ColorMatrix();
         sepiaMatrix.set(sepMat);
-        ColorMatrixColorFilter colorFilter = new ColorMatrixColorFilter(
-                sepiaMatrix);
+        ColorMatrixColorFilter colorFilter = new ColorMatrixColorFilter(sepiaMatrix);
         Bitmap rBitmap = sampleBitmap.copy(Config.ARGB_8888, true);
         Paint paint = new Paint();
         paint.setColorFilter(colorFilter);
@@ -1252,8 +1175,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
             yi = x;
             stackpointer = radius;
             for (y = 0; y < h; y++) {
-                pix[yi] = (0xff000000 & pix[yi]) | (dv[rsum] << 16)
-                        | (dv[gsum] << 8) | dv[bsum];
+                pix[yi] = (0xff000000 & pix[yi]) | (dv[rsum] << 16) | (dv[gsum] << 8) | dv[bsum];
                 rsum -= routsum;
                 gsum -= goutsum;
                 bsum -= boutsum;
@@ -1317,18 +1239,15 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         Bitmap base = source.copy(Config.ARGB_8888, true);
         Bitmap blend = layer.copy(Config.ARGB_8888, false);
 
-        IntBuffer buffBase = IntBuffer.allocate(base.getWidth()
-                * base.getHeight());
+        IntBuffer buffBase = IntBuffer.allocate(base.getWidth() * base.getHeight());
         base.copyPixelsToBuffer(buffBase);
         buffBase.rewind();
 
-        IntBuffer buffBlend = IntBuffer.allocate(blend.getWidth()
-                * blend.getHeight());
+        IntBuffer buffBlend = IntBuffer.allocate(blend.getWidth() * blend.getHeight());
         blend.copyPixelsToBuffer(buffBlend);
         buffBlend.rewind();
 
-        IntBuffer buffOut = IntBuffer.allocate(base.getWidth()
-                * base.getHeight());
+        IntBuffer buffOut = IntBuffer.allocate(base.getWidth() * base.getHeight());
         buffOut.rewind();
 
         while (buffOut.position() < buffOut.limit()) {
@@ -1344,8 +1263,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
             int redValueFinal = colordodge(redValueFilter, redValueSrc);
             int greenValueFinal = colordodge(greenValueFilter, greenValueSrc);
             int blueValueFinal = colordodge(blueValueFilter, blueValueSrc);
-            int pixel = Color.argb(255, redValueFinal, greenValueFinal,
-                    blueValueFinal);
+            int pixel = Color.argb(255, redValueFinal, greenValueFinal, blueValueFinal);
             // here
             buffOut.put(pixel);
         }
@@ -1359,8 +1277,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
     private int colordodge(int in1, int in2) {
         float image = (float) in2;
         float mask = (float) in1;
-        return ((int) ((image == 255) ? image : Math.min(255,
-                (((long) mask << 8) / (255 - image)))));
+        return ((int) ((image == 255) ? image : Math.min(255, (((long) mask << 8) / (255 - image)))));
     }
 
     public Bitmap toGrayscale(Bitmap bmpOriginal) {
@@ -1368,8 +1285,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         height = bmpOriginal.getHeight();
         width = bmpOriginal.getWidth();
 
-        Bitmap bmpGrayscale = Bitmap.createBitmap(width, height,
-                Config.RGB_565);
+        Bitmap bmpGrayscale = Bitmap.createBitmap(width, height, Config.RGB_565);
         Canvas c = new Canvas(bmpGrayscale);
         Paint paint = new Paint();
         ColorMatrix cm = new ColorMatrix();
@@ -1402,17 +1318,13 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                 getimage = false;
             } else {
                 Imagepath = getRealPathFromURI(imageuri);
-                if (Imagepath != null && (Imagepath.endsWith(".png") || Imagepath.endsWith(".jpg")
-                        || Imagepath.endsWith(".jpeg") || Imagepath.endsWith(".bmp"))) {
+                if (Imagepath != null && (Imagepath.endsWith(".png") || Imagepath.endsWith(".jpg") || Imagepath.endsWith(".jpeg") || Imagepath.endsWith(".bmp"))) {
 
                     Orientation = Float.valueOf(getImageOrientation(Imagepath));
                     getAspectRatio(Imagepath, MaxResolution);
-                    pic_result = getResizedOriginalBitmap(Imagepath,
-                            Orientation.floatValue());
-                    pic_forSketch = getResizedOriginalBitmap(Imagepath,
-                            Orientation.floatValue());
-                    pic_forDraw = getResizedOriginalBitmap(Imagepath,
-                            Orientation.floatValue());
+                    pic_result = getResizedOriginalBitmap(Imagepath, Orientation.floatValue());
+                    pic_forSketch = getResizedOriginalBitmap(Imagepath, Orientation.floatValue());
+                    pic_forDraw = getResizedOriginalBitmap(Imagepath, Orientation.floatValue());
                     getimage = true;
 
                 }
@@ -1426,19 +1338,15 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
 
             gallery_layout.setVisibility(View.VISIBLE);
             if (getimage) {
-                if (pic_result == null || pic_result.getHeight() <= 5
-                        || pic_result.getWidth() <= 5) {
-                    Toast.makeText(getApplicationContext(),
-                                    "Image Format not supported .", Toast.LENGTH_SHORT)
-                            .show();
+                if (pic_result == null || pic_result.getHeight() <= 5 || pic_result.getWidth() <= 5) {
+                    Toast.makeText(getApplicationContext(), "Image Format not supported .", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
                     pic_imageview.setImageBitmap(pic_result);
                     stringMatching();
                 }
             } else {
-                Toast.makeText(getApplicationContext(),
-                        "Unsupported media file.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Unsupported media file.", Toast.LENGTH_SHORT).show();
                 finish();
             }
             dialog.dismiss();
@@ -1562,8 +1470,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
             Point size = new Point();
             display.getSize(size);
 
-            bmOverlay = Bitmap.createBitmap(pic_forDraw.getWidth(),
-                    pic_forDraw.getHeight(), Config.ARGB_8888);
+            bmOverlay = Bitmap.createBitmap(pic_forDraw.getWidth(), pic_forDraw.getHeight(), Config.ARGB_8888);
             pcanvas = new Canvas(bmOverlay);
             pic_forDraw.eraseColor(Color.WHITE);
 
@@ -1576,16 +1483,14 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
             super.onDraw(canvas);
             canvas.drawBitmap(pic_result, 0, 0, null);
             pcanvas.drawBitmap(pic_forDraw, 0, 0, null);
-            pcanvas.drawCircle(mImagePos.x, mImagePos.y,
-                    pic_result.getHeight() / 20, mPaint);
+            pcanvas.drawCircle(mImagePos.x, mImagePos.y, pic_result.getHeight() / 20, mPaint);
             update();
             invalidate();
             canvas.drawBitmap(bmOverlay, 0, 0, null);
             bitmapCanvas = new Canvas(pic_forDraw);
             bitmapCanvas.drawBitmap(pic_result, 0, 0, null);
             bitmapCanvas.drawBitmap(bmOverlay, 0, 0, null);
-            canvas.drawBitmap(BitmapFactory.decodeResource(getResources(),
-                    R.drawable.drawing_hand), mImagePos.x, mImagePos.y, null);
+            canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.drawing_hand), mImagePos.x, mImagePos.y, null);
             intensity = 20;
 
         }
@@ -1597,20 +1502,15 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                 long time = SystemClock.uptimeMillis();
                 if (time - mInterpolateTime > INTERPOLATION_LENGTH) {
                     mImageSource.set(mImageTarget);
-                    mImageTarget.x = (float) (Math.random() * pic_forDraw
-                            .getWidth());
-                    mImageTarget.y = (float) (Math.random() * pic_forDraw
-                            .getHeight());
+                    mImageTarget.x = (float) (Math.random() * pic_forDraw.getWidth());
+                    mImageTarget.y = (float) (Math.random() * pic_forDraw.getHeight());
                     mInterpolateTime = time;
                 }
 
-                float t = (float) (time - mInterpolateTime)
-                        / INTERPOLATION_LENGTH;
+                float t = (float) (time - mInterpolateTime) / INTERPOLATION_LENGTH;
                 t = t * t * (3 - 2 * t);
-                mImagePos.x = mImageSource.x
-                        + (mImageTarget.x - mImageSource.x) * t;
-                mImagePos.y = mImageSource.y
-                        + (mImageTarget.y - mImageSource.y) * t;
+                mImagePos.x = mImageSource.x + (mImageTarget.x - mImageSource.x) * t;
+                mImagePos.y = mImageSource.y + (mImageTarget.y - mImageSource.y) * t;
                 Tilltime++;
             } else {
                 if (lineOne) {
