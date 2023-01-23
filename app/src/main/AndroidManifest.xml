@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -23,6 +25,66 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+
+        <activity
+            android:name=".sketchphoto.UI.Activities.DashboardActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+
+        </activity>
+
+        <activity
+            android:name=".sketchphoto.UI.Activities.HomeFragmentActivity"
+            android:configChanges="orientation|screenSize" />
+
+        <activity
+            android:name=".sketchphoto.UI.Activities.ChoosePhotoFragmentActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".sketchphoto.pencil.ImageRemakeActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".sketchphoto.UI.Activities.PhotoShare_Activity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".sketchphoto.UI.Activities.MyGalleryActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".sketchphoto.UI.Activities.ViewImageActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".sketchphoto.UI.Activities.FullScreenImageActivity"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="85e59f5ffbb14b82816d75021c2ff93f12cd3fa4" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>
