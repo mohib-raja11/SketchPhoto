@@ -15,13 +15,10 @@ import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.BuildConfig;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.constant.AppConstant;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
@@ -38,7 +35,7 @@ public class ViewImageActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(1);
-        setContentView(R.layout.activity_view_image);
+        setContentView(R.layout.activity_view_the_image);
 
         mainImageView = findViewById(R.id.mainImageView);
 
