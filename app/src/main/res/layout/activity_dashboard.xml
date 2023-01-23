@@ -15,10 +15,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
             android:text="@string/app_name"
             android:textColor="@color/white"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
     </RelativeLayout>
 
@@ -41,15 +40,15 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_centerHorizontal="true"
-                android:src="@mipmap/icon"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="8dp"
+                android:src="@mipmap/icon" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginEnd="30dp"
-                android:layout_marginStart="30dp">
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp">
 
                 <Button
                     android:id="@+id/btnStart"
@@ -59,7 +58,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/bg_btns"
                     android:onClick="onClick"
-                    android:text="Start"
+                    android:text="@string/start"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="italic" />
@@ -72,7 +71,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/bg_btns"
                     android:onClick="onClick"
-                    android:text="My Work"
+                    android:text="@string/my_work"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="italic" />
@@ -80,7 +79,6 @@
             </LinearLayout>
 
         </RelativeLayout>
-
 
 
         <Button
@@ -91,7 +89,7 @@
             android:layout_weight="1"
             android:background="@drawable/bg_btns"
             android:onClick="onClick"
-            android:text="Pick Image"
+            android:text="@string/pick_image"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="italic" />
@@ -137,6 +135,7 @@
         android:id="@+id/llBottom"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true" />
+
 
 </RelativeLayout>

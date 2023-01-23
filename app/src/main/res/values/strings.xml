@@ -51,5 +51,9 @@
     <string name="share_img_via">Share image by…</string>
     <string name="wallpaper_succesfully_set">Successfully Wallpaper Set</string>
     <string name="editor">EDITOR</string>
+    <string name="my_work">My Work</string>
+    <string name="pick_image">Pick Image</string>
+    <string name="start">Start</string>
+    <string name="select_image">Select Image</string>
 
 </resources>
