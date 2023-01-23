@@ -50,5 +50,6 @@
     <string name="share_app">Share App</string>
     <string name="share_img_via">Share image by…</string>
     <string name="wallpaper_succesfully_set">Successfully Wallpaper Set</string>
+    <string name="editor">EDITOR</string>
 
 </resources>

@@ -131,7 +131,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         }
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int screenheight = displaymetrics.heightPixels;
+
         screenwidth = displaymetrics.widthPixels;
         MaxResolution = screenwidth;
         initializeViews();
@@ -154,7 +154,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         effect_gallery.setVisibility(View.GONE);
         crop_gallery.setVisibility(View.GONE);
         txt_editor = findViewById(R.id.pic_txteditor);
-        txt_editor.setText("EDITOR");
+        txt_editor.setText(R.string.editor);
         pic_imageview = findViewById(R.id.iv_imagemaker);
 
 
@@ -335,7 +335,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
             if (i >= as.length) {
                 return;
             }
-            View view = getLayoutInflater().inflate(R.layout.pic_crop_layout, null);
+            @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.pic_crop_layout, null);
             final Button btn_crop = view.findViewById(R.id.crop_btn);
             btn_crop.setId(i);
             btn_crop.setLayoutParams(new LinearLayout.LayoutParams(-2, -2));
@@ -423,7 +423,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
             if (i >= as.length) {
                 return;
             }
-            View view = getLayoutInflater().inflate(R.layout.pic_effect_layout, null);
+            @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.pic_effect_layout, null);
             final ImageView imageView = view.findViewById(R.id.image);
             TextView textview = view.findViewById(R.id.txt_view);
             imageView.setId(i);
@@ -432,65 +432,27 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
             textview.setText(as[i]);
             imageView.setImageBitmap(bitmap);
             effect_gallery.addView(view);
-            imageView.setOnClickListener(new OnClickListener() {
+            imageView.setOnClickListener(view1 -> {
 
-                public void onClick(View view1) {
+                Log.d("clickedId", "onClick: " + imageView.getId());
+                switch (imageView.getId()) {
 
-                    Log.d("clickedId", "onClick: " + imageView.getId());
-                    switch (imageView.getId()) {
-                        case 0:
-                            if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView.getId());
-                            }
-
-                            break;
-
-                        case 1:
-                            if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView.getId());
-                            }
-                            break;
-                        case 2:
-                            if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView.getId());
-                            }
-                            break;
-
-                        case 3:
-                            if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView.getId());
-                            }
-                            break;
-                        case 4:
-                            if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView.getId());
-                            }
-                            break;
-
-                        case 5:
-                            if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView.getId());
-                            }
-                            break;
-                        case 6:
-                            if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView.getId());
-                            }
-                            break;
-                        case 7:
-                            if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView.getId());
-                            }
-                            break;
-                        default:
-                            if (sketchDone) {
-                                new SketchAsnyTask().execute(imageView.getId());
-                            }
-                            break;
-
-                    }
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    default:
+                        if (sketchDone) {
+                            new SketchAsnyTask().execute(imageView.getId());
+                        }
+                        break;
 
                 }
+
             });
             i++;
         } while (true);
@@ -594,21 +556,14 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         TextView textview1 = exit_dialog.findViewById(R.id.pic_dialog_no);
         textview.setText(getString(R.string.leave_edt));
         textview1.setText(getString(R.string.keep_edt));
-        textview.setOnClickListener(new OnClickListener() {
+        textview.setOnClickListener(view -> {
+            exit_dialog.dismiss();
+            Intent intent = new Intent();
+            setResult(RESULT_CANCELED, intent);
+            finish();
 
-            public void onClick(View view) {
-                exit_dialog.dismiss();
-                Intent intent = new Intent();
-                setResult(RESULT_CANCELED, intent);
-                finish();
-
-            }
         });
-        textview1.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                exit_dialog.dismiss();
-            }
-        });
+        textview1.setOnClickListener(view -> exit_dialog.dismiss());
         exit_dialog.show();
     }
 
@@ -643,9 +598,9 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                 if (Imagepath != null) {
                     picmaker_dialog.dismiss();
 
-                    Orientation = Float.valueOf(getImageOrientation(Imagepath));
+                    Orientation = getImageOrientation(Imagepath);
                     getAspectRatio(Imagepath, MaxResolution);
-                    pic_result = getResizedOriginalBitmap(Imagepath, Orientation.floatValue());
+                    pic_result = getResizedOriginalBitmap(Imagepath, Orientation);
 
                     pic_imageview.setImageBitmap(pic_result);
                     Toast.makeText(getApplicationContext(), "Your original image is back !!!", Toast.LENGTH_SHORT).show();
@@ -653,20 +608,13 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                         bitmap.recycle();
                         System.gc();
                     }
-                    return;
                 } else {
                     Toast.makeText(getApplicationContext(), "Invalid image path.", Toast.LENGTH_SHORT).show();
-                    return;
                 }
             }
 
         });
-        textview1.setOnClickListener(new OnClickListener() {
-
-            public void onClick(View view) {
-                picmaker_dialog.dismiss();
-            }
-        });
+        textview1.setOnClickListener(view -> picmaker_dialog.dismiss());
         picmaker_dialog.show();
     }
 
@@ -827,7 +775,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         }
     }
 
-    public boolean saveBitmap(String s, int i, Bitmap bitmap) {
+    public void saveBitmap(String s, int i, Bitmap bitmap) {
 
         String s1 = AppUtils.getAppFolderPath(this);
         new File(s1).mkdirs();
@@ -856,6 +804,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
             as = new String[1];
             as[0] = file.toString();
         } catch (NullPointerException nullpointerexception) {
+            Log.e("TAG", "saveBitmap: NullPointerException = " + nullpointerexception.getMessage());
         } catch (IOException e) {
 
             e.printStackTrace();
@@ -865,7 +814,6 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
 
             }
         });
-        return true;
     }
 
     public Bitmap getSketchBitmap(Bitmap bm1, int type) {
@@ -956,16 +904,16 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                         Bitmap invertCopy = invert(greyScaleCoppy);
 
                         Bitmap blurImage = fastblur(invertCopy, 7);
-                        if (invertCopy != null && !invertCopy.isRecycled()) {
+                        if (!invertCopy.isRecycled()) {
                             invertCopy.recycle();
                             System.gc();
                         }
                         simpleSketchbitmap1 = ColorDodgeBlend(blurImage, greyScaleCoppy);
-                        if (greyScaleCoppy != null && !greyScaleCoppy.isRecycled()) {
+                        if (!greyScaleCoppy.isRecycled()) {
                             greyScaleCoppy.recycle();
                             System.gc();
                         }
-                        if (blurImage != null && !blurImage.isRecycled()) {
+                        if (!blurImage.isRecycled()) {
                             blurImage.recycle();
                             System.gc();
                         }
@@ -1318,11 +1266,11 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                 Imagepath = getRealPathFromURI(imageuri);
                 if (Imagepath != null && (Imagepath.endsWith(".png") || Imagepath.endsWith(".jpg") || Imagepath.endsWith(".jpeg") || Imagepath.endsWith(".bmp"))) {
 
-                    Orientation = Float.valueOf(getImageOrientation(Imagepath));
+                    Orientation = getImageOrientation(Imagepath);
                     getAspectRatio(Imagepath, MaxResolution);
-                    pic_result = getResizedOriginalBitmap(Imagepath, Orientation.floatValue());
-                    pic_forSketch = getResizedOriginalBitmap(Imagepath, Orientation.floatValue());
-                    pic_forDraw = getResizedOriginalBitmap(Imagepath, Orientation.floatValue());
+                    pic_result = getResizedOriginalBitmap(Imagepath, Orientation);
+                    pic_forSketch = getResizedOriginalBitmap(Imagepath, Orientation);
+                    pic_forDraw = getResizedOriginalBitmap(Imagepath, Orientation);
                     getimage = true;
 
                 }
@@ -1565,19 +1513,13 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         public boolean onTouchEvent(MotionEvent ev) {
             switch (ev.getAction()) {
 
-                case MotionEvent.ACTION_DOWN: {
-                    x = (int) ev.getX();
-                    y = (int) ev.getY();
-                    invalidate();
-                    break;
-                }
+                case MotionEvent.ACTION_DOWN:
 
                 case MotionEvent.ACTION_MOVE: {
                     x = (int) ev.getX();
                     y = (int) ev.getY();
                     invalidate();
                     break;
-
                 }
 
                 case MotionEvent.ACTION_UP:
