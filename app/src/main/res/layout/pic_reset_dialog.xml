@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="12.0dip"
+    android:background="#7CAEF9"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/pic_reset_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:textStyle="bold"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginTop="10.0dip"
+        android:text="@string/alert"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/picmaker_exit_txt_size" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1.0dip"
+        android:layout_marginTop="10.0dip"
+        android:background="#ff00bfff" />
+
+    <TextView
+        android:id="@+id/pic_reset_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10.0dip"
+        android:lines="4"
+        android:textStyle="bold"
+        android:maxLines="6"
+        android:minLines="3"
+        android:paddingLeft="5.0dip"
+        android:paddingRight="5.0dip"
+        android:singleLine="false"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/picmaker_exit_txt_size" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1.0dip"
+        android:background="@color/stroke_gallery" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="5.0dip"
+        android:paddingRight="5.0dip" >
+
+        <TextView
+            android:id="@+id/pic_dialog_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
+            android:textStyle="bold"
+            android:background="@drawable/selector"
+            android:clickable="true"
+            android:gravity="top|center"
+            android:paddingBottom="15.0dip"
+            android:paddingTop="12.0dip"
+            android:text="Keep Editing"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/picmaker_btntxt_size" />
+
+        <View
+            android:layout_width="1.0dip"
+            android:layout_height="fill_parent"
+            android:background="@color/stroke_gallery" />
+
+        <TextView
+            android:id="@+id/pic_dialog_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
+            android:background="@drawable/selector"
+            android:clickable="true"
+            android:textStyle="bold"
+            android:gravity="top|center"
+            android:paddingBottom="15.0dip"
+            android:paddingTop="12.0dip"
+            android:text="Leave Editor"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/picmaker_btntxt_size" />
+    </LinearLayout>
+
+</LinearLayout>

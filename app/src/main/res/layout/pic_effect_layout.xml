@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout01"
+    android:layout_width="wrap_content"
+    android:background="#7CAEF9"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:background="#C5DCFF"
+            android:padding="6.0dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/pic_eff_image"
+            android:contentDescription="@string/app_name"/>
+
+        <TextView
+            android:id="@+id/txt_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:paddingBottom="1.0dip"
+            android:paddingLeft="1.0dip"
+            android:paddingRight="1.0dip"
+            android:text="effects"
+            android:textStyle="bold"
+            android:textColor="#292929"
+            android:textSize="@dimen/picmaker_effs_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/picmaker_eff_gallery_space"
+        android:layout_height="@dimen/picmaker_eff_gallery_space"
+        android:background="@color/transparent" />
+
+</LinearLayout>

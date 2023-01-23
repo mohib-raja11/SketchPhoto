@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" >
+        <shape>
+            <gradient
+                android:startColor="@color/headerbar_selected_tab_color"
+                android:endColor="#0889ec"
+                android:angle="45" />
+            <stroke
+                android:width="1dp"
+                android:color="#21a9ef" />
+            <corners
+                android:radius="7dp" />
+
+        </shape>
+    </item>
+    <item android:state_pressed="false">
+        <shape>
+            <solid
+                android:color="#5db9f4" />
+            <stroke
+                android:width="1dp"
+                android:color="#06a2f2" />
+            <corners
+                android:radius="7dp" />
+        </shape>
+    </item>
+</selector>
