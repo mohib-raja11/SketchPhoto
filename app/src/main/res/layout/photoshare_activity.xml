@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/second_RelativeLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -125,7 +126,8 @@
             android:background="@drawable/ic_rectangle_round"
             android:padding="4dp"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_delete" />
+            android:src="@drawable/ic_delete"
+            />
 
         <ImageButton
             android:id="@+id/save_btn"
