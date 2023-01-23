@@ -52,7 +52,6 @@ import com.edmodo.cropper.CropImageView;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.Ragnarok.BitmapFilter;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.CSketchFilter;
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.FilterHelper;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.SketchColorFilter;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.SketchColorFilter2;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.SketchFilter;
@@ -60,7 +59,6 @@ import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketchi
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.Activities.PhotoShare_Activity;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.Utils.AppUtils;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.pencil.others.ActivityHandler;
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.pencil.others.BitmapHelper;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.sketches.SecondSketchFilter;
 
 import java.io.BufferedOutputStream;
@@ -75,34 +73,34 @@ import java.util.UUID;
 public class ImageRemakeActivity extends Activity implements OnClickListener {
 
     public static int overlayid = -1;
+    private int MaxResolution, imageheight, imagewidth, screenwidth;
+
     public static Bitmap pic_result, pic_forSketch, pic_forDraw;
+    private Bitmap colorPencilBitmap = null, colorPencil2Bitmap, pencilsketchBitmap = null, pencil2Bitmap = null;
+    private Bitmap simpleSketchbitmap1 = null, simpleSketchbitmap2 = null, comicBitmap = null;
+
     private String Imagepath, sendimagepath;
-    private int MaxResolution;
+
+    private String[] tool_array;
+    private final String[] as = {"Color", "Pencil 1", "Color 2", "Pencil 2", "Pencil 3", "Pencil 4", "Pencil 5", "Sepia"};
+
+
     private Float Orientation;
+
     private Animation anim_bottom_show, anim_btnapply, animhidebtn, animsgallerybtn, animshowbtndown, animshowbtnup;
+
     private LinearLayout crop_gallery, effect_gallery, pic_apply_layout, pic_btn_gallery, pic_donelayout;
     private RelativeLayout gallery_layout;
-    private int imageheight, imagewidth, screenwidth;
     private Uri imageuri;
+
     private CropImageView pic_cropImageView;
     private ImageView pic_imageview;
-    private String[] tool_array;
     private TextView txt_editor;
-    private final BitmapHelper bitmapHelper;
     private final ActivityHandler activityHelper;
-    private final String[] as = {"Color", "Pencil 1", "Color 2", "Pencil 2", "Pencil 3", "Pencil 4", "Pencil 5", "Sepia"};
-    private Bitmap colorPencilBitmap = null, colorPencil2Bitmap, pencilsketchBitmap = null;
-    private Bitmap pencil2Bitmap = null;
-    private Bitmap simpleSketchbitmap1 = null;
-    private Bitmap simpleSketchbitmap2 = null;
-    private Bitmap comicBitmap = null;
-    private final Bitmap grainBitmap = null;
     private FrameLayout viewContainer;
     private Dialog exit_dialog;
     private final Integer[] effectImages = {R.drawable.pic_eff_0, R.drawable.pic_eff_1, R.drawable.pic_eff_2, R.drawable.pic_eff_3, R.drawable.pic_eff_4, R.drawable.pic_eff_5, R.drawable.pic_eff_6, R.drawable.pic_eff_7};
-    private Canvas bitmapCanvas;
-    private int intensity = 1;
-    private final boolean filterApplyed = false;
+
     private boolean MoveBack = false;
     private boolean moveforword = true;
     private boolean lineOne = true;
@@ -116,7 +114,6 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         Imagepath = null;
         tool_array = null;
         this.activityHelper = new ActivityHandler(this, this);
-        this.bitmapHelper = new FilterHelper(this, this.activityHelper);
     }
 
     @SuppressLint("WrongConstant")
@@ -307,7 +304,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
                 return;
             }
             String s = as[j];
-            View view = getLayoutInflater().inflate(R.layout.pic_btn_layout, null);
+            @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.pic_btn_layout, null);
             ImageButton imagebutton = view.findViewById(R.id.btn_image);
             TextView textview = view.findViewById(R.id.btn_txt);
             imagebutton.setOnClickListener(this);
@@ -1488,11 +1485,10 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
             update();
             invalidate();
             canvas.drawBitmap(bmOverlay, 0, 0, null);
-            bitmapCanvas = new Canvas(pic_forDraw);
+            Canvas bitmapCanvas = new Canvas(pic_forDraw);
             bitmapCanvas.drawBitmap(pic_result, 0, 0, null);
             bitmapCanvas.drawBitmap(bmOverlay, 0, 0, null);
             canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.drawing_hand), mImagePos.x, mImagePos.y, null);
-            intensity = 20;
 
         }
 
