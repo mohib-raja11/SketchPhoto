@@ -10,7 +10,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -23,6 +22,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.exifinterface.media.ExifInterface;
 
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.constant.SaveToStorageUtil;
@@ -53,17 +54,6 @@ public class PhotoShare_Activity extends Activity {
         savedok = false;
         shareuri = null;
 
-    }
-
-    public static String encodeString(String string) {
-
-        if (string != null) {
-            string = string.replace("/", "-");
-            string = string.replace(" ", "_");
-            string = string.replace(":", "-");
-            string = string.replace("&", "-");
-        }
-        return string;
     }
 
     @Override

@@ -22,7 +22,6 @@ import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.ColorDrawable;
-import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -46,6 +45,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.exifinterface.media.ExifInterface;
 
 import com.edmodo.cropper.CropImageView;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
