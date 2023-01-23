@@ -1,6 +1,6 @@
 
 
-package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.pencil;
+package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.pencil;
 
 import java.util.LinkedList;
 import java.util.List;

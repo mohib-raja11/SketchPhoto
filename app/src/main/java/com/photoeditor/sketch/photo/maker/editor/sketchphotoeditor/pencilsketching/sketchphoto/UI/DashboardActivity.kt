@@ -21,7 +21,7 @@ import com.esafirm.imagepicker.model.Image
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.gallery.MediaChooser
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.constant.AppConstant
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.pencil.ImageRemakeActivity
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.pencil.ImageRemakeActivity
 
 class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 

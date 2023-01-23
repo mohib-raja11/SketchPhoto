@@ -27,7 +27,7 @@ import androidx.exifinterface.media.ExifInterface;
 
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.constant.SaveToStorageUtil;
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.pencil.GPUImageFilterTools;
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.pencil.GPUImageFilterTools;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

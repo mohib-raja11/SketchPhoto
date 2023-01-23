@@ -1,4 +1,4 @@
-package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.pencil.others;
+package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.pencil.others;
 
 import java.lang.ref.WeakReference;
 
