@@ -1,5 +1,6 @@
 package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -67,14 +68,18 @@ class MyGalleryActivity : Activity() {
     }
 
     //***********************************Mohib: getting list of saved files************************************
+    @SuppressLint("NotifyDataSetChanged")
     private fun loadingImages() {
         val rootPath = AppUtils.getAppFolderPath(context)
         val directory = File(rootPath)
         val listFile = directory.listFiles()
+
+        name_list.clear()
+        name_path_list.clear()
+
         if (listFile != null && listFile.size > 0) {
             //Mohib: if saved files are then show dialog of all files to choose
-            name_list.clear()
-            name_path_list.clear()
+
             for (i in listFile.indices) {
                 if (listFile[i].name.endsWith(extention) || listFile[i].name.endsWith(
                         extention_png
@@ -84,10 +89,12 @@ class MyGalleryActivity : Activity() {
                     name_path_list.add(listFile[i].absolutePath)
                 }
             }
-            mainAdapter.notifyDataSetChanged()
         } else {
             Toast.makeText(this, "no file found", Toast.LENGTH_SHORT).show()
         }
+
+        mainAdapter.notifyDataSetChanged()
+
         if (name_path_list.size > 0) {
             tvNoItem!!.visibility = View.GONE
         } else {
