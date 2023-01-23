@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_margin="12.0dip"
+    android:layout_margin="12dp"
     android:background="#7CAEF9"
     android:orientation="vertical" >
 
@@ -13,16 +13,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:textStyle="bold"
-        android:layout_marginLeft="10.0dip"
-        android:layout_marginTop="10.0dip"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:text="@string/alert"
         android:textColor="#ffffff"
         android:textSize="@dimen/picmaker_exit_txt_size" />
 
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1.0dip"
-        android:layout_marginTop="10.0dip"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
         android:background="#ff00bfff" />
 
     <TextView
@@ -30,28 +30,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="10.0dip"
+        android:layout_margin="10dp"
         android:lines="4"
         android:textStyle="bold"
         android:maxLines="6"
         android:minLines="3"
-        android:paddingLeft="5.0dip"
-        android:paddingRight="5.0dip"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:singleLine="false"
         android:textColor="@android:color/white"
         android:textSize="@dimen/picmaker_exit_txt_size" />
 
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1.0dip"
+        android:layout_height="1dp"
         android:background="@color/stroke_gallery" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="5.0dip"
-        android:paddingRight="5.0dip" >
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
 
         <TextView
             android:id="@+id/pic_dialog_yes"
@@ -63,14 +63,14 @@
             android:background="@drawable/selector"
             android:clickable="true"
             android:gravity="top|center"
-            android:paddingBottom="15.0dip"
-            android:paddingTop="12.0dip"
+            android:paddingBottom="15dp"
+            android:paddingTop="12dp"
             android:text="Keep Editing"
             android:textColor="#ffffff"
             android:textSize="@dimen/picmaker_btntxt_size" />
 
         <View
-            android:layout_width="1.0dip"
+            android:layout_width="1dp"
             android:layout_height="fill_parent"
             android:background="@color/stroke_gallery" />
 
@@ -84,8 +84,8 @@
             android:clickable="true"
             android:textStyle="bold"
             android:gravity="top|center"
-            android:paddingBottom="15.0dip"
-            android:paddingTop="12.0dip"
+            android:paddingBottom="15dp"
+            android:paddingTop="12dp"
             android:text="Leave Editor"
             android:textColor="#ffffff"
             android:textSize="@dimen/picmaker_btntxt_size" />

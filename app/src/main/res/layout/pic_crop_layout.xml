@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:background="#7CAEF9"
         android:gravity="left"
-        android:padding="10.0dip"
+        android:padding="10dp"
         android:textStyle="bold"
         android:text="demo"
         android:textColor="@android:color/white"

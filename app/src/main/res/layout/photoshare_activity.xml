@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/top_buttons"
         android:layout_width="fill_parent"
-        android:layout_height="50dip"
+        android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/btn_background"
@@ -23,8 +23,8 @@
             android:layout_weight="1.0"
             android:background="#85c1e9"
             android:contentDescription="@string/app_name"
-            android:paddingTop="8.0dip"
-            android:paddingBottom="8.0dip"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:src="@drawable/pic_reset"
             android:visibility="invisible" />
 
@@ -36,8 +36,8 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
-            android:paddingTop="8.0dip"
-            android:paddingBottom="8.0dip"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:src="@drawable/pic_colorpicker" />
 
         <ImageButton
@@ -49,8 +49,8 @@
             android:layout_weight="1.0"
             android:background="#85c1e9"
             android:contentDescription="@string/app_name"
-            android:paddingTop="8.0dip"
-            android:paddingBottom="8.0dip"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:src="@drawable/pic_apply"
             android:visibility="invisible" />
     </LinearLayout>
@@ -58,7 +58,7 @@
     <LinearLayout
         android:id="@+id/top_color_button"
         android:layout_width="fill_parent"
-        android:layout_height="50dip"
+        android:layout_height="50dp"
         android:layout_below="@+id/top_buttons"
         android:background="#d7dbdd"
         android:orientation="horizontal"
@@ -72,7 +72,7 @@
             android:layout_weight="1.0"
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
-            android:padding="8.0dip"
+            android:padding="8dp"
             android:src="#ff0000" />
 
         <ImageButton
@@ -83,7 +83,7 @@
             android:layout_weight="1.00"
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
-            android:padding="8.0dip"
+            android:padding="8dp"
             android:src="#00008E" />
 
         <ImageButton
@@ -94,7 +94,7 @@
             android:layout_weight="1.0"
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
-            android:padding="8.0dip"
+            android:padding="8dp"
             android:src="#47ec47" />
     </LinearLayout>
 

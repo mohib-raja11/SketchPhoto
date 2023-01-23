@@ -36,10 +36,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/headerLayout"
-        android:layout_marginTop="2.0dip"
-        android:horizontalSpacing="0.0dip"
+        android:layout_marginTop="2dp"
+        android:horizontalSpacing="0dp"
         android:numColumns="3"
         android:smoothScrollbar="true"
-        android:verticalSpacing="0.0dip" />
+        android:verticalSpacing="0dp" />
 
 </RelativeLayout>
