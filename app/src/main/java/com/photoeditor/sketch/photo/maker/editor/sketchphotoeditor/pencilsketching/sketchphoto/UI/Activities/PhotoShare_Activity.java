@@ -108,9 +108,19 @@ public class PhotoShare_Activity extends Activity {
         reset_Button = findViewById(R.id.reset_button);
 
 
-        findViewById(R.id.btnDelete).setOnClickListener(this::onClick);
-        findViewById(R.id.save_btn).setOnClickListener(this::onClick);
-        findViewById(R.id.share_btn).setOnClickListener(this::onClick);
+        findViewById(R.id.btnDelete).setOnClickListener(v -> deleteCurrentImage());
+        findViewById(R.id.save_btn).setOnClickListener(v -> {
+            Bitmap bitmap = mGPUImage.getBitmapWithFilterApplied();
+            saveImage(bitmap);
+        });
+        findViewById(R.id.share_btn).setOnClickListener(v -> {
+            Bitmap bitmap = mGPUImage.getBitmapWithFilterApplied();
+            Uri uri = getImageUri(PhotoShare_Activity.this, bitmap);
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("image/jpg");
+            intent.putExtra(Intent.EXTRA_STREAM, uri);
+            startActivity(Intent.createChooser(intent, getResources().getString(R.string.share_img_via)));
+        });
 
 
     }
@@ -232,14 +242,11 @@ public class PhotoShare_Activity extends Activity {
 
         Toast.makeText(PhotoShare_Activity.this, getString(R.string.img_saved_successfully), Toast.LENGTH_SHORT).show();
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        new Handler().postDelayed(() -> {
 
-                Intent intent = new Intent(PhotoShare_Activity.this, DashboardActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
-            }
+            Intent intent = new Intent(PhotoShare_Activity.this, DashboardActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
         }, 1000);
 
     }
@@ -331,28 +338,6 @@ public class PhotoShare_Activity extends Activity {
         return app_installed;
     }
 
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btnDelete:
-                deleteCurrentImage();
-                break;
-            case R.id.save_btn: {
-                Bitmap bitmap = mGPUImage.getBitmapWithFilterApplied();
-                saveImage(bitmap);
-            }
-            break;
-            case R.id.share_btn: {
-
-                Bitmap bitmap = mGPUImage.getBitmapWithFilterApplied();
-                Uri uri = getImageUri(PhotoShare_Activity.this, bitmap);
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("image/jpg");
-                intent.putExtra(Intent.EXTRA_STREAM, uri);
-                startActivity(Intent.createChooser(intent, getResources().getString(R.string.share_img_via)));
-            }
-            break;
-        }
-    }
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
