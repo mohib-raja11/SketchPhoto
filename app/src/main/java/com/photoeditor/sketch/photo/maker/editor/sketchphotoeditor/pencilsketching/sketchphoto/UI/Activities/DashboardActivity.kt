@@ -1,12 +1,12 @@
 package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.Activities
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.content.*
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.util.DisplayMetrics
@@ -69,31 +69,6 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
     private fun pickImageWithLib() {
         run {
 
-            var config = ImagePickerConfig {
-                mode = ImagePickerMode.SINGLE // default is multi image mode
-                language = "in" // Set image picker language
-
-                // set whether pick action or camera action should return immediate result or not. Only works in single mode for image picker
-                returnMode = ReturnMode.ALL
-
-                isFolderMode = true // set folder mode (false by default)
-                isIncludeVideo = true // include video (false by default)
-                isOnlyVideo = false // include video (false by default)
-                arrowColor = Color.RED // set toolbar arrow up color
-                folderTitle = "Folder" // folder selection title
-                imageTitle = "Tap to select" // image selection title
-                doneButtonText = "DONE" // done button text
-                limit = 10 // max images can be selected (99 by default)
-                isShowCamera = true // show camera or not (true by default)
-                savePath =
-                    ImagePickerSavePath("Camera") // captured image directory name ("Camera" folder by default)
-                savePath = ImagePickerSavePath(
-                    Environment.getExternalStorageDirectory().path, isRelative = false
-                ) // can be a full path
-
-            }
-
-
             launcher.launch()
 
 
@@ -111,19 +86,19 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun pickImageFromGallery() {
-       /* if (Build.VERSION.SDK_INT >= 23) {
-            if (checkPermission()) {
-                MediaChooser.setSelectionLimit(20)
-                val intent = Intent(this@DashboardActivity, ChoosePhotoFragmentActivity::class.java)
-                startActivity(intent)
-            } else {
-                requestPermission() // Code for permission
-            }
-        } else {
-            MediaChooser.setSelectionLimit(20)
-            val intent = Intent(this@DashboardActivity, ChoosePhotoFragmentActivity::class.java)
-            startActivity(intent)
-        }*/
+        /* if (Build.VERSION.SDK_INT >= 23) {
+             if (checkPermission()) {
+                 MediaChooser.setSelectionLimit(20)
+                 val intent = Intent(this@DashboardActivity, ChoosePhotoFragmentActivity::class.java)
+                 startActivity(intent)
+             } else {
+                 requestPermission() // Code for permission
+             }
+         } else {
+             MediaChooser.setSelectionLimit(20)
+             val intent = Intent(this@DashboardActivity, ChoosePhotoFragmentActivity::class.java)
+             startActivity(intent)
+         }*/
     }
 
     private fun gotothisLink(url: String) {
@@ -159,6 +134,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
+    @SuppressLint("WrongConstant")
     private fun StartImageRemaker(uri: Uri) {
 
 
@@ -200,7 +176,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         val builder = AlertDialog.Builder(this, R.style.MyDialogTheme)
         builder.setTitle(getString(R.string.alert))
         builder.setMessage(getString(R.string.exit_message))
-        builder.setPositiveButton("Yes") { dialog, which -> finish() }
+        builder.setPositiveButton("Yes") { _, which -> finish() }
         builder.setNegativeButton("No") { dialog, which -> dialog.dismiss() }
         builder.setNeutralButton(R.string.share_app) { dialog, which ->
             shareApp()
