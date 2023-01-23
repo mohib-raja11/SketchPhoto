@@ -89,56 +89,27 @@ public class PhotoShare_Activity extends Activity {
         pic_imageview = findViewById(R.id.finalimg);
 
         (new LoadImageAsycTask()).execute();
-        green_Button.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                new EffectAsnyTask().execute(0);
-                doneButton.setVisibility(View.VISIBLE);
-                reset_Button.setVisibility(View.VISIBLE);
-            }
+        green_Button.setOnClickListener(v -> {
+            new EffectAsnyTask().execute(0);
+            doneButton.setVisibility(View.VISIBLE);
+            reset_Button.setVisibility(View.VISIBLE);
         });
-        blue_Button.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                new EffectAsnyTask().execute(1);
-                doneButton.setVisibility(View.VISIBLE);
-                reset_Button.setVisibility(View.VISIBLE);
-            }
+        blue_Button.setOnClickListener(v -> {
+            new EffectAsnyTask().execute(1);
+            doneButton.setVisibility(View.VISIBLE);
+            reset_Button.setVisibility(View.VISIBLE);
         });
-        red_Button.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                new EffectAsnyTask().execute(2);
-                doneButton.setVisibility(View.VISIBLE);
-                reset_Button.setVisibility(View.VISIBLE);
-            }
+        red_Button.setOnClickListener(v -> {
+            new EffectAsnyTask().execute(2);
+            doneButton.setVisibility(View.VISIBLE);
+            reset_Button.setVisibility(View.VISIBLE);
         });
-        reset_Button.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                (new LoadImageAsycTask()).execute();
-                color_layout.setVisibility(View.INVISIBLE);
-            }
+        reset_Button.setOnClickListener(v -> {
+            (new LoadImageAsycTask()).execute();
+            color_layout.setVisibility(View.INVISIBLE);
         });
-        doneButton.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                color_layout.setVisibility(View.INVISIBLE);
-            }
-        });
-        effect_Button.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                color_layout.setVisibility(View.VISIBLE);
-
-            }
-        });
+        doneButton.setOnClickListener(v -> color_layout.setVisibility(View.INVISIBLE));
+        effect_Button.setOnClickListener(v -> color_layout.setVisibility(View.VISIBLE));
 
     }
 
@@ -150,6 +121,13 @@ public class PhotoShare_Activity extends Activity {
         green_Button = findViewById(R.id.green_button);
         doneButton = findViewById(R.id.done_button);
         reset_Button = findViewById(R.id.reset_button);
+
+
+        findViewById(R.id.btnDelete).setOnClickListener(this::onClick);
+        findViewById(R.id.save_btn).setOnClickListener(this::onClick);
+        findViewById(R.id.share_btn).setOnClickListener(this::onClick);
+
+
     }
 
     private void getIntentExtra() {
@@ -247,13 +225,11 @@ public class PhotoShare_Activity extends Activity {
                 options.inScaled = false;
                 options.inPreferredConfig = Bitmap.Config.ARGB_8888;
                 try {
-                    bitmap = BitmapFactory.decodeStream(new FileInputStream(s),
-                            null, options);
+                    bitmap = BitmapFactory.decodeStream(new FileInputStream(s), null, options);
                     matrix = new Matrix();
                     matrix.postScale(f, f1);
                     matrix.postRotate(f2);
-                    return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
-                            bitmap.getHeight(), matrix, true);
+                    return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -312,8 +288,7 @@ public class PhotoShare_Activity extends Activity {
                 }
                 if (currentapiVersion <= 18) {
                     try {
-                        Intent intent = new Intent(
-                                "android.intent.action.MEDIA_SCANNER_SCAN_FILE");
+                        Intent intent = new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE");
                         intent.setData(Uri.fromFile(new File(shareuri.getPath())));
                         sendBroadcast(intent);
                     } catch (NullPointerException nullpointerexception) {
@@ -329,22 +304,15 @@ public class PhotoShare_Activity extends Activity {
 
     private void scanFile(String s, final boolean isDelete) {
         try {
-            MediaScannerConnection
-                    .scanFile(
-                            getApplicationContext(),
-                            new String[]{s},
-                            null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
+            MediaScannerConnection.scanFile(getApplicationContext(), new String[]{s}, null, new MediaScannerConnection.OnScanCompletedListener() {
 
-                                public void onScanCompleted(String s1, Uri uri) {
-                                    if (isDelete && uri != null) {
-                                        getApplicationContext()
-                                                .getContentResolver().delete(
-                                                        uri, null, null);
-                                    }
-                                }
+                public void onScanCompleted(String s1, Uri uri) {
+                    if (isDelete && uri != null) {
+                        getApplicationContext().getContentResolver().delete(uri, null, null);
+                    }
+                }
 
-                            });
+            });
             return;
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -353,11 +321,10 @@ public class PhotoShare_Activity extends Activity {
 
 
     protected void Image_effect(int i) {
-        GPUImageFilterTools.Applyeffects(i, this,
-                gpuimagefilter -> {
-                    switchFilterTo(gpuimagefilter);
-                    mGPUImage.requestRender();
-                });
+        GPUImageFilterTools.Applyeffects(i, this, gpuimagefilter -> {
+            switchFilterTo(gpuimagefilter);
+            mGPUImage.requestRender();
+        });
     }
 
     public void switchFilterTo(GPUImageFilter gpuimagefilter) {
@@ -464,8 +431,7 @@ public class PhotoShare_Activity extends Activity {
 
         @Override
         protected void onPreExecute() {
-            dialog = ProgressDialog.show(PhotoShare_Activity.this, "",
-                    "Loading...");
+            dialog = ProgressDialog.show(PhotoShare_Activity.this, "", "Loading...");
             dialog.setCancelable(false);
             getIntentExtra();
             super.onPreExecute();
@@ -487,14 +453,10 @@ public class PhotoShare_Activity extends Activity {
                 getimage = Boolean.valueOf(false);
             }
             Imagepath = getRealPathFromURI(shareuri);
-            if (Imagepath != null && Imagepath.endsWith(".png")
-                    || Imagepath.endsWith(".jpg")
-                    || Imagepath.endsWith(".jpeg")
-                    || Imagepath.endsWith(".bmp")) {
+            if (Imagepath != null && Imagepath.endsWith(".png") || Imagepath.endsWith(".jpg") || Imagepath.endsWith(".jpeg") || Imagepath.endsWith(".bmp")) {
                 Orientation = Float.valueOf(getImageOrientation(Imagepath));
                 getAspectRatio(Imagepath, MaxResolution);
-                share_bitmap = getResizedOriginalBitmap(Imagepath,
-                        Orientation.floatValue());
+                share_bitmap = getResizedOriginalBitmap(Imagepath, Orientation.floatValue());
                 getimage = Boolean.valueOf(true);
             }
 
@@ -506,11 +468,8 @@ public class PhotoShare_Activity extends Activity {
         protected void onPostExecute(Void result) {
 
             if (getimage.booleanValue()) {
-                if (share_bitmap == null || share_bitmap.getHeight() <= 5
-                        || share_bitmap.getWidth() <= 5) {
-                    Toast.makeText(getApplicationContext(),
-                                    "Image Format not supported .", Toast.LENGTH_SHORT)
-                            .show();
+                if (share_bitmap == null || share_bitmap.getHeight() <= 5 || share_bitmap.getWidth() <= 5) {
+                    Toast.makeText(getApplicationContext(), "Image Format not supported .", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
                     pic_imageview.setImageBitmap(share_bitmap);
@@ -518,8 +477,7 @@ public class PhotoShare_Activity extends Activity {
 
                 }
             } else {
-                Toast.makeText(getApplicationContext(),
-                        "Unsupported media file.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Unsupported media file.", Toast.LENGTH_SHORT).show();
                 finish();
             }
             dialog.dismiss();

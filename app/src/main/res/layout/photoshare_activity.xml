@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:id="@+id/second_RelativeLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/bgmain" >
+    android:background="@drawable/bgmain">
 
     <LinearLayout
         android:id="@+id/top_buttons"
         android:layout_width="fill_parent"
         android:layout_height="50dip"
-        android:background="@drawable/btn_background"
-        android:orientation="horizontal"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:background="@drawable/btn_background"
+        android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/reset_button"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_margin="5dp"
             android:layout_gravity="center"
+            android:layout_margin="5dp"
             android:layout_weight="1.0"
             android:background="#85c1e9"
             android:contentDescription="@string/app_name"
-            android:paddingBottom="8.0dip"
             android:paddingTop="8.0dip"
+            android:paddingBottom="8.0dip"
             android:src="@drawable/pic_reset"
             android:visibility="invisible" />
 
@@ -38,23 +36,21 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
-            android:paddingBottom="8.0dip"
             android:paddingTop="8.0dip"
-            android:src="@drawable/pic_colorpicker"
-            android:layout_above="@+id/top_color_button"
-            android:layout_centerHorizontal="true" />
+            android:paddingBottom="8.0dip"
+            android:src="@drawable/pic_colorpicker" />
 
         <ImageButton
             android:id="@+id/done_button"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_margin="5dp"
             android:layout_gravity="center"
+            android:layout_margin="5dp"
             android:layout_weight="1.0"
             android:background="#85c1e9"
             android:contentDescription="@string/app_name"
-            android:paddingBottom="8.0dip"
             android:paddingTop="8.0dip"
+            android:paddingBottom="8.0dip"
             android:src="@drawable/pic_apply"
             android:visibility="invisible" />
     </LinearLayout>
@@ -66,7 +62,7 @@
         android:layout_below="@+id/top_buttons"
         android:background="#d7dbdd"
         android:orientation="horizontal"
-        android:visibility="invisible" >
+        android:visibility="invisible">
 
         <ImageButton
             android:id="@+id/red_button"
@@ -106,19 +102,18 @@
         android:id="@+id/finalimg"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/app_name"
+        android:layout_above="@+id/ll_bottom"
         android:layout_below="@+id/top_color_button"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/ll_bottom" />
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/app_name" />
 
     <LinearLayout
         android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/btn_background"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_background"
         android:paddingBottom="8dp">
 
         <ImageButton
@@ -129,9 +124,8 @@
             android:layout_weight="1"
             android:background="@drawable/ic_rectangle_round"
             android:padding="4dp"
-            android:src="@drawable/ic_delete"
             android:scaleType="centerInside"
-            android:onClick="onClick"/>
+            android:src="@drawable/ic_delete" />
 
         <ImageButton
             android:id="@+id/save_btn"
@@ -141,9 +135,8 @@
             android:layout_weight="1"
             android:background="@drawable/ic_rectangle_round"
             android:padding="4dp"
-            android:src="@drawable/ic_save"
             android:scaleType="centerInside"
-            android:onClick="onClick" />
+            android:src="@drawable/ic_save" />
 
         <ImageButton
             android:id="@+id/share_btn"
@@ -153,9 +146,8 @@
             android:layout_weight="1"
             android:background="@drawable/ic_rectangle_round"
             android:padding="4dp"
-            android:onClick="onClick"
-            android:src="@drawable/ic_share"
-            android:scaleType="centerInside"/>
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_share" />
 
     </LinearLayout>
 
