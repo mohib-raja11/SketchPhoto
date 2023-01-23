@@ -160,8 +160,9 @@ public class ImageFragment extends Fragment
                 MediaModel galleryModel = adapter.getItem(position);
                 File file = new File(galleryModel.url);
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                Uri exportUri;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                Uri exportUri = FileProvider.getUriForFile(getContext(), getActivity().getPackageName() + ".fileprovider", file);
+
+               /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
                 {
                     exportUri = FileProvider.getUriForFile(getContext(), getActivity().getPackageName() + ".fileprovider", file);
                 }
@@ -169,8 +170,7 @@ public class ImageFragment extends Fragment
                 else
                 {
                     exportUri = Uri.fromFile(file);
-                }
-
+                } */
 
                 intent.setDataAndType(exportUri, "image/*");
                 startActivity(intent);
