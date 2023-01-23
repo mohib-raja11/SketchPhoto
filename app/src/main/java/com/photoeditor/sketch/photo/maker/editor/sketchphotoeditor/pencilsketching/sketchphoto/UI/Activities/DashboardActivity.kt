@@ -111,7 +111,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun pickImageFromGallery() {
-        if (Build.VERSION.SDK_INT >= 23) {
+       /* if (Build.VERSION.SDK_INT >= 23) {
             if (checkPermission()) {
                 MediaChooser.setSelectionLimit(20)
                 val intent = Intent(this@DashboardActivity, ChoosePhotoFragmentActivity::class.java)
@@ -123,7 +123,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
             MediaChooser.setSelectionLimit(20)
             val intent = Intent(this@DashboardActivity, ChoosePhotoFragmentActivity::class.java)
             startActivity(intent)
-        }
+        }*/
     }
 
     private fun gotothisLink(url: String) {

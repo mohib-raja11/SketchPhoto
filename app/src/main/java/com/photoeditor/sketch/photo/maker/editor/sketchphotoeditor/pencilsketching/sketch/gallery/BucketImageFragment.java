@@ -19,7 +19,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.Activities.HomeFragmentActivity;
+//import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.Activities.HomeFragmentActivity;
 
 public class BucketImageFragment extends Fragment{
 
@@ -90,13 +90,13 @@ public class BucketImageFragment extends Fragment{
 				public void onItemClick(AdapterView<?> adapter, View view,
 						int position, long id) {
 
-					BucketEntry bucketEntry  = (BucketEntry)adapter.getItemAtPosition(position);
+					/*BucketEntry bucketEntry  = (BucketEntry)adapter.getItemAtPosition(position);
 					Intent selectImageIntent = new Intent(getActivity(),HomeFragmentActivity.class);
 					selectImageIntent.putExtra("name", bucketEntry.bucketName);
 					selectImageIntent.putExtra("image", true);
 					selectImageIntent.putExtra("isFromBucket", true);
 					getActivity().startActivityForResult(selectImageIntent, MediaChooserConstants.BUCKET_SELECT_IMAGE_CODE);
-				}
+		*/		}
 			});
 
 		} finally {

@@ -1,3 +1,4 @@
+/*
 package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.Activities;
 
 import android.app.Activity;
@@ -125,9 +126,11 @@ public class ChoosePhotoFragmentActivity extends FragmentActivity {
         mTabHost = findViewById(android.R.id.tabhost);
     }
 
-    /*private Uri getOutputMediaFileUri(int type) {
+    */
+/*private Uri getOutputMediaFileUri(int type) {
         return Uri.fromFile(getOutputMediaFile(type));
-    }*/
+    }*//*
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -139,7 +142,8 @@ public class ChoosePhotoFragmentActivity extends FragmentActivity {
             if (requestCode == MediaChooserConstants.BUCKET_SELECT_IMAGE_CODE) {
                 addMedia(mSelectedImage, data.getStringArrayListExtra("list"));
 
-            } /*else if (requestCode == MediaChooserConstants.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+            } */
+/*else if (requestCode == MediaChooserConstants.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 
                 sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, fileUri));
                 final AlertDialog alertDialog = MediaChooserConstants
@@ -163,7 +167,8 @@ public class ChoosePhotoFragmentActivity extends FragmentActivity {
                     }
                 }, 5000);
 
-            }*/
+            }*//*
+
         }
     }
 
@@ -182,7 +187,8 @@ public class ChoosePhotoFragmentActivity extends FragmentActivity {
                 break;
         }
     }
-    /*private static File getOutputMediaFile(int type) {
+    */
+/*private static File getOutputMediaFile(int type) {
 
         File mediaStorageDir = new File(
                 Environment
@@ -208,6 +214,8 @@ public class ChoosePhotoFragmentActivity extends FragmentActivity {
         }
 
         return mediaFile;
-    }*/
+    }*//*
+
 
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.Activities;
 
 import android.annotation.SuppressLint;
@@ -220,3 +221,4 @@ public class HomeFragmentActivity extends FragmentActivity implements
     }
 
 }
+*/
