@@ -2,7 +2,6 @@ package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketch
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -101,10 +100,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
     private Dialog exit_dialog;
     private final Integer[] effectImages = {R.drawable.pic_eff_0, R.drawable.pic_eff_1, R.drawable.pic_eff_2, R.drawable.pic_eff_3, R.drawable.pic_eff_4, R.drawable.pic_eff_5, R.drawable.pic_eff_6, R.drawable.pic_eff_7};
 
-    private boolean MoveBack = false;
-    private boolean moveforword = true;
-    private boolean lineOne = true;
-    private boolean sketchDone = false;
+    private boolean MoveBack = false, moveforword = true, lineOne = true, sketchDone = false;
 
 
     public ImageRemakeActivity() {
@@ -122,13 +118,6 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_remake);
 
-
-        boolean flag;
-        flag = ((ActivityManager) getSystemService("activity")).getDeviceConfigurationInfo().reqGlEsVersion >= 0x20000;
-        if (!flag) {
-            Toast.makeText(getApplicationContext(), "Editor is not supported in this device.", Toast.LENGTH_SHORT).show();
-            finish();
-        }
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
 
@@ -170,7 +159,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
     }
 
     private void startAnimations() {
-        (new LoadImageAsycTask()).execute();
+        new LoadImageAsycTask().execute();
 
         animhidebtn = AnimationUtils.loadAnimation(this, R.anim.hide_button_anims);
         animsgallerybtn = AnimationUtils.loadAnimation(this, R.anim.rightleft_gallery_anims);
@@ -591,28 +580,24 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         TextView textview1 = picmaker_dialog.findViewById(R.id.pic_dialog_no);
         textview.setText(getString(R.string.reset_edt));
         textview1.setText(getString(R.string.continue_edt));
-        textview.setOnClickListener(new OnClickListener() {
+        textview.setOnClickListener(view -> {
+            Bitmap bitmap = pic_result;
+            if (Imagepath != null) {
+                picmaker_dialog.dismiss();
 
-            public void onClick(View view) {
-                Bitmap bitmap = pic_result;
-                if (Imagepath != null) {
-                    picmaker_dialog.dismiss();
+                Orientation = getImageOrientation(Imagepath);
+                getAspectRatio(Imagepath, MaxResolution);
+                pic_result = getResizedOriginalBitmap(Imagepath, Orientation);
 
-                    Orientation = getImageOrientation(Imagepath);
-                    getAspectRatio(Imagepath, MaxResolution);
-                    pic_result = getResizedOriginalBitmap(Imagepath, Orientation);
-
-                    pic_imageview.setImageBitmap(pic_result);
-                    Toast.makeText(getApplicationContext(), "Your original image is back !!!", Toast.LENGTH_SHORT).show();
-                    if (bitmap != null && !bitmap.isRecycled()) {
-                        bitmap.recycle();
-                        System.gc();
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), "Invalid image path.", Toast.LENGTH_SHORT).show();
+                pic_imageview.setImageBitmap(pic_result);
+                Toast.makeText(getApplicationContext(), "Your original image is back !!!", Toast.LENGTH_SHORT).show();
+                if (bitmap != null && !bitmap.isRecycled()) {
+                    bitmap.recycle();
+                    System.gc();
                 }
+            } else {
+                Toast.makeText(getApplicationContext(), "Invalid image path.", Toast.LENGTH_SHORT).show();
             }
-
         });
         textview1.setOnClickListener(view -> picmaker_dialog.dismiss());
         picmaker_dialog.show();

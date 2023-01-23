@@ -5,6 +5,7 @@ package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketch
 
 import java.io.File;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -71,6 +72,7 @@ public class MediaChooserConstants {
 	}
 
 
+	@SuppressLint("InflateParams")
 	public static AlertDialog.Builder getDialog(Context context){
 		final AlertDialog.Builder dialog = new AlertDialog.Builder(context);
 		dialog.setCancelable(false);
