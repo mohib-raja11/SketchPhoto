@@ -1,5 +1,6 @@
 package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.Activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -18,7 +19,6 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,17 +46,12 @@ public class PhotoShare_Activity extends Activity {
     private Bitmap share_bitmap;
     private int screenwidth, imagewidth, imageheight, currentapiVersion;
     private ImageView pic_imageview;
-    private String Imagepath;
-    private final String tempimagepath;
-    private String foldername;
     private LinearLayout color_layout;
     private ImageButton effect_Button, red_Button, blue_Button, green_Button, doneButton, reset_Button;
 
     public PhotoShare_Activity() {
-        savedok = Boolean.valueOf(false);
+        savedok = false;
         shareuri = null;
-        tempimagepath = null;
-        foldername = null;
 
     }
 
@@ -134,7 +129,6 @@ public class PhotoShare_Activity extends Activity {
         Intent intent = getIntent();
         shareuri = intent.getData();
         MaxResolution = intent.getIntExtra("picresolution", screenwidth);
-        foldername = intent.getStringExtra("foldername");
 
     }
 
@@ -144,7 +138,7 @@ public class PhotoShare_Activity extends Activity {
             return uri.getPath();
         } else {
             cursor.moveToFirst();
-            String s = cursor.getString(cursor.getColumnIndex("_data"));
+            @SuppressLint("Range") String s = cursor.getString(cursor.getColumnIndex("_data"));
             cursor.close();
             return s;
         }
@@ -261,13 +255,13 @@ public class PhotoShare_Activity extends Activity {
     }
 
     protected void onDestroy() {
-        if (savedok.booleanValue() == true) {
+        if (savedok) {
             if (share_bitmap != null && !share_bitmap.isRecycled()) {
                 share_bitmap.recycle();
                 share_bitmap = null;
                 System.gc();
             }
-            savedok = Boolean.valueOf(false);
+            savedok = false;
             shareuri = null;
         } else {
             if (shareuri == null) {
@@ -276,7 +270,7 @@ public class PhotoShare_Activity extends Activity {
                     share_bitmap = null;
                     System.gc();
                 }
-                savedok = Boolean.valueOf(false);
+                savedok = false;
                 shareuri = null;
             } else {
                 File file = new File(shareuri.getPath());
@@ -441,23 +435,23 @@ public class PhotoShare_Activity extends Activity {
         protected Void doInBackground(Void... params) {
             if (shareuri == null) {
                 try {
-                    getimage = Boolean.valueOf(false);
+                    getimage = false;
                 } catch (OutOfMemoryError outofmemoryerror) {
-                    getimage = Boolean.valueOf(false);
+                    getimage = false;
                 } catch (NullPointerException nullpointerexception) {
-                    getimage = Boolean.valueOf(false);
+                    getimage = false;
                 } catch (Exception exception) {
-                    getimage = Boolean.valueOf(false);
+                    getimage = false;
                 }
 
-                getimage = Boolean.valueOf(false);
+                getimage = false;
             }
-            Imagepath = getRealPathFromURI(shareuri);
-            if (Imagepath != null && Imagepath.endsWith(".png") || Imagepath.endsWith(".jpg") || Imagepath.endsWith(".jpeg") || Imagepath.endsWith(".bmp")) {
-                Orientation = Float.valueOf(getImageOrientation(Imagepath));
-                getAspectRatio(Imagepath, MaxResolution);
-                share_bitmap = getResizedOriginalBitmap(Imagepath, Orientation.floatValue());
-                getimage = Boolean.valueOf(true);
+            String imagepath = getRealPathFromURI(shareuri);
+            if (imagepath != null && imagepath.endsWith(".png") || imagepath.endsWith(".jpg") || imagepath.endsWith(".jpeg") || imagepath.endsWith(".bmp")) {
+                Orientation = Float.valueOf(getImageOrientation(imagepath));
+                getAspectRatio(imagepath, MaxResolution);
+                share_bitmap = getResizedOriginalBitmap(imagepath, Orientation.floatValue());
+                getimage = true;
             }
 
             return null;
@@ -467,7 +461,7 @@ public class PhotoShare_Activity extends Activity {
         @Override
         protected void onPostExecute(Void result) {
 
-            if (getimage.booleanValue()) {
+            if (getimage) {
                 if (share_bitmap == null || share_bitmap.getHeight() <= 5 || share_bitmap.getWidth() <= 5) {
                     Toast.makeText(getApplicationContext(), "Image Format not supported .", Toast.LENGTH_SHORT).show();
                     finish();
