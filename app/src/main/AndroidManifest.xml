@@ -37,14 +37,14 @@
 
         </activity>
 
-        <activity
+<!--        <activity
             android:name=".sketchphoto.UI.Activities.HomeFragmentActivity"
             android:configChanges="orientation|screenSize" />
 
         <activity
             android:name=".sketchphoto.UI.Activities.ChoosePhotoFragmentActivity"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" />-->
 
         <activity
             android:name=".sketchphoto.pencil.ImageRemakeActivity"
