@@ -49,7 +49,7 @@ import androidx.exifinterface.media.ExifInterface;
 
 import com.edmodo.cropper.CropImageView;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.Ragnarok.BitmapFilter;
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.Ragnarok.BitmapFilter;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.CSketchFilter;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.SketchColorFilter;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.SketchColorFilter2;
