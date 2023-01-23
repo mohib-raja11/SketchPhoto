@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.databinding.ActivityMygalleryBinding
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.databinding.ItemGalleryBinding
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.Activities.MyGalleryActivity.RecyclerAdapter.MyHolderView
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.Utils.AppUtils
 import com.squareup.picasso.Callback
@@ -22,7 +22,7 @@ import com.squareup.picasso.Picasso
 import java.io.File
 
 class MyGalleryActivity : Activity() {
-    var mainAdapter: RecyclerAdapter? = null
+    private lateinit var mainAdapter: RecyclerAdapter
     var name_list = ArrayList<String>()
     var name_path_list = ArrayList<String>()
     var extention = ".jpg"
@@ -84,7 +84,7 @@ class MyGalleryActivity : Activity() {
                     name_path_list.add(listFile[i].absolutePath)
                 }
             }
-            mainAdapter!!.notifyDataSetChanged()
+            mainAdapter.notifyDataSetChanged()
         } else {
             Toast.makeText(this, "no file found", Toast.LENGTH_SHORT).show()
         }
@@ -98,8 +98,11 @@ class MyGalleryActivity : Activity() {
 
     inner class RecyclerAdapter : RecyclerView.Adapter<MyHolderView>() {
         override fun onCreateViewHolder(parent: ViewGroup, i: Int): MyHolderView {
-            val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_gallery, parent, false)
+
+
+            val itemView = ItemGalleryBinding.inflate(layoutInflater, parent, false)
+
+
             return MyHolderView(itemView)
         }
 
@@ -123,14 +126,12 @@ class MyGalleryActivity : Activity() {
             return name_list.size
         }
 
-        inner class MyHolderView(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            var tvName: TextView
-            var iv1: ImageView
+        inner class MyHolderView(itemView: ItemGalleryBinding) :
+            RecyclerView.ViewHolder(itemView.root) {
+            var tvName: TextView = itemView.tvName
+            var iv1: ImageView = itemView.ivMain
 
-            init {
-                tvName = itemView.findViewById(R.id.tvName)
-                iv1 = itemView.findViewById(R.id.ivMain)
-            }
+
         }
     }
 }
