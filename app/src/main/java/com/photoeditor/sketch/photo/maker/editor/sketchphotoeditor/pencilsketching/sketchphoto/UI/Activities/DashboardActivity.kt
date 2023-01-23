@@ -5,10 +5,8 @@ import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.content.*
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
@@ -21,7 +19,7 @@ import androidx.core.content.ContextCompat
 import com.esafirm.imagepicker.features.*
 import com.esafirm.imagepicker.model.Image
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketch.gallery.MediaChooser
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.gallery.MediaChooser
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.constant.AppConstant
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.pencil.ImageRemakeActivity
 

@@ -1,4 +1,4 @@
-package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketch.gallery;
+package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.gallery;
 
 import android.app.Activity;
 import android.content.Intent;

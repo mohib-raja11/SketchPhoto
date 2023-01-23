@@ -1,5 +1,5 @@
 
-package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketch.gallery;
+package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.gallery;
 
 public class BucketEntry {
 	public String bucketName;

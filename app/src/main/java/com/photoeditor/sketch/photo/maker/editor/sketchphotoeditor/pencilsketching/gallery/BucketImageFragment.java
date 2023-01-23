@@ -1,10 +1,9 @@
 
 
-package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketch.gallery;
+package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.gallery;
 
 import java.util.ArrayList;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.MediaStore;
