@@ -11,7 +11,8 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/icon"
         android:theme="@style/Theme.SketchPhoto"
-        tools:targetApi="s">
+        tools:targetApi="s"
+        android:supportsRtl="false">
 
         <activity
             android:name=".MainActivity"
