@@ -157,7 +157,8 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
     }
 
     private void startAnimations() {
-        new LoadImageAsycTask().execute();
+
+        loadImageAsycTask();
 
         animhidebtn = AnimationUtils.loadAnimation(this, R.anim.hide_button_anims);
         animsgallerybtn = AnimationUtils.loadAnimation(this, R.anim.rightleft_gallery_anims);
@@ -1224,24 +1225,19 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
         return bmpGrayscale;
     }
 
-    @SuppressLint("StaticFieldLeak")
-    public class LoadImageAsycTask extends AsyncTask<Void, Void, Void> {
-        Float Orientation;
-        ProgressDialog dialog;
-        boolean getimage = false;
+    boolean getimage = false;
 
-        @Override
-        protected void onPreExecute() {
+    public void loadImageAsycTask() {
 
-            dialog = ProgressDialog.show(ImageRemakeActivity.this, "", "Loading...");
-            dialog.setCancelable(false);
-            getIntentExtra();
-            super.onPreExecute();
 
-        }
+        //pre execute
+        ProgressDialog dialog = ProgressDialog.show(ImageRemakeActivity.this, "", "Loading...");
+        dialog.setCancelable(false);
+        getIntentExtra();
 
-        @Override
-        protected Void doInBackground(Void... params) {
+
+        getMExecutor().runWorker(() -> {
+            float Orientation;
 
             if (imageuri == null) {
                 getimage = false;
@@ -1259,31 +1255,32 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
                 }
 
             }
-            return null;
-        }
 
-        @Override
-        protected void onPostExecute(Void result) {
-
-            gallery_layout.setVisibility(View.VISIBLE);
-            if (getimage) {
-                if (pic_result == null || pic_result.getHeight() <= 5 || pic_result.getWidth() <= 5) {
-                    Toast.makeText(getApplicationContext(), "Image Format not supported .", Toast.LENGTH_SHORT).show();
-                    finish();
+            getMExecutor().runMain(() -> {
+                gallery_layout.setVisibility(View.VISIBLE);
+                if (getimage) {
+                    if (pic_result == null || pic_result.getHeight() <= 5 || pic_result.getWidth() <= 5) {
+                        Toast.makeText(getApplicationContext(), "Image Format not supported .", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        pic_imageview.setImageBitmap(pic_result);
+                        stringMatching();
+                    }
                 } else {
-                    pic_imageview.setImageBitmap(pic_result);
-                    stringMatching();
+                    Toast.makeText(getApplicationContext(), "Unsupported media file.", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
-            } else {
-                Toast.makeText(getApplicationContext(), "Unsupported media file.", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-            dialog.dismiss();
-            super.onPostExecute(result);
-        }
+                dialog.dismiss();
+
+                return null;
+            });
+
+
+            return null;
+        });
 
     }
-
+    
     @SuppressLint("StaticFieldLeak")
     public class SketchAsnyTaskFirst extends AsyncTask<Integer, Void, Void> {
 
