@@ -25,8 +25,8 @@ import android.widget.Toast;
 import androidx.exifinterface.media.ExifInterface;
 
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui.pencil.GPUImageFilterTools;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.constant.SaveToStorageUtil;
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui.pencil.GPUImageFilterTools;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -72,7 +72,8 @@ public class PhotoShare_Activity extends BaseActivity {
         currentapiVersion = android.os.Build.VERSION.SDK_INT;
         pic_imageview = findViewById(R.id.finalimg);
 
-        (new LoadImageAsycTask()).execute();
+        loadImageAsycTask();
+
         green_Button.setOnClickListener(v -> {
             new EffectAsnyTask().execute(0);
             doneButton.setVisibility(View.VISIBLE);
@@ -89,7 +90,9 @@ public class PhotoShare_Activity extends BaseActivity {
             reset_Button.setVisibility(View.VISIBLE);
         });
         reset_Button.setOnClickListener(v -> {
-            (new LoadImageAsycTask()).execute();
+
+            loadImageAsycTask();
+
             color_layout.setVisibility(View.INVISIBLE);
         });
         doneButton.setOnClickListener(v -> color_layout.setVisibility(View.INVISIBLE));
@@ -393,67 +396,50 @@ public class PhotoShare_Activity extends BaseActivity {
 
     }
 
-    @SuppressLint("StaticFieldLeak")
-    public class LoadImageAsycTask extends AsyncTask<Void, Void, Void> {
-        Float Orientation;
-        ProgressDialog dialog;
-        Boolean getimage;
+    boolean getimage;
 
-        @Override
-        protected void onPreExecute() {
-            dialog = ProgressDialog.show(PhotoShare_Activity.this, "", "Loading...");
-            dialog.setCancelable(false);
-            getIntentExtra();
-            super.onPreExecute();
-        }
+    public void loadImageAsycTask() {
 
-        @Override
-        protected Void doInBackground(Void... params) {
-            if (shareuri == null) {
-                try {
-                    getimage = false;
-                } catch (OutOfMemoryError outofmemoryerror) {
-                    getimage = false;
-                } catch (NullPointerException nullpointerexception) {
-                    getimage = false;
-                } catch (Exception exception) {
-                    getimage = false;
-                }
+        getimage = false;
 
-                getimage = false;
-            }
+        ProgressDialog dialog = ProgressDialog.show(PhotoShare_Activity.this, "", "Loading...");
+        dialog.setCancelable(false);
+        getIntentExtra();
+
+        getMExecutor().runWorker(() -> {
+
+            float Orientation;
+
+
             String imagepath = getRealPathFromURI(shareuri);
             if (imagepath != null && imagepath.endsWith(".png") || imagepath.endsWith(".jpg") || imagepath.endsWith(".jpeg") || imagepath.endsWith(".bmp")) {
                 Orientation = Float.valueOf(getImageOrientation(imagepath));
                 getAspectRatio(imagepath, MaxResolution);
-                share_bitmap = getResizedOriginalBitmap(imagepath, Orientation.floatValue());
+                share_bitmap = getResizedOriginalBitmap(imagepath, Orientation);
                 getimage = true;
             }
 
-            return null;
+            runOnUiThread(() -> {
 
-        }
+                if (getimage) {
+                    if (share_bitmap == null || share_bitmap.getHeight() <= 5 || share_bitmap.getWidth() <= 5) {
+                        Toast.makeText(getApplicationContext(), "Image Format not supported .", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        pic_imageview.setImageBitmap(share_bitmap);
+                        mGPUImage.setImage(share_bitmap);
 
-        @Override
-        protected void onPostExecute(Void result) {
-
-            if (getimage) {
-                if (share_bitmap == null || share_bitmap.getHeight() <= 5 || share_bitmap.getWidth() <= 5) {
-                    Toast.makeText(getApplicationContext(), "Image Format not supported .", Toast.LENGTH_SHORT).show();
-                    finish();
+                    }
                 } else {
-                    pic_imageview.setImageBitmap(share_bitmap);
-                    mGPUImage.setImage(share_bitmap);
-
+                    Toast.makeText(getApplicationContext(), "Unsupported media file.", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
-            } else {
-                Toast.makeText(getApplicationContext(), "Unsupported media file.", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-            dialog.dismiss();
-            super.onPostExecute(result);
-        }
+                dialog.dismiss();
 
+            });
+
+            return null;
+        });
     }
 
 }
