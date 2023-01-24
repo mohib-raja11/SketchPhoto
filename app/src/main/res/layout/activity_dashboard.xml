@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/rlToolBar"
@@ -108,6 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="7dp"
                 android:background="@drawable/ic_rateus"
+                android:contentDescription="@string/app_name"
                 android:onClick="onClick" />
 
             <ImageButton
@@ -116,6 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="7dp"
                 android:background="@drawable/ic_privacy_policy"
+                android:contentDescription="@string/app_name"
                 android:onClick="onClick" />
 
             <ImageButton
@@ -124,6 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="7dp"
                 android:background="@drawable/ic_moreapps"
+                android:contentDescription="@string/app_name"
                 android:onClick="onClick" />
 
 
