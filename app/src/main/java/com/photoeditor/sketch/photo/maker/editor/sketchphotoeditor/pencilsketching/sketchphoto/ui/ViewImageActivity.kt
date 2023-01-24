@@ -94,7 +94,7 @@ class ViewImageActivity : BaseActivity() {
         try {
             myWallpaperManager.setBitmap(bitmapForShare)
             val toast = Toast.makeText(
-                applicationContext, R.string.wallpaper_succesfully_set, Toast.LENGTH_LONG
+                applicationContext, R.string.wall_paper_succesfully_set, Toast.LENGTH_LONG
             )
             toast.setGravity(Gravity.CENTER, 0, 0)
             toast.show()

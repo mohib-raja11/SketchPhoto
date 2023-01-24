@@ -63,7 +63,7 @@
 
 
         <LinearLayout
-            android:id="@+id/llbottom"
+            android:id="@+id/ll_bottom"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:background="@drawable/btn_background">
@@ -110,10 +110,10 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/rlContaner"
+            android:id="@+id/rl_Contaner"
             android:layout_width="match_parent"
             android:layout_height="260dp"
-            android:layout_below="@id/llbottom"
+            android:layout_below="@id/ll_bottom"
             android:layout_marginTop="5dp">
 
         </RelativeLayout>
