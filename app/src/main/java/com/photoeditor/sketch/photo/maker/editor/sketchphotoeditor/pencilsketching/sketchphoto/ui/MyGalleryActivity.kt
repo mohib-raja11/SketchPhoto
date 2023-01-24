@@ -72,7 +72,7 @@ class MyGalleryActivity : BaseActivity() {
         nameList.clear()
         namePathList.clear()
 
-        if (listFile != null && listFile.size > 0) {
+        if (listFile != null && listFile.isNotEmpty()) {
             //Mohib: if saved files are then show dialog of all files to choose
 
             for (i in listFile.indices) {

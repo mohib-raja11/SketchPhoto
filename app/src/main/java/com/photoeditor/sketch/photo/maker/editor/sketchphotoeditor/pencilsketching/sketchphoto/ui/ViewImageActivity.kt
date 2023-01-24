@@ -46,7 +46,7 @@ class ViewImageActivity : BaseActivity() {
         setClicks()
     }
 
-    fun setClicks() {
+    private fun setClicks() {
         binding.apply {
             mainImageView.setOnClickListener { v: View? -> showFullImage() }
             shareBtn.setOnClickListener { v: View? -> shareImage() }
@@ -57,7 +57,7 @@ class ViewImageActivity : BaseActivity() {
 
     }
 
-    fun delay3Seconds() {
+    private fun delay3Seconds() {
 
 
 //        Handler().postDelayed({ tapped = false }, three_seconds.toLong())
@@ -78,7 +78,7 @@ class ViewImageActivity : BaseActivity() {
         startActivity(Intent.createChooser(intent, resources.getString(R.string.share_img_via)))
     }
 
-    fun getImageUri(inContext: Context, inImage: Bitmap?): Uri {
+    private fun getImageUri(inContext: Context, inImage: Bitmap?): Uri {
         val bytes = ByteArrayOutputStream()
         inImage!!.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path =
