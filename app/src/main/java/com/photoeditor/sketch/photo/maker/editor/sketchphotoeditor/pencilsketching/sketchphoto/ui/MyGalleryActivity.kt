@@ -23,10 +23,10 @@ import java.io.File
 
 class MyGalleryActivity : BaseActivity() {
     private lateinit var mainAdapter: RecyclerAdapter
-    var name_list = ArrayList<String>()
-    var name_path_list = ArrayList<String>()
+    var nameList = ArrayList<String>()
+    var namePathList = ArrayList<String>()
     var extention = ".jpg"
-    var extention_png = ".png"
+    var extentionPng = ".png"
     var context: Context? = null
     var tvNoItem: TextView? = null
 
@@ -73,19 +73,19 @@ class MyGalleryActivity : BaseActivity() {
         val directory = File(rootPath)
         val listFile = directory.listFiles()
 
-        name_list.clear()
-        name_path_list.clear()
+        nameList.clear()
+        namePathList.clear()
 
         if (listFile != null && listFile.size > 0) {
             //Mohib: if saved files are then show dialog of all files to choose
 
             for (i in listFile.indices) {
                 if (listFile[i].name.endsWith(extention) || listFile[i].name.endsWith(
-                        extention_png
+                        extentionPng
                     )
                 ) {
-                    name_list.add(listFile[i].name)
-                    name_path_list.add(listFile[i].absolutePath)
+                    nameList.add(listFile[i].name)
+                    namePathList.add(listFile[i].absolutePath)
                 }
             }
         } else {
@@ -94,7 +94,7 @@ class MyGalleryActivity : BaseActivity() {
 
         mainAdapter.notifyDataSetChanged()
 
-        if (name_path_list.size > 0) {
+        if (namePathList.size > 0) {
             tvNoItem!!.visibility = View.GONE
         } else {
             tvNoItem!!.visibility = View.VISIBLE
@@ -114,22 +114,22 @@ class MyGalleryActivity : BaseActivity() {
 
         override fun onBindViewHolder(myHolderView: MyHolderView, pos: Int) {
 
-            myHolderView.tvName.text = name_list[pos]
+            myHolderView.tvName.text = nameList[pos]
 
-            Picasso.get().load(File(name_path_list[pos])).into(myHolderView.iv1, object : Callback {
+            Picasso.get().load(File(namePathList[pos])).into(myHolderView.iv1, object : Callback {
                 override fun onSuccess() {}
                 override fun onError(e: Exception) {}
             })
 
             myHolderView.itemView.setOnClickListener {
                 val intent = Intent(this@MyGalleryActivity, ViewImageActivity::class.java)
-                intent.putExtra("ImgUrl", name_path_list[pos])
+                intent.putExtra("ImgUrl", namePathList[pos])
                 startActivity(intent)
             }
         }
 
         override fun getItemCount(): Int {
-            return name_list.size
+            return nameList.size
         }
 
         inner class MyHolderView(itemView: ItemGalleryBinding) :

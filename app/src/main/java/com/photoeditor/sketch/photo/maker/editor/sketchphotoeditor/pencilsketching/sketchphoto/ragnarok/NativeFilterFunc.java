@@ -1,4 +1,4 @@
-package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.Ragnarok;
+package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ragnarok;
 
 public class NativeFilterFunc {
     public static native int[] lightFilter(int[] pixels, int width, int height, int centerX, int centerY, int radius);

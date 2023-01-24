@@ -21,7 +21,6 @@ import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketchi
 
 class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
-    val TAG = "DashboardActivity"
 
     private var context: Context? = null
     private var widthPixel = 0
@@ -69,7 +68,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         result.forEach { image ->
             println(image)
 
-            Log.d(TAG, "yes it is nice: ")
+            Log.d(tag, "yes it is nice: ")
 
             startImageRemaker(image.uri)
         }

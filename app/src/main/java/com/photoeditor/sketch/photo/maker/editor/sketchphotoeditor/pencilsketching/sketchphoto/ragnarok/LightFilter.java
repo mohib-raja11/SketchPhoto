@@ -1,23 +1,21 @@
-package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.Ragnarok;
+package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ragnarok;
 
 import android.graphics.Bitmap;
 
-class NeonFilter {
+class LightFilter {
 
     static {
         System.loadLibrary("AndroidImageFilter");
     }
 
-
-    static Bitmap changeToNeon(Bitmap bitmap, int r, int g, int b) {
+    static Bitmap changeToLight(Bitmap bitmap, int centerX, int centerY, int radius) {
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
-
 
         int[] pixels = new int[width * height];
         bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
 
-        int[] returnPixels = NativeFilterFunc.neonFilter(pixels, width, height, r, g, b);
+        int[] returnPixels = NativeFilterFunc.lightFilter(pixels, width, height, centerX, centerY, radius);
 
         return Bitmap.createBitmap(returnPixels, width, height, Bitmap.Config.ARGB_8888);
     }
