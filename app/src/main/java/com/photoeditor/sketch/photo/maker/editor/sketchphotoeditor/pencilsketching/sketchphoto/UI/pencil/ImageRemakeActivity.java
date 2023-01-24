@@ -49,8 +49,8 @@ import androidx.exifinterface.media.ExifInterface;
 
 import com.edmodo.cropper.CropImageView;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.Ragnarok.BitmapFilter;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.CSketchFilter;
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.Ragnarok.BitmapFilter;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.SketchColorFilter;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.SketchColorFilter2;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.SketchFilter;
@@ -1227,6 +1227,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
         return bmpGrayscale;
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class LoadImageAsycTask extends AsyncTask<Void, Void, Void> {
         Float Orientation;
         ProgressDialog dialog;
@@ -1286,6 +1287,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
 
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class SketchAsnyTaskFirst extends AsyncTask<Integer, Void, Void> {
 
         ProgressDialog dialogD;
@@ -1330,6 +1332,7 @@ public class ImageRemakeActivity extends Activity implements OnClickListener {
 
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class SketchAsnyTask extends AsyncTask<Integer, Void, Void> {
 
         ProgressDialog dialogD;
