@@ -9,6 +9,7 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
         google()
+        //noinspection JcenterRepositoryObsolete
         jcenter()
         mavenCentral()
         maven { url "https://www.jitpack.io" } // MR android legacy library
