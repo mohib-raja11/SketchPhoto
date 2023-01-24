@@ -44,7 +44,7 @@
             android:contentDescription="@string/app_name"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:src="@drawable/pic_colorpicker" />
+            android:src="@drawable/pic_color_picker" />
 
         <ImageButton
             android:id="@+id/done_button"

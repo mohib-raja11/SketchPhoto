@@ -23,7 +23,7 @@
             android:background="@drawable/selector"
             android:contentDescription="@string/app_name"
             android:paddingLeft="@dimen/pic_maker_btnspace"
-            android:paddingTop="@dimen/pic_maker_btn_toppadding"
+            android:paddingTop="@dimen/pic_maker_btn_top_padding"
             android:paddingRight="@dimen/pic_maker_btnspace"
             android:scaleType="centerInside"
             android:src="@drawable/pic_crop" />

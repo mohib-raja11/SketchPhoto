@@ -111,7 +111,7 @@
         android:visibility="invisible" />
 
     <LinearLayout
-        android:id="@+id/seekbarlayout"
+        android:id="@+id/seek_bar_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/gallery_layout"
@@ -145,7 +145,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="@dimen/pic_maker_btn_toppadding"
+                android:padding="@dimen/pic_maker_btn_top_padding"
                 android:visibility="gone" />
         </HorizontalScrollView>
 
@@ -158,14 +158,13 @@
                 android:id="@+id/effect_gallery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/pic_maker_btn_toppadding"
+                android:layout_marginTop="@dimen/pic_maker_btn_top_padding"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:visibility="gone" />
         </HorizontalScrollView>
 
         <HorizontalScrollView
-            android:id="@+id/btnlayout_scroll"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
