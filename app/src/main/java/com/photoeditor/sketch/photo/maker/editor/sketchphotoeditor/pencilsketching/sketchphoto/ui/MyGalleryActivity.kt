@@ -1,7 +1,6 @@
 package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -25,10 +24,9 @@ class MyGalleryActivity : BaseActivity() {
     private lateinit var mainAdapter: RecyclerAdapter
     var nameList = ArrayList<String>()
     var namePathList = ArrayList<String>()
-    var extention = ".jpg"
-    var extentionPng = ".png"
-    var context: Context? = null
-    var tvNoItem: TextView? = null
+    private var extention = ".jpg"
+    private var extentionPng = ".png"
+    private var tvNoItem: TextView? = null
 
     private lateinit var binding: ActivityMygalleryBinding
 
@@ -39,8 +37,6 @@ class MyGalleryActivity : BaseActivity() {
 
         setContentView(binding.root)
 
-
-        context = this
         tvNoItem = findViewById(R.id.tvNoItem)
         mainAdapter = RecyclerAdapter()
         val mLayoutManager: RecyclerView.LayoutManager = GridLayoutManager(this, 2)
@@ -55,7 +51,7 @@ class MyGalleryActivity : BaseActivity() {
 
     }
 
-    fun setClicks() {
+    private fun setClicks() {
         binding.apply {
             ivBack.setOnClickListener { finish() }
         }
@@ -69,7 +65,7 @@ class MyGalleryActivity : BaseActivity() {
     //***********************************Mohib: getting list of saved files************************************
     @SuppressLint("NotifyDataSetChanged")
     private fun loadingImages() {
-        val rootPath = AppUtils.getAppFolderPath(context)
+        val rootPath = AppUtils.getAppFolderPath(mContext)
         val directory = File(rootPath)
         val listFile = directory.listFiles()
 

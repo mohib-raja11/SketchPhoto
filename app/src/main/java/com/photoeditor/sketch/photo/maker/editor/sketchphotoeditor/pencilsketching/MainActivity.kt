@@ -15,11 +15,20 @@ class MainActivity : BaseActivity() {
         mExecutor.apply {
             runWorker {
                 runMain {
-                    Log.d(tag, "")
+                    Log.d(tag, "main after no delay")
                 }
             }
         }
 
+
+        mExecutor.apply {
+            runWorker(2) {
+
+                runMain {
+                    Log.d(tag, "onCreate: on main after 2sec")
+                }
+            }
+        }
 
         mContext.toast("Main screen $tag")
 
