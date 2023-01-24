@@ -1,4 +1,4 @@
-package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.pencil.others;
+package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui.pencil.others;
 
 import android.app.Activity;
 import android.graphics.Bitmap;

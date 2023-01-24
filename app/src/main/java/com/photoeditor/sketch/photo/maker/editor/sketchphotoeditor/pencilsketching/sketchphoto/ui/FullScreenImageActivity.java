@@ -1,4 +1,4 @@
-package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI;
+package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui;
 
 import android.os.Bundle;
 import android.widget.ImageView;

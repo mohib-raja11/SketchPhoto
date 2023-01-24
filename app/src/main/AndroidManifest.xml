@@ -32,7 +32,7 @@
 
 
         <activity
-            android:name=".sketchphoto.UI.DashboardActivity"
+            android:name=".sketchphoto.ui.DashboardActivity"
 
             android:theme="@style/AppTheme">
 
@@ -48,18 +48,18 @@
                     />-->
 
         <activity
-            android:name=".sketchphoto.UI.pencil.ImageRemakeActivity"
+            android:name=".sketchphoto.ui.pencil.ImageRemakeActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode" />
 
         <activity
-            android:name=".sketchphoto.UI.PhotoShare_Activity"
+            android:name=".sketchphoto.ui.PhotoShare_Activity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode" />
 
-        <activity android:name=".sketchphoto.UI.MyGalleryActivity" />
+        <activity android:name=".sketchphoto.ui.MyGalleryActivity" />
 
-        <activity android:name=".sketchphoto.UI.ViewImageActivity" />
+        <activity android:name=".sketchphoto.ui.ViewImageActivity" />
 
-        <activity android:name=".sketchphoto.UI.FullScreenImageActivity" />
+        <activity android:name=".sketchphoto.ui.FullScreenImageActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

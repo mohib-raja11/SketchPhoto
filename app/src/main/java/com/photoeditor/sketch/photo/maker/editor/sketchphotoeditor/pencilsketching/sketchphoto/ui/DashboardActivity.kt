@@ -1,4 +1,4 @@
-package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI
+package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui
 
 import android.annotation.SuppressLint
 import android.app.ActivityManager
@@ -16,14 +16,13 @@ import androidx.core.content.ContextCompat
 import com.esafirm.imagepicker.features.*
 import com.esafirm.imagepicker.model.Image
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.pencil.ImageRemakeActivity
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui.pencil.ImageRemakeActivity
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.constant.AppConstant
 
 class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
     val TAG = "DashboardActivity"
 
-    private val PERMISSION_REQUEST_CODE = 1
     private var context: Context? = null
     private var widthPixel = 0
     private val imageBroadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {

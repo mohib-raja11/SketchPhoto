@@ -1,4 +1,4 @@
-package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI
+package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui
 
 import android.app.AlertDialog
 import android.app.WallpaperManager
@@ -22,10 +22,10 @@ import java.io.File
 import java.io.IOException
 
 class ViewImageActivity : BaseActivity() {
-    private val three_seconds = 3000
+
     private var bitmapForShare: Bitmap? = null
     private var imgUrl: String? = null
-    private var tapped = true
+
 
     private lateinit var binding: ActivityViewTheImageBinding
 

@@ -2,15 +2,25 @@ package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketch
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.DashboardActivity
+import android.util.Log
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui.BaseActivity
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui.DashboardActivity
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.Utils.toast
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
         startActivity(Intent(this, DashboardActivity::class.java))
+
+        mExecutor.runMain {
+            Log.d(tag, "")
+
+        }
+
+        mContext.toast("Main screen ${tag}")
+
     }
 }

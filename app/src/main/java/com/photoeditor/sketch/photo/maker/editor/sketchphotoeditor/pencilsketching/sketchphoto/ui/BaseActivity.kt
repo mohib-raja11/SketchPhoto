@@ -1,4 +1,4 @@
-package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI
+package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -9,9 +9,9 @@ import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketchi
 
 open class BaseActivity : AppCompatActivity(), View.OnClickListener {
 
-    val mExecutor = Executor()
-    val TAG: String = this.javaClass.simpleName
-    lateinit var mContext: Context
+    protected val mExecutor = Executor()
+    protected val tag: String = this.javaClass.simpleName
+    protected lateinit var mContext: Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +19,7 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View) {
-        Log.d(TAG, "onClick: clicked id = " + view.id)
+        Log.d(tag, "onClick: clicked id = " + view.id)
     }
 
     override fun onDestroy() {

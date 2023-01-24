@@ -1,4 +1,4 @@
-package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI;
+package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -25,7 +25,7 @@ import android.widget.Toast;
 import androidx.exifinterface.media.ExifInterface;
 
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.pencil.GPUImageFilterTools;
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui.pencil.GPUImageFilterTools;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.constant.SaveToStorageUtil;
 
 import java.io.ByteArrayOutputStream;
