@@ -51,7 +51,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    val launcher = registerImagePicker { result: List<Image> ->
+    private val launcher = registerImagePicker { result: List<Image> ->
         result.forEach { image ->
             println(image)
 

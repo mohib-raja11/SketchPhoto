@@ -6,7 +6,7 @@ import android.graphics.Bitmap.CompressFormat;
 import android.text.format.DateFormat;
 import android.util.Log;
 
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.Utils.AppUtils;
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.utils.AppUtils;
 
 import java.io.FileOutputStream;
 import java.util.Date;

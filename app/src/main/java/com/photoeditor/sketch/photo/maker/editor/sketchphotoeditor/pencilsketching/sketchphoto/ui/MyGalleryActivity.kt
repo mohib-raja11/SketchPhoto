@@ -16,7 +16,7 @@ import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketchi
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.databinding.ActivityMygalleryBinding
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.databinding.ItemGalleryBinding
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui.MyGalleryActivity.RecyclerAdapter.MyHolderView
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.Utils.AppUtils
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.utils.AppUtils
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.io.File

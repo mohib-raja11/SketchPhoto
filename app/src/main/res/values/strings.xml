@@ -30,8 +30,7 @@
     <string name="errorImg">Error..</string>
 
     <string name="alert">Alert</string>
-    <string name="exit_message">Are you sure to Exit</string>
-    <string name="share_app">Share App</string>
+
     <string name="share_img_via">Share image by…</string>
     <string name="wallpaper_succesfully_set">Successfully Wallpaper Set</string>
     <string name="editor">EDITOR</string>
