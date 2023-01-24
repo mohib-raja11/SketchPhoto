@@ -1,7 +1,6 @@
 <resources>
 
     <string name="app_name">Sketch Photo</string>
-    <string name="pic_reset_txt">Reset</string>
     <string name="pic_exit_txt">Wait! You did not save your image. Are you sure to close this editor?</string>
     <string name="edt_crop">Crop</string>
     <string name="todo">Crop</string>
@@ -17,14 +16,8 @@
     <string name="leave_edt">Leave Editor</string>
     <string name="reset_edt">Reset</string>
     <string name="continue_edt">Continue</string>
-    <string name="image"> Image </string>
-    <string name="done"> Done </string>
 
 
-    <string name="mb"> MB</string>
-    <string name="plaese_select_file"> Please select a file.</string>
-    <string name="file"> file. </string>
-    <string name="files"> files. </string>
 
     <string name="apply">Apply</string>
     <string name="no_item_found">No Item Found</string>
@@ -37,18 +30,13 @@
     <string name="errorImg">Error..</string>
 
     <string name="alert">Alert</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="rate_us">Rate Us</string>
     <string name="exit_message">Are you sure to Exit</string>
     <string name="share_app">Share App</string>
     <string name="share_img_via">Share image by…</string>
     <string name="wallpaper_succesfully_set">Successfully Wallpaper Set</string>
     <string name="editor">EDITOR</string>
     <string name="my_work">My Work</string>
-    <string name="pick_image">Pick Image</string>
     <string name="start">Start</string>
-    <string name="select_image">Select Image</string>
     <string name="keep_editing">Keep Editing</string>
     <string name="leave_editor">Leave Editor</string>
     <string name="effects">effects</string>

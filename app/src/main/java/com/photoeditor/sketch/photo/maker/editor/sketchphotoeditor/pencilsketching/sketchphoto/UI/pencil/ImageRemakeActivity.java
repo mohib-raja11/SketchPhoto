@@ -1497,6 +1497,7 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
             }
         }
 
+        @SuppressLint("ClickableViewAccessibility")
         @Override
         public boolean onTouchEvent(MotionEvent ev) {
             switch (ev.getAction()) {

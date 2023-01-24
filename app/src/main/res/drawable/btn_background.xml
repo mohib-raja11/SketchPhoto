@@ -3,5 +3,5 @@
     android:shape="rectangle">
     <gradient
         android:endColor="@color/headerbar_selected_tab_color"
-        android:startColor="@color/colorPrimary"></gradient>
+        android:startColor="@color/colorPrimary"/>
 </shape>

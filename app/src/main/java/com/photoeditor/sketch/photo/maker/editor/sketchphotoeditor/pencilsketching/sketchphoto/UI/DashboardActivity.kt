@@ -30,7 +30,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         override fun onReceive(context: Context, intent: Intent) {
             val filePathList: List<String>? = intent.getStringArrayListExtra("list")
             if (filePathList != null && filePathList.size > 0) {
-                StartImageRemaker(Uri.parse(filePathList[0]))
+                startImageRemaker(Uri.parse(filePathList[0]))
             }
         }
     }
@@ -72,7 +72,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
             Log.d(TAG, "yes it is nice: ")
 
-            StartImageRemaker(image.uri)
+            startImageRemaker(image.uri)
         }
     }
 
@@ -85,7 +85,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
 
     @SuppressLint("WrongConstant")
-    private fun StartImageRemaker(uri: Uri) {
+    private fun startImageRemaker(uri: Uri) {
 
 
         val flag: Boolean

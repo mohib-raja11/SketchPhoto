@@ -10,7 +10,7 @@ import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketchi
 open class BaseActivity : AppCompatActivity(), View.OnClickListener {
 
     val mExecutor = Executor()
-    val TAG = this.javaClass.simpleName
+    val TAG: String = this.javaClass.simpleName
     lateinit var mContext: Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
