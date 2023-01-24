@@ -1,5 +1,5 @@
 package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI;
-import android.app.Activity;
+
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 
 
-public class FullScreenImageActivity extends Activity {
+public class FullScreenImageActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class FullScreenImageActivity extends Activity {
         setContentView(R.layout.activity_full_screenimage);
 
         String path = getIntent().getStringExtra("path");
-        ImageView photoView = (ImageView) findViewById(R.id.photo_view);
+        ImageView photoView = findViewById(R.id.photo_view);
 
         Picasso.get().load(new File(path)).into(photoView);
 

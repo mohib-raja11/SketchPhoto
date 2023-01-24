@@ -1,7 +1,6 @@
 package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -22,7 +21,7 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.io.File
 
-class MyGalleryActivity : Activity() {
+class MyGalleryActivity : BaseActivity() {
     private lateinit var mainAdapter: RecyclerAdapter
     var name_list = ArrayList<String>()
     var name_path_list = ArrayList<String>()

@@ -1,7 +1,6 @@
 package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -26,8 +25,8 @@ import android.widget.Toast;
 import androidx.exifinterface.media.ExifInterface;
 
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.constant.SaveToStorageUtil;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.pencil.GPUImageFilterTools;
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.constant.SaveToStorageUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -38,7 +37,7 @@ import java.io.IOException;
 import jp.co.cyberagent.android.gpuimage.GPUImage;
 import jp.co.cyberagent.android.gpuimage.GPUImageFilter;
 
-public class PhotoShare_Activity extends Activity {
+public class PhotoShare_Activity extends BaseActivity {
     public Boolean savedok;
     public GPUImageFilter mFilter;
     public GPUImage mGPUImage;
@@ -352,6 +351,7 @@ public class PhotoShare_Activity extends Activity {
         startActivity(intent);
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class EffectAsnyTask extends AsyncTask<Integer, Void, Void> {
 
         Bitmap eff;
@@ -392,7 +392,7 @@ public class PhotoShare_Activity extends Activity {
         }
 
     }
-
+    @SuppressLint("StaticFieldLeak")
     public class LoadImageAsycTask extends AsyncTask<Void, Void, Void> {
         Float Orientation;
         ProgressDialog dialog;

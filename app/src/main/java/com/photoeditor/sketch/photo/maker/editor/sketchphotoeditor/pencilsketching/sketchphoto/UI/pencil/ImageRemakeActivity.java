@@ -55,6 +55,7 @@ import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketchi
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.SketchColorFilter2;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.SketchFilter;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.SketchFilter2;
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.BaseActivity;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.PhotoShare_Activity;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.pencil.others.ActivityHandler;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.Utils.AppUtils;
@@ -69,7 +70,7 @@ import java.io.IOException;
 import java.nio.IntBuffer;
 import java.util.UUID;
 
-public class ImageRemakeActivity extends Activity implements OnClickListener {
+public class ImageRemakeActivity extends BaseActivity implements OnClickListener {
 
     public static int overlayid = -1;
     private int MaxResolution, imageheight, imagewidth, screenwidth;
