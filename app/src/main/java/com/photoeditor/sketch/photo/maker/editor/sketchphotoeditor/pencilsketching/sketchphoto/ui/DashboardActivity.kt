@@ -8,30 +8,19 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
-import android.view.Window
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.esafirm.imagepicker.features.*
 import com.esafirm.imagepicker.model.Image
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui.pencil.ImageRemakeActivity
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.constant.AppConstant
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui.pencil.ImageRemakeActivity
 
-class DashboardActivity : AppCompatActivity(), View.OnClickListener {
+class DashboardActivity : BaseActivity(), View.OnClickListener {
 
 
     private var context: Context? = null
     private var widthPixel = 0
-    private val imageBroadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            val filePathList: List<String>? = intent.getStringArrayListExtra("list")
-            if (filePathList != null && filePathList.size > 0) {
-                startImageRemaker(Uri.parse(filePathList[0]))
-            }
-        }
-    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,9 +46,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun pickImageWithLib() {
         run {
-
             launcher.launch()
-
 
         }
     }
@@ -86,9 +73,9 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
     private fun startImageRemaker(uri: Uri) {
 
 
-        val flag: Boolean
-        flag =
+        val flag =
             (getSystemService("activity") as ActivityManager).deviceConfigurationInfo.reqGlEsVersion >= 0x20000
+
         if (!flag) {
             Toast.makeText(
                 applicationContext, "Editor is not supported in this device.", Toast.LENGTH_SHORT
@@ -105,35 +92,5 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         startActivityForResult(intent, 5)
     }
 
-    private fun shareApp() {
-        val appPackageName = packageName
-        val sendIntent = Intent()
-        sendIntent.action = Intent.ACTION_SEND
-        sendIntent.putExtra(
-            Intent.EXTRA_TEXT,
-            "Hey am using Sketch Photo Application to sketch photo and Editing. You can check out at: https://play.google.com/store/apps/details?id=$appPackageName"
-        )
-        sendIntent.type = "text/plain"
-        startActivity(sendIntent)
-    }
 
-    private fun showExitDialog() {
-        val dialog: AlertDialog
-        val builder = AlertDialog.Builder(this, R.style.MyDialogTheme)
-        builder.setTitle(getString(R.string.alert))
-        builder.setMessage(getString(R.string.exit_message))
-        builder.setPositiveButton("Yes") { _, which -> finish() }
-        builder.setNegativeButton("No") { dialog, which -> dialog.dismiss() }
-        builder.setNeutralButton(R.string.share_app) { dialog, which ->
-            shareApp()
-            dialog.dismiss()
-        }
-        dialog = builder.create()
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.show()
-        var b = dialog.getButton(DialogInterface.BUTTON_NEGATIVE)
-        b.setTextColor(ContextCompat.getColor(this, R.color.colorAccent))
-        b = dialog.getButton(DialogInterface.BUTTON_POSITIVE)
-        b.setTextColor(ContextCompat.getColor(this, R.color.colorAccent))
-    }
 }
