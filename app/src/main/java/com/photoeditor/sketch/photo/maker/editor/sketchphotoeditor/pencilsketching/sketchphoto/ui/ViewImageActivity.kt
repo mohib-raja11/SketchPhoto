@@ -109,7 +109,7 @@ class ViewImageActivity : BaseActivity() {
         builder.setTitle(resources.getString(R.string.removeOpt))
         builder.setMessage(resources.getString(R.string.removeTxt))
         builder.setPositiveButton(
-            resources.getString(R.string.yestxt),
+            resources.getString(R.string.yes),
             DialogInterface.OnClickListener { dialog, id ->
                 dialog.cancel()
                 val file = File(imgUrl!!)
@@ -122,7 +122,7 @@ class ViewImageActivity : BaseActivity() {
                     applicationContext, resources.getString(R.string.errorImg), Toast.LENGTH_SHORT
                 ).show()
             })
-        builder.setNegativeButton(resources.getString(R.string.canceltxt)) { dialog, id -> dialog.cancel() }
+        builder.setNegativeButton(resources.getString(R.string.cancel)) { dialog, id -> dialog.cancel() }
         builder.create().show()
     }
 

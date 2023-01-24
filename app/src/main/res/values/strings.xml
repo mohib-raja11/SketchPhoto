@@ -25,8 +25,8 @@
     <string name="removeOpt">Remove Option!</string>
     <string name="removeTxt">Are You sure to want to deleted this image?</string>
 
-    <string name="yestxt">Yes</string>
-    <string name="canceltxt">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
     <string name="errorImg">Error..</string>
 
     <string name="alert">Alert</string>
