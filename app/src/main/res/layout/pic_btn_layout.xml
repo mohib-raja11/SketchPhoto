@@ -38,7 +38,7 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingBottom="8dp"
-            android:text="effects"
+            android:text="@string/effects"
             android:textColor="#292929"
             android:textSize="@dimen/picmaker_btntxt_size" />
 

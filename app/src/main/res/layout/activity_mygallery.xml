@@ -15,7 +15,7 @@
             android:id="@+id/ivBack"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:adjustViewBounds="true"
             android:contentDescription="@null"
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="My Work"
+            android:text="@string/my_work"
             android:textColor="@color/white"
             android:textSize="17sp" />
     </RelativeLayout>

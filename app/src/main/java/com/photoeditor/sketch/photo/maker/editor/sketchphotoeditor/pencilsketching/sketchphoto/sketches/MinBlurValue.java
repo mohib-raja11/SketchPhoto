@@ -7,5 +7,5 @@ public final class MinBlurValue extends ImageFilerName {
         this.minBlurVal = 1;
     }
 
-   
+
 }

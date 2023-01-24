@@ -3,7 +3,7 @@
     android:id="@+id/LinearLayout01"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal" >
+    android:orientation="horizontal">
 
     <Button
         android:id="@+id/crop_btn"
@@ -11,10 +11,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="#7CAEF9"
-        android:gravity="left"
+        android:gravity="start"
         android:padding="10dp"
         android:textStyle="bold"
-        android:text="demo"
+        android:text="@string/edt_crop"
         android:textColor="@android:color/white"
         android:textSize="@dimen/picmaker_txt_size" />
 

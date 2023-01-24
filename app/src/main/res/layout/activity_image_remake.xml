@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainlayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
@@ -49,7 +50,8 @@
                 android:contentDescription="@string/app_name"
                 android:gravity="center"
                 android:paddingEnd="10dp"
-                android:src="@drawable/pic_apply" />
+                android:src="@drawable/pic_apply"
+                tools:ignore="RtlSymmetry" />
         </LinearLayout>
 
         <LinearLayout
@@ -100,7 +102,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_gravity="top|center"
-            android:adjustViewBounds="true" />
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/app_name" />
 
         <com.edmodo.cropper.CropImageView
             android:id="@+id/pic_CropImageView"

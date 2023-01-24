@@ -7,24 +7,24 @@ import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 
 class GrayFilter {
-	static Bitmap changeToGray(Bitmap bitmap) {
-		int width, height;
-		width = bitmap.getWidth();
-		height = bitmap.getHeight();
-			
-		Bitmap grayBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-		Canvas canvas = new Canvas(grayBitmap);
-		Paint paint = new Paint();
-		paint.setAntiAlias(true); // 设置抗锯齿
-			
-		ColorMatrix colorMatrix = new ColorMatrix();
-		colorMatrix.setSaturation(0);
-			
-		ColorMatrixColorFilter filter = new ColorMatrixColorFilter(colorMatrix);
-			
-		paint.setColorFilter(filter);
-		canvas.drawBitmap(bitmap, 0, 0, paint);
-			
-		return grayBitmap;
-	}
+    static Bitmap changeToGray(Bitmap bitmap) {
+        int width, height;
+        width = bitmap.getWidth();
+        height = bitmap.getHeight();
+
+        Bitmap grayBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(grayBitmap);
+        Paint paint = new Paint();
+        paint.setAntiAlias(true); // 设置抗锯齿
+
+        ColorMatrix colorMatrix = new ColorMatrix();
+        colorMatrix.setSaturation(0);
+
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(colorMatrix);
+
+        paint.setColorFilter(filter);
+        canvas.drawBitmap(bitmap, 0, 0, paint);
+
+        return grayBitmap;
+    }
 }

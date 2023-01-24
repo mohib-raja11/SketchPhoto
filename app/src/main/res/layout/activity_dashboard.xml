@@ -40,7 +40,8 @@
                 android:layout_height="150dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
-                android:src="@mipmap/icon" />
+                android:src="@mipmap/icon"
+                android:contentDescription="@string/app_name" />
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -1,7 +1,6 @@
 package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.UI.pencil;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -1508,11 +1507,14 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
                     x = (int) ev.getX();
                     y = (int) ev.getY();
                     invalidate();
+                    Log.i("TAG", "onTouchEvent: x= " + x);
+
                     break;
                 }
 
                 case MotionEvent.ACTION_UP:
 
+                    Log.i("TAG", "onTouchEvent: x= " + x);
                     break;
 
             }

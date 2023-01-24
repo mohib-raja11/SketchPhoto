@@ -31,5 +31,5 @@ public final class BlurFunctionClass extends SataticValueInitilizer {
         return new ByteArrayHelper(i2, fArr);
     }
 
-   
+
 }

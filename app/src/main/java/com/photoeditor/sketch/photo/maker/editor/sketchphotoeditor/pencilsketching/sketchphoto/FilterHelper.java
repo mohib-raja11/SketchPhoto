@@ -8,12 +8,12 @@ import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketchi
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.sketches.GalleryFileSizeHelper;
 
 public class FilterHelper extends BitmapHelper {
-	public FilterHelper(Activity activity, Handler handler) {
-		super(activity, handler);
-	}
+    public FilterHelper(Activity activity, Handler handler) {
+        super(activity, handler);
+    }
 
-	@Override
-	public Bitmap getSketchFromBH(Bitmap scaleBitmap) {
-		return GalleryFileSizeHelper.scaleItBitmap(scaleBitmap,1);
-	}
+    @Override
+    public Bitmap getSketchFromBH(Bitmap scaleBitmap) {
+        return GalleryFileSizeHelper.scaleItBitmap(scaleBitmap, 1);
+    }
 }

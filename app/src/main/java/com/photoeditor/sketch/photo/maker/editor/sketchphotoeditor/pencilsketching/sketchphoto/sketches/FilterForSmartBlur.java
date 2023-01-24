@@ -2,6 +2,7 @@ package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketch
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+
 import androidx.core.view.MotionEventCompat;
 
 public final class FilterForSmartBlur extends ImageFilerName {
@@ -25,21 +26,21 @@ public final class FilterForSmartBlur extends ImageFilerName {
         int[] mArray2 = new int[(width * height)];
         bitmap.getPixels(mArray, 0, width, 0, 0, width, height);
         ByteArrayHelper a = BlurFunctionClass.getByteArrayHelper((float) this.smartBlurValue1);
-      
-            if (this.filterApplyInterface != null) {
-                this.filterApplyInterface.filterApplyInterfaceFunction(0);
-            }
-            this.smartValue3 = 1;
-            makeItSmartBlur(a, mArray, mArray2, width, height);
-            if (this.filterApplyInterface != null) {
-                this.filterApplyInterface.filterApplyInterfaceFunction(50);
-            }
-            this.smartValue3 = 2;
-            makeItSmartBlur(a, mArray2, mArray, height, width);
-            if (this.filterApplyInterface != null) {
-                this.filterApplyInterface.filterApplyInterfaceFunction(100);
-            }
-        
+
+        if (this.filterApplyInterface != null) {
+            this.filterApplyInterface.filterApplyInterfaceFunction(0);
+        }
+        this.smartValue3 = 1;
+        makeItSmartBlur(a, mArray, mArray2, width, height);
+        if (this.filterApplyInterface != null) {
+            this.filterApplyInterface.filterApplyInterfaceFunction(50);
+        }
+        this.smartValue3 = 2;
+        makeItSmartBlur(a, mArray2, mArray, height, width);
+        if (this.filterApplyInterface != null) {
+            this.filterApplyInterface.filterApplyInterfaceFunction(100);
+        }
+
         Bitmap createBitmap = Bitmap.createBitmap(width, height, Config.ARGB_8888);
         createBitmap.setPixels(mArray, 0, width, 0, 0, width, height);
         System.gc();
@@ -361,5 +362,5 @@ public final class FilterForSmartBlur extends ImageFilerName {
         this.smartBlurValue2 = 30;
     }
 
-   
+
 }

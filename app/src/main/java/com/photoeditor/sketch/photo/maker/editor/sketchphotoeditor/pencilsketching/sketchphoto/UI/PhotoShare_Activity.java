@@ -392,6 +392,7 @@ public class PhotoShare_Activity extends BaseActivity {
         }
 
     }
+
     @SuppressLint("StaticFieldLeak")
     public class LoadImageAsycTask extends AsyncTask<Void, Void, Void> {
         Float Orientation;

@@ -1,7 +1,9 @@
 package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.sketches;
 
 import android.graphics.Color;
+
 import androidx.core.view.MotionEventCompat;
+
 import java.util.Random;
 
 public final class RandomColorBalance {

@@ -31,7 +31,8 @@
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:padding="8dp"
-                android:scaleType="centerInside" />
+                android:scaleType="centerInside"
+                android:contentDescription="@string/app_name" />
         </androidx.cardview.widget.CardView>
 
         <TextView

@@ -11,5 +11,5 @@ public class SataticValueInitilizer extends ImageFilerName {
         staticValue3 = 2;
     }
 
-    
+
 }

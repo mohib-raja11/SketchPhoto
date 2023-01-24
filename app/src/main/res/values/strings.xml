@@ -51,5 +51,6 @@
     <string name="select_image">Select Image</string>
     <string name="keep_editing">Keep Editing</string>
     <string name="leave_editor">Leave Editor</string>
+    <string name="effects">effects</string>
 
 </resources>

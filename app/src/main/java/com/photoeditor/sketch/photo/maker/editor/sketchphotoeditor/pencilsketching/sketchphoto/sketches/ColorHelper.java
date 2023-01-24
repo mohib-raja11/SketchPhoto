@@ -2,6 +2,7 @@ package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketch
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+
 import androidx.core.view.MotionEventCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 
@@ -97,5 +98,5 @@ public final class ColorHelper extends ImageFilerName {
         return createBitmap;
     }
 
-    
+
 }

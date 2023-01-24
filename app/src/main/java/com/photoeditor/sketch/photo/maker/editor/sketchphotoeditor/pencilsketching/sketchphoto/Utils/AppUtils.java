@@ -3,7 +3,6 @@ package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketch
 import android.content.Context;
 
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.constant.AppConstant;
 
 import java.io.File;
 
@@ -14,7 +13,7 @@ public class AppUtils {
 
         String rootPath = context.getFilesDir().getPath() + "/" + directoryName + "/";
 
-        if(new File(rootPath).exists()){
+        if (new File(rootPath).exists()) {
             return rootPath;
         }
 
@@ -28,7 +27,7 @@ public class AppUtils {
 
         String rootPath = context.getFilesDir().getPath() + "/" + directoryName + "/";
 
-        if(new File(rootPath).exists()){
+        if (new File(rootPath).exists()) {
             return rootPath;
         }
 

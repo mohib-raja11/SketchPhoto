@@ -17,6 +17,7 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         mContext = this
     }
+
     override fun onClick(view: View) {
         Log.d(TAG, "onClick: clicked id = " + view.id)
     }

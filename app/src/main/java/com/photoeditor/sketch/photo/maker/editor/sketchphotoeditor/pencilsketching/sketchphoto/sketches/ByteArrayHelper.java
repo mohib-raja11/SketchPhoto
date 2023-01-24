@@ -1,4 +1,5 @@
 package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.sketches;
+
 public final class ByteArrayHelper {
     private int byteInt;
     private float[] byteArray;

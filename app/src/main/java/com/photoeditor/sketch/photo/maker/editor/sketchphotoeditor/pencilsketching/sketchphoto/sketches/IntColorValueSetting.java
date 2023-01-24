@@ -2,6 +2,7 @@ package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketch
 
 import androidx.core.view.MotionEventCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+
 import java.util.Vector;
 
 public final class IntColorValueSetting implements IntValueInterface {
@@ -28,9 +29,7 @@ public final class IntColorValueSetting implements IntValueInterface {
         this.intColor1 = Math.max(AccessibilityNodeInfoCompat.ACTION_PREVIOUS_AT_MOVEMENT_GRANULARITY, i * 2);
     }
 
- 
 
-  
     private void setIntColorMethod(int i) {
         for (int i2 = 4; i2 >= 0; i2--) {
             Vector<?> vector = this.vectorArray[i2];
@@ -42,7 +41,7 @@ public final class IntColorValueSetting implements IntValueInterface {
                             IntColorSetting intColorset = intColorSetting.intColorSettingArray[i4];
                             if (intColorset != null) {
                                 if (!intColorset.colorSetBoolean) {
-                                    
+
                                 }
                                 intColorSetting.colorsettingValue3 += intColorset.colorsettingValue3;
                                 intColorSetting.colorsettingValue4 += intColorset.colorsettingValue4;
@@ -64,10 +63,9 @@ public final class IntColorValueSetting implements IntValueInterface {
                 continue;
             }
         }
-    
+
     }
 
-    
 
     private int setIntColorMethod2(IntColorSetting intColorSetting, int[] mArray, int i) {
         if (this.intColor3 > this.intColor2) {
@@ -90,10 +88,10 @@ public final class IntColorValueSetting implements IntValueInterface {
         return i2;
     }
 
-	@Override
-	public void intValueFunction1(int i) {
-		// TODO Auto-generated method stub
-	    for (int i2 = 4; i2 >= 0; i2--) {
+    @Override
+    public void intValueFunction1(int i) {
+        // TODO Auto-generated method stub
+        for (int i2 = 4; i2 >= 0; i2--) {
             Vector<?> vector = this.vectorArray[i2];
             if (vector != null && vector.size() > 0) {
                 for (int i3 = 0; i3 < vector.size(); i3++) {
@@ -103,7 +101,7 @@ public final class IntColorValueSetting implements IntValueInterface {
                             IntColorSetting intColorset = intColorSetting.intColorSettingArray[i4];
                             if (intColorset != null) {
                                 if (!intColorset.colorSetBoolean) {
-                                   
+
                                 }
                                 intColorSetting.colorsettingValue3 += intColorset.colorsettingValue3;
                                 intColorSetting.colorsettingValue4 += intColorset.colorsettingValue4;
@@ -125,105 +123,105 @@ public final class IntColorValueSetting implements IntValueInterface {
                 continue;
             }
         }
-   
-	}
 
-	@Override
-	public void intValueFunction2(int[] mArray, int i) {
-		  for (int i2 = 0; i2 < i; i2++) {
-	            int i3 = mArray[i2 + 0];
-	            int i4 = (i3 >> 16) & MotionEventCompat.ACTION_MASK;
-	            int i5 = (i3 >> 8) & MotionEventCompat.ACTION_MASK;
-	            int i6 = i3 & MotionEventCompat.ACTION_MASK;
-	            int i7 = 0;
-	            IntColorSetting intColorSetting = this.intColorSetting;
-	            while (i7 <= 5) {
-	                IntColorSetting intColorset;
-	                int i8 = AccessibilityNodeInfoCompat.ACTION_CLEAR_ACCESSIBILITY_FOCUS >> i7;
-	                i3 = (i4 & i8) != 0 ? 4 : 0;
-	                if ((i5 & i8) != 0) {
-	                    i3 += 2;
-	                }
-	                if ((i8 & i6) != 0) {
-	                    i3++;
-	                }
-	                IntColorSetting colorSet2 = intColorSetting.intColorSettingArray[i3];
-	                if (colorSet2 == null) {
-	                    intColorSetting.colorsettingValue1++;
-	                    colorSet2 = new IntColorSetting(this);
-	                    colorSet2.intColorSetting = intColorSetting;
-	                    intColorSetting.intColorSettingArray[i3] = colorSet2;
-	                    intColorSetting.colorSetBoolean = false;
-	                    this.vectorArray[i7].addElement(colorSet2);
-	                    if (i7 == 5) {
-	                        colorSet2.colorSetBoolean = true;
-	                        colorSet2.colorsettingValue3 = 1;
-	                        colorSet2.colorsettingValue4 = i4;
-	                        colorSet2.colorsettingValue5 = i5;
-	                        colorSet2.colorsettingValue6 = i6;
-	                        colorSet2.colorsettingValue2 = i7;
-	                        this.intColor3++;
-	                        break;
-	                    }
-	                    intColorset = colorSet2;
-	                } else if (colorSet2.colorSetBoolean) {
-	                    colorSet2.colorsettingValue3++;
-	                    colorSet2.colorsettingValue4 += i4;
-	                    colorSet2.colorsettingValue5 += i5;
-	                    colorSet2.colorsettingValue6 += i6;
-	                    break;
-	                } else {
-	                    intColorset = colorSet2;
-	                }
-	                i7++;
-	                intColorSetting = intColorset;
-	            }
-	            
-	            if (this.intColor3 > this.intColor1) {
-	                setIntColorMethod(this.intColor1);
-	            }
-	        }
-	}
+    }
 
-	@Override
-	public int[] intArrayValueFunction() {
-		  int[] mArray = new int[this.intColor3];
-	        setIntColorMethod2(this.intColorSetting, mArray, 0);
-	        return mArray;
-	}
+    @Override
+    public void intValueFunction2(int[] mArray, int i) {
+        for (int i2 = 0; i2 < i; i2++) {
+            int i3 = mArray[i2 + 0];
+            int i4 = (i3 >> 16) & MotionEventCompat.ACTION_MASK;
+            int i5 = (i3 >> 8) & MotionEventCompat.ACTION_MASK;
+            int i6 = i3 & MotionEventCompat.ACTION_MASK;
+            int i7 = 0;
+            IntColorSetting intColorSetting = this.intColorSetting;
+            while (i7 <= 5) {
+                IntColorSetting intColorset;
+                int i8 = AccessibilityNodeInfoCompat.ACTION_CLEAR_ACCESSIBILITY_FOCUS >> i7;
+                i3 = (i4 & i8) != 0 ? 4 : 0;
+                if ((i5 & i8) != 0) {
+                    i3 += 2;
+                }
+                if ((i8 & i6) != 0) {
+                    i3++;
+                }
+                IntColorSetting colorSet2 = intColorSetting.intColorSettingArray[i3];
+                if (colorSet2 == null) {
+                    intColorSetting.colorsettingValue1++;
+                    colorSet2 = new IntColorSetting(this);
+                    colorSet2.intColorSetting = intColorSetting;
+                    intColorSetting.intColorSettingArray[i3] = colorSet2;
+                    intColorSetting.colorSetBoolean = false;
+                    this.vectorArray[i7].addElement(colorSet2);
+                    if (i7 == 5) {
+                        colorSet2.colorSetBoolean = true;
+                        colorSet2.colorsettingValue3 = 1;
+                        colorSet2.colorsettingValue4 = i4;
+                        colorSet2.colorsettingValue5 = i5;
+                        colorSet2.colorsettingValue6 = i6;
+                        colorSet2.colorsettingValue2 = i7;
+                        this.intColor3++;
+                        break;
+                    }
+                    intColorset = colorSet2;
+                } else if (colorSet2.colorSetBoolean) {
+                    colorSet2.colorsettingValue3++;
+                    colorSet2.colorsettingValue4 += i4;
+                    colorSet2.colorsettingValue5 += i5;
+                    colorSet2.colorsettingValue6 += i6;
+                    break;
+                } else {
+                    intColorset = colorSet2;
+                }
+                i7++;
+                intColorSetting = intColorset;
+            }
 
-	@Override
-	public int intValueFunction3(int i) {
-		  int i2 = (i >> 16) & MotionEventCompat.ACTION_MASK;
-	        int i3 = (i >> 8) & MotionEventCompat.ACTION_MASK;
-	        int i4 = i & MotionEventCompat.ACTION_MASK;
-	        int i5 = 0;
-	        IntColorSetting intColorSetting = this.intColorSetting;
-	        while (i5 <= 5) {
-	            int i6;
-	            int i7 = AccessibilityNodeInfoCompat.ACTION_CLEAR_ACCESSIBILITY_FOCUS >> i5;
-	            if ((i2 & i7) != 0) {
-	                i6 = 4;
-	            } else {
-	                i6 = 0;
-	            }
-	            if ((i3 & i7) != 0) {
-	                i6 += 2;
-	            }
-	            if ((i7 & i4) != 0) {
-	                i6++;
-	            }
-	            IntColorSetting intColorset = intColorSetting.intColorSettingArray[i6];
-	            if (intColorset == null) {
-	                return intColorSetting.colorsettingValue7;
-	            }
-	            if (intColorset.colorSetBoolean) {
-	                return intColorset.colorsettingValue7;
-	            }
-	            i5++;
-	            intColorSetting = intColorset;
-	        }
-	   
-	        return 0;
-	}
+            if (this.intColor3 > this.intColor1) {
+                setIntColorMethod(this.intColor1);
+            }
+        }
+    }
+
+    @Override
+    public int[] intArrayValueFunction() {
+        int[] mArray = new int[this.intColor3];
+        setIntColorMethod2(this.intColorSetting, mArray, 0);
+        return mArray;
+    }
+
+    @Override
+    public int intValueFunction3(int i) {
+        int i2 = (i >> 16) & MotionEventCompat.ACTION_MASK;
+        int i3 = (i >> 8) & MotionEventCompat.ACTION_MASK;
+        int i4 = i & MotionEventCompat.ACTION_MASK;
+        int i5 = 0;
+        IntColorSetting intColorSetting = this.intColorSetting;
+        while (i5 <= 5) {
+            int i6;
+            int i7 = AccessibilityNodeInfoCompat.ACTION_CLEAR_ACCESSIBILITY_FOCUS >> i5;
+            if ((i2 & i7) != 0) {
+                i6 = 4;
+            } else {
+                i6 = 0;
+            }
+            if ((i3 & i7) != 0) {
+                i6 += 2;
+            }
+            if ((i7 & i4) != 0) {
+                i6++;
+            }
+            IntColorSetting intColorset = intColorSetting.intColorSettingArray[i6];
+            if (intColorset == null) {
+                return intColorSetting.colorsettingValue7;
+            }
+            if (intColorset.colorSetBoolean) {
+                return intColorset.colorsettingValue7;
+            }
+            i5++;
+            intColorSetting = intColorset;
+        }
+
+        return 0;
+    }
 }
