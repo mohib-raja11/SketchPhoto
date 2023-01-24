@@ -21,7 +21,6 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.DisplayMetrics;
@@ -434,7 +433,7 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
                     case 7:
                     default:
                         if (sketchDone) {
-                            new SketchAsnyTask().execute(imageView.getId());
+                            sketchAsnyTask(imageView.getId());
                         }
                         break;
 
@@ -672,7 +671,8 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
                 pic_imageview.setVisibility(View.VISIBLE);
                 pic_imageview.setImageBitmap(pic_result);
 
-                new SketchAsnyTaskFirst().execute(6);
+                sketchAsnyTaskFirst();
+
 
             }
             if (effect_gallery.getVisibility() == View.VISIBLE) {
@@ -792,11 +792,7 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
 
             e.printStackTrace();
         }
-        MediaScannerConnection.scanFile(this, as, null, new MediaScannerConnection.OnScanCompletedListener() {
-            public void onScanCompleted(String s1, Uri uri) {
-
-            }
-        });
+        MediaScannerConnection.scanFile(this, as, null, (s11, uri) -> {});
     }
 
     public Bitmap getSketchBitmap(Bitmap bm1, int type) {
@@ -1230,7 +1226,6 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
     public void loadImageAsycTask() {
 
 
-        //pre execute
         ProgressDialog dialog = ProgressDialog.show(ImageRemakeActivity.this, "", "Loading...");
         dialog.setCancelable(false);
         getIntentExtra();
@@ -1280,89 +1275,63 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
         });
 
     }
-    
-    @SuppressLint("StaticFieldLeak")
-    public class SketchAsnyTaskFirst extends AsyncTask<Integer, Void, Void> {
+
+    private void sketchAsnyTaskFirst() {
 
         ProgressDialog dialogD;
-        Bitmap eff;
-        Bitmap bitmap = eff;
-
-        @Override
-        protected void onPreExecute() {
 
 
-            dialogD = ProgressDialog.show(ImageRemakeActivity.this, "", "Sketching...");
-            dialogD.setCancelable(false);
-            super.onPreExecute();
-        }
+        dialogD = ProgressDialog.show(ImageRemakeActivity.this, "", "Sketching...");
+        dialogD.setCancelable(false);
 
-        @Override
-        protected Void doInBackground(Integer... params) {
+        getMExecutor().runWorker(() -> {
 
-            eff = getSketchBitmap(pic_forDraw, params[0]);
+            Bitmap eff = getSketchBitmap(pic_forDraw, 6);
+
+            getMExecutor().runMain(() -> {
+
+                pic_result = eff;
+
+                viewContainer.setVisibility(View.VISIBLE);
+                viewContainer.addView(new BlurView());
+
+                pic_imageview.setVisibility(View.INVISIBLE);
+
+                dialogD.dismiss();
+
+                return null;
+            });
 
             return null;
-        }
+        });
 
-        @Override
-        protected void onPostExecute(Void result) {
-
-            pic_result = eff;
-
-            viewContainer.setVisibility(View.VISIBLE);
-            viewContainer.addView(new BlurView());
-            pic_result = eff;
-            pic_imageview.setVisibility(View.INVISIBLE);
-
-            dialogD.dismiss();
-            if (bitmap != null && !bitmap.isRecycled()) {
-                bitmap.recycle();
-                System.gc();
-            }
-
-            super.onPostExecute(result);
-        }
 
     }
 
-    @SuppressLint("StaticFieldLeak")
-    public class SketchAsnyTask extends AsyncTask<Integer, Void, Void> {
+    public void sketchAsnyTask(int viewId) {
 
-        ProgressDialog dialogD;
-        Bitmap eff;
-        Bitmap bitmap = eff;
 
-        @Override
-        protected void onPreExecute() {
-            dialogD = ProgressDialog.show(ImageRemakeActivity.this, "", "Sketching...");
-            dialogD.setCancelable(false);
-            super.onPreExecute();
-        }
+        ProgressDialog dialogD = ProgressDialog.show(ImageRemakeActivity.this, "", "Sketching...");
+        dialogD.setCancelable(false);
 
-        @Override
-        protected Void doInBackground(Integer... params) {
 
-            eff = getSketchBitmap(pic_forSketch, params[0]);
+        getMExecutor().runWorker(() -> {
+
+            pic_result = getSketchBitmap(pic_forSketch, viewId);
+
+
+            getMExecutor().runMain(() -> {
+
+                pic_imageview.setImageBitmap(pic_result);
+
+                dialogD.dismiss();
+
+                return null;
+            });
 
             return null;
-        }
+        });
 
-        @Override
-        protected void onPostExecute(Void result) {
-
-            pic_result = eff;
-            pic_imageview.setImageBitmap(pic_result);
-            // mGPUImage.setImage(eff);
-
-            dialogD.dismiss();
-            if (bitmap != null && !bitmap.isRecycled()) {
-                bitmap.recycle();
-                System.gc();
-            }
-
-            super.onPostExecute(result);
-        }
 
     }
 
