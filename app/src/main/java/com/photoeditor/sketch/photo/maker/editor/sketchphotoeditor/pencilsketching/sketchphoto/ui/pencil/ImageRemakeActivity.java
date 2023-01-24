@@ -3,7 +3,6 @@ package com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketch
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -49,16 +48,16 @@ import androidx.exifinterface.media.ExifInterface;
 import com.edmodo.cropper.CropImageView;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.CSketchFilter;
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ragnarok.BitmapFilter;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.SketchColorFilter;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.SketchColorFilter2;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.SketchFilter;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.SketchFilter2;
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ragnarok.BitmapFilter;
+import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.sketches.SecondSketchFilter;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui.BaseActivity;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui.PhotoShare_Activity;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui.pencil.others.ActivityHandler;
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.utils.AppUtils;
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.sketches.SecondSketchFilter;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -72,7 +71,7 @@ import java.util.UUID;
 public class ImageRemakeActivity extends BaseActivity implements OnClickListener {
 
     public static int overlayid = -1;
-    private int MaxResolution, imageheight, imagewidth, screenwidth;
+    private int MaxResolution, imageheight, imagewidth;
 
     public static Bitmap pic_result, pic_forSketch, pic_forDraw;
     private Bitmap colorPencilBitmap = null, colorPencil2Bitmap, pencilsketchBitmap = null, pencil2Bitmap = null;
@@ -121,8 +120,7 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
 
-        screenwidth = displaymetrics.widthPixels;
-        MaxResolution = screenwidth;
+        MaxResolution = displaymetrics.widthPixels;
         initializeViews();
     }
 
@@ -174,7 +172,6 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
         Intent intent = getIntent();
         imageuri = intent.getData();
         tool_array = intent.getStringArrayExtra("tool_title");
-        MaxResolution = intent.getIntExtra("picresolution", screenwidth);
 
     }
 
@@ -1317,7 +1314,7 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
             pic_result = eff;
 
             viewContainer.setVisibility(View.VISIBLE);
-            viewContainer.addView(new BlurView(ImageRemakeActivity.this));
+            viewContainer.addView(new BlurView());
             pic_result = eff;
             pic_imageview.setVisibility(View.INVISIBLE);
 
@@ -1386,13 +1383,12 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
         int y = 0;
         int r = 0;
         int mWidth, mHeight;
-        Context context;
         int Tilltime = 0;
         private final Paint mPaint;
 
-        public BlurView(Context context) {
-            super(context);
-            this.context = context;
+        public BlurView() {
+            super(mContext);
+
             setFocusable(true);
             setBackgroundColor(Color.TRANSPARENT);
             mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);

@@ -15,21 +15,12 @@ import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketchi
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.constant.AppConstant
 import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.sketchphoto.ui.pencil.ImageRemakeActivity
 
-class DashboardActivity : BaseActivity(), View.OnClickListener {
-
-
-    private var context: Context? = null
-    private var widthPixel = 0
-
+class DashboardActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
-        context = this
 
-        val displaymetrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(displaymetrics)
-        widthPixel = displaymetrics.widthPixels
     }
 
     override fun onClick(view: View) {
@@ -38,7 +29,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
             R.id.btnRateUs -> gotothisLink("market://details?id=$packageName")
             R.id.btnMoreApps -> gotothisLink(AppConstant.moreAppsLink)
             R.id.btnStart -> pickImageWithLib()
-            R.id.btnGallery -> startActivity(Intent(context, MyGalleryActivity::class.java))
+            R.id.btnGallery -> startActivity(Intent(mContext, MyGalleryActivity::class.java))
 
         }
     }
@@ -87,7 +78,6 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
         val `as` = arrayOf("CROP")
         val intent = Intent(this, ImageRemakeActivity::class.java)
         intent.data = uri
-        intent.putExtra("picresolution", widthPixel)
         intent.putExtra("tool_title", `as`)
         startActivityForResult(intent, 5)
     }
