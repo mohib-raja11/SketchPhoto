@@ -9,29 +9,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
-
     <color name="colorPrimary">#7CAEF9</color>
     <color name="colorPrimaryDark">#3988ff</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="darkgray">#ff2e2e2e</color>
     <color name="transparent">#00000000</color>
     <color name="stroke_gallery">#ff464950</color>
-    <color name="pic_seekbar_startcolor">#ff019ca4</color>
-    <color name="pic_seekbar_centercolor">#ff7bd6da</color>
-    <color name="picmaker_bg">#ff15161a</color>
-    <color name="pic_orientation_btnbg_top">#ff262b31</color>
-    <color name="pic_orientation_btnbg_center">#ff171a1f</color>
-    <color name="gradient_start">#50000000</color>
-    <color name="gradient_light_start">#30000000</color>
-    <color name="tabs_title_color"> #FFFFFF </color>
-    <color name="headerbar_title_color"> #FFFFFF </color>
-    <color name="headerbar_selected_tab_color"> #34b4e3 </color>
-    <color name="genre">#666666</color>
-    <color name="year">#888888</color>
-    <color name="list_row_start_color">#ffffff</color>
-    <color name="list_row_end_color">#ffffff</color>
-    <color name="list_row_hover_start_color">#ebeef0</color>
-    <color name="list_row_hover_end_color">#ebeef0</color>
+    <color name="headerbar_selected_tab_color">#34b4e3</color>
+
 
 </resources>

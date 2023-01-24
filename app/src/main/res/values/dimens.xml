@@ -3,28 +3,18 @@
     <dimen name="picmaker_exit_txt_size">15sp</dimen>
     <dimen name="picmaker_effs_size">14sp</dimen>
     <dimen name="picmaker_btntxt_size">15sp</dimen>
+
     <dimen name="picmaker_btn_toppadding">13dp</dimen>
     <dimen name="picmaker_btnspace">12dp</dimen>
     <dimen name="picmaker_stroke_top">1dp</dimen>
     <dimen name="picmaker_eff_gallery_space">10dp</dimen>
     <dimen name="image_layout_marginBottom">60dp</dimen>
-    <dimen name="startbtn_txtsize">30sp</dimen>
+
     <dimen name="picmaker_txt_size">19sp</dimen>
     <dimen name="picmaker_topbg_height">50dp</dimen>
     <dimen name="pic_topbar_line_margin">60dp</dimen>
-    <dimen name="picmaker_btnlayout_height">80dp</dimen>
-    <dimen name="pic_seekbar_maxheight">5dp</dimen>
-    <dimen name="pic_seekbar_corner_radious">30dp</dimen>
-    <dimen name="instashape_gallery_image_width">40dp</dimen>
-    <dimen name="instashape_gallery_image_height">40dp</dimen>
-    <dimen name="instashape_margin_from_top_for_scrn">20dp</dimen>
     <dimen name="instashape_margin_from_top">7dp</dimen>
-    <dimen name="instashape_margin_from_left">7dp</dimen>
-    <dimen name="instashape_margin_from_right">15dp</dimen>
-    <dimen name="action_bar_height">56dp</dimen>
-    <dimen name="title">17dp</dimen>
-    <dimen name="rating">15dp</dimen>
-    <dimen name="genre">13dp</dimen>
-    <dimen name="year">12dp</dimen>
+
+
 
 </resources>
