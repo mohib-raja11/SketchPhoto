@@ -22,7 +22,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/alert"
             android:textColor="#ffffff"
-            android:textSize="@dimen/picmaker_exit_txt_size"
+            android:textSize="@dimen/pic_maker_exit_txt_size"
             android:textStyle="bold" />
 
         <View
@@ -44,7 +44,7 @@
             android:paddingRight="5dp"
             android:singleLine="false"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/picmaker_exit_txt_size"
+            android:textSize="@dimen/pic_maker_exit_txt_size"
             android:textStyle="bold" />
 
         <View
@@ -73,7 +73,7 @@
                 android:paddingBottom="15dp"
                 android:text="@string/keep_editing"
                 android:textColor="#ffffff"
-                android:textSize="@dimen/picmaker_btntxt_size"
+                android:textSize="@dimen/pic_maker_btn_txt_size"
                 android:textStyle="bold" />
 
             <View
@@ -95,7 +95,7 @@
                 android:paddingBottom="15dp"
                 android:text="@string/leave_editor"
                 android:textColor="#ffffff"
-                android:textSize="@dimen/picmaker_btntxt_size"
+                android:textSize="@dimen/pic_maker_btn_txt_size"
                 android:textStyle="bold" />
         </LinearLayout>
 

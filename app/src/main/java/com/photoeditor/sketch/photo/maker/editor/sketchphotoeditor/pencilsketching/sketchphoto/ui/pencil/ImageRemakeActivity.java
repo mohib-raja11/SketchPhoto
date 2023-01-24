@@ -142,9 +142,9 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
         pic_cropImageView.setVisibility(View.GONE);
         effect_gallery.setVisibility(View.GONE);
         crop_gallery.setVisibility(View.GONE);
-        txt_editor = findViewById(R.id.pic_txteditor);
+        txt_editor = findViewById(R.id.pic_txt_editor);
         txt_editor.setText(R.string.editor);
-        pic_imageview = findViewById(R.id.iv_imagemaker);
+        pic_imageview = findViewById(R.id.iv_image_maker);
 
 
         setClicks();
@@ -572,18 +572,18 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
     }
 
     public void PicMakerDidalog(String s) {
-        final Dialog picmaker_dialog = new Dialog(this);
-        picmaker_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-        picmaker_dialog.setContentView(R.layout.pic_reset_dialog);
-        ((TextView) picmaker_dialog.findViewById(R.id.pic_reset_txt)).setText(s);
-        TextView textview = picmaker_dialog.findViewById(R.id.pic_dialog_yes);
-        TextView textview1 = picmaker_dialog.findViewById(R.id.pic_dialog_no);
+        final Dialog pic_maker_dialog = new Dialog(this);
+        pic_maker_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        pic_maker_dialog.setContentView(R.layout.pic_reset_dialog);
+        ((TextView) pic_maker_dialog.findViewById(R.id.pic_reset_txt)).setText(s);
+        TextView textview = pic_maker_dialog.findViewById(R.id.pic_dialog_yes);
+        TextView textview1 = pic_maker_dialog.findViewById(R.id.pic_dialog_no);
         textview.setText(getString(R.string.reset_edt));
         textview1.setText(getString(R.string.continue_edt));
         textview.setOnClickListener(view -> {
             Bitmap bitmap = pic_result;
             if (Imagepath != null) {
-                picmaker_dialog.dismiss();
+                pic_maker_dialog.dismiss();
 
                 Orientation = getImageOrientation(Imagepath);
                 getAspectRatio(Imagepath, MaxResolution);
@@ -599,8 +599,8 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
                 Toast.makeText(getApplicationContext(), "Invalid image path.", Toast.LENGTH_SHORT).show();
             }
         });
-        textview1.setOnClickListener(view -> picmaker_dialog.dismiss());
-        picmaker_dialog.show();
+        textview1.setOnClickListener(view -> pic_maker_dialog.dismiss());
+        pic_maker_dialog.show();
     }
 
     @Override
@@ -736,7 +736,7 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
                 animshowbtndown.cancel();
                 anim_bottom_show.cancel();
                 anim_btnapply.cancel();
-                unbindDrawables(findViewById(R.id.mainlayout));
+                unbindDrawables(findViewById(R.id.main_layout));
                 return;
             }
 

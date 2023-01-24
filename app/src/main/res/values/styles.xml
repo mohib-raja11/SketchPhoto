@@ -8,4 +8,20 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="appButtonStyle" >
+
+        <item name="background">@color/btn_bg_color</item>
+
+
+    </style>
+
+    <style name="appImageButtonStyle" >
+
+        <item name="android:layout_width">65dp</item>
+        <item name="android:layout_height">90dp</item>
+        <item name="android:layout_margin">7dp</item>
+
+
+    </style>
 </resources>

@@ -16,11 +16,11 @@
         android:textStyle="bold"
         android:text="@string/edt_crop"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/picmaker_txt_size" />
+        android:textSize="@dimen/pic_maker_txt_size" />
 
     <LinearLayout
-        android:layout_width="@dimen/picmaker_btnspace"
-        android:layout_height="@dimen/picmaker_btnspace"
+        android:layout_width="@dimen/pic_maker_btnspace"
+        android:layout_height="@dimen/pic_maker_btnspace"
         android:background="@color/transparent" />
 
 </LinearLayout>

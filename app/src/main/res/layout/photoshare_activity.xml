@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:contentDescription="@string/app_name"
         android:scaleType="fitXY"
-        android:src="@drawable/bgmain" />
+        android:src="@drawable/bg_main" />
 
     <LinearLayout
         android:id="@+id/top_buttons"
