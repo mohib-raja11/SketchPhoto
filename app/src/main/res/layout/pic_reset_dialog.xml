@@ -1,96 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="12dp"
-    android:background="#7CAEF9"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/pic_reset_confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/alert"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/picmaker_exit_txt_size"
-        android:textStyle="bold" />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:background="#ff00bfff" />
-
-    <TextView
-        android:id="@+id/pic_reset_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:lines="4"
-        android:maxLines="6"
-        android:minLines="3"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:singleLine="false"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/picmaker_exit_txt_size"
-        android:textStyle="bold" />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/stroke_gallery" />
-
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp">
+        android:background="#7CAEF9"
+        android:orientation="vertical">
+
 
         <TextView
-            android:id="@+id/pic_dialog_yes"
+            android:id="@+id/pic_reset_confirm"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1.0"
-            android:background="@drawable/selector"
-            android:clickable="true"
-            android:gravity="top|center"
-            android:paddingTop="12dp"
-            android:paddingBottom="15dp"
-            android:text="@string/keep_editing"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/alert"
             android:textColor="#ffffff"
-            android:textSize="@dimen/picmaker_btntxt_size"
-            android:textStyle="bold"
-            android:focusable="true" />
+            android:textSize="@dimen/picmaker_exit_txt_size"
+            android:textStyle="bold" />
 
         <View
-            android:layout_width="1dp"
-            android:layout_height="fill_parent"
-            android:background="@color/stroke_gallery" />
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#ff00bfff" />
 
         <TextView
-            android:id="@+id/pic_dialog_no"
+            android:id="@+id/pic_reset_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1.0"
-            android:background="@drawable/selector"
-            android:clickable="true"
-            android:gravity="top|center"
-            android:paddingTop="12dp"
-            android:paddingBottom="15dp"
-            android:text="@string/leave_editor"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/picmaker_btntxt_size"
-            android:textStyle="bold"
-            android:focusable="true" />
+            android:layout_margin="10dp"
+            android:lines="4"
+            android:maxLines="6"
+            android:minLines="3"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:singleLine="false"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/picmaker_exit_txt_size"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/stroke_gallery" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:id="@+id/pic_dialog_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:background="@drawable/selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="top|center"
+                android:paddingTop="12dp"
+                android:paddingBottom="15dp"
+                android:text="@string/keep_editing"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/picmaker_btntxt_size"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@color/stroke_gallery" />
+
+            <TextView
+                android:id="@+id/pic_dialog_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:background="@drawable/selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="top|center"
+                android:paddingTop="12dp"
+                android:paddingBottom="15dp"
+                android:text="@string/leave_editor"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/picmaker_btntxt_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

@@ -1,37 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/LinearLayout01"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/selector"
     android:gravity="bottom"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/btn_image"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center"
-        android:background="@drawable/selector"
-        android:paddingLeft="@dimen/picmaker_btnspace"
-        android:paddingRight="@dimen/picmaker_btnspace"
-        android:paddingTop="@dimen/picmaker_btn_toppadding"
-        android:scaleType="centerInside"
-        android:src="@drawable/pic_crop"
-        android:contentDescription="@string/app_name" />
 
-    <TextView
-        android:id="@+id/btn_txt"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
         android:background="@drawable/selector"
-        android:gravity="bottom|center"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:text="effects"
-        android:textColor="#292929"
-        android:textSize="@dimen/picmaker_btntxt_size" />
+        android:gravity="bottom"
+        android:orientation="vertical">
 
-</LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_image"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/selector"
+            android:contentDescription="@string/app_name"
+            android:paddingLeft="@dimen/picmaker_btnspace"
+            android:paddingTop="@dimen/picmaker_btn_toppadding"
+            android:paddingRight="@dimen/picmaker_btnspace"
+            android:scaleType="centerInside"
+            android:src="@drawable/pic_crop" />
+
+        <TextView
+            android:id="@+id/btn_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:background="@drawable/selector"
+            android:gravity="bottom|center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp"
+            android:text="effects"
+            android:textColor="#292929"
+            android:textSize="@dimen/picmaker_btntxt_size" />
+
+    </LinearLayout>
+
+</RelativeLayout>
