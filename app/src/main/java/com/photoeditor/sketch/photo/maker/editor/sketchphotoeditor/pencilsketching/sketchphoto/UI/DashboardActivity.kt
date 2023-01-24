@@ -52,7 +52,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btnMoreApps -> gotothisLink(AppConstant.moreAppsLink)
             R.id.btnStart -> pickImageWithLib()
             R.id.btnGallery -> startActivity(Intent(context, MyGalleryActivity::class.java))
-          
+
         }
     }
 
