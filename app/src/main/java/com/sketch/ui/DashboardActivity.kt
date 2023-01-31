@@ -13,6 +13,7 @@ import com.esafirm.imagepicker.model.Image
 import com.sketch.R
 import com.sketch.constant.AppConstant
 import com.sketch.ui.pencil.ImageRemakeActivity
+import com.sketch.utils.toast
 
 class DashboardActivity : BaseActivity() {
 
@@ -67,9 +68,7 @@ class DashboardActivity : BaseActivity() {
             (getSystemService("activity") as ActivityManager).deviceConfigurationInfo.reqGlEsVersion >= 0x20000
 
         if (!flag) {
-            Toast.makeText(
-                applicationContext, "Editor is not supported in this device.", Toast.LENGTH_SHORT
-            ).show()
+            toast("Editor is not supported in this device.")
 
             return
         }

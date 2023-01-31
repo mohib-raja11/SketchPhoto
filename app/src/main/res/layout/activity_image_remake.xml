@@ -19,20 +19,20 @@
         android:gravity="center_horizontal">
 
         <TextView
-            android:id="@+id/pic_txt_editor"
+            android:id="@+id/tvEditor"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_alignParentStart="true"
             android:layout_gravity="center"
             android:layout_marginStart="15dp"
-            android:layout_toStartOf="@+id/pic_done_layout"
+            android:layout_toStartOf="@+id/doneLayout"
             android:gravity="center_vertical"
             android:text="@string/editor"
             android:textColor="@android:color/white"
             android:textSize="@dimen/pic_maker_txt_size" />
 
         <LinearLayout
-            android:id="@+id/pic_done_layout"
+            android:id="@+id/doneLayout"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_alignParentEnd="true"
@@ -54,7 +54,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/pic_apply_layout"
+            android:id="@+id/picApplyLayout"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_alignParentEnd="true"
@@ -88,7 +88,7 @@
         android:gravity="center">
 
         <ImageView
-            android:id="@+id/iv_image_maker"
+            android:id="@+id/ivImageMaker"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_gravity="top|center"
@@ -96,7 +96,7 @@
             android:contentDescription="@string/app_name" />
 
         <com.edmodo.cropper.CropImageView
-            android:id="@+id/pic_CropImageView"
+            android:id="@+id/picCropImageView"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="center"
@@ -114,7 +114,7 @@
         android:id="@+id/seek_bar_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/gallery_layout"
+        android:layout_above="@+id/galleryLayout"
         android:background="@drawable/pic_gallery_bg"
         android:orientation="horizontal"
         android:paddingStart="5dp"
@@ -124,7 +124,7 @@
         android:visibility="gone" />
 
     <RelativeLayout
-        android:id="@+id/gallery_layout"
+        android:id="@+id/galleryLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -140,7 +140,7 @@
             android:scrollbars="none">
 
             <LinearLayout
-                android:id="@+id/crop_gallery"
+                android:id="@+id/cropGalleryLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -155,7 +155,7 @@
             android:scrollbars="none">
 
             <LinearLayout
-                android:id="@+id/effect_gallery"
+                android:id="@+id/effectGallery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/pic_maker_btn_top_padding"
@@ -172,7 +172,7 @@
             android:scrollbars="none">
 
             <LinearLayout
-                android:id="@+id/btn_gallery"
+                android:id="@+id/viewGallery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"

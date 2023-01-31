@@ -34,7 +34,6 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -50,6 +49,7 @@ import com.sketch.SketchColorFilter;
 import com.sketch.SketchColorFilter2;
 import com.sketch.SketchFilter;
 import com.sketch.SketchFilter2;
+import com.sketch.databinding.ActivityImageRemakeBinding;
 import com.sketch.ragnarok.BitmapFilter;
 import com.sketch.sketches.SecondSketchFilter;
 import com.sketch.ui.BaseActivity;
@@ -86,15 +86,14 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
 
     private Animation anim_bottom_show, anim_btnapply, animhidebtn, animsgallerybtn, animshowbtndown, animshowbtnup;
 
-    private LinearLayout crop_gallery, effect_gallery, pic_apply_layout, pic_btn_gallery, pic_donelayout;
-    private RelativeLayout gallery_layout;
+    private LinearLayout cropGalleryLayout, effectGallery, picApplyLayout, viewGallery, doneLayout;
+    private RelativeLayout galleryLayout;
     private Uri imageuri;
 
-    private CropImageView pic_cropImageView;
-    private ImageView pic_imageview;
-    private TextView txt_editor;
+    private CropImageView picCropImageView;
+    private ImageView ivImageMaker;
+    private TextView tvEditor;
     private final ActivityHandler activityHelper;
-    private FrameLayout viewContainer;
     private Dialog exit_dialog;
     private final Integer[] effectImages = {R.drawable.pic_eff_0, R.drawable.pic_eff_1, R.drawable.pic_eff_2, R.drawable.pic_eff_3, R.drawable.pic_eff_4, R.drawable.pic_eff_5, R.drawable.pic_eff_6, R.drawable.pic_eff_7};
 
@@ -110,11 +109,15 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
         this.activityHelper = new ActivityHandler(this, this);
     }
 
+    ActivityImageRemakeBinding binding;
+    
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_remake);
+        
+        binding = ActivityImageRemakeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
@@ -124,32 +127,32 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
     }
 
     private void initializeViews() {
-        viewContainer = findViewById(R.id.viewContainer);
-        pic_btn_gallery = findViewById(R.id.btn_gallery);
-        pic_btn_gallery.setVisibility(View.VISIBLE);
-        pic_donelayout = findViewById(R.id.pic_done_layout);
-        pic_apply_layout = findViewById(R.id.pic_apply_layout);
-        gallery_layout = findViewById(R.id.gallery_layout);
-        gallery_layout.setVisibility(View.GONE);
-        effect_gallery = findViewById(R.id.effect_gallery);
-        crop_gallery = findViewById(R.id.crop_gallery);
-        pic_cropImageView = findViewById(R.id.pic_CropImageView);
-        pic_cropImageView.setGuidelines(1);
-        pic_cropImageView.setImageResource(0);
-        pic_cropImageView.setVisibility(View.GONE);
-        effect_gallery.setVisibility(View.GONE);
-        crop_gallery.setVisibility(View.GONE);
-        txt_editor = findViewById(R.id.pic_txt_editor);
-        txt_editor.setText(R.string.editor);
-        pic_imageview = findViewById(R.id.iv_image_maker);
+
+        viewGallery = findViewById(R.id.viewGallery);
+        viewGallery.setVisibility(View.VISIBLE);
+        doneLayout = findViewById(R.id.doneLayout);
+        picApplyLayout = findViewById(R.id.picApplyLayout);
+        galleryLayout = findViewById(R.id.galleryLayout);
+        galleryLayout.setVisibility(View.GONE);
+        effectGallery = findViewById(R.id.effectGallery);
+        cropGalleryLayout = findViewById(R.id.cropGalleryLayout);
+        picCropImageView = findViewById(R.id.picCropImageView);
+        picCropImageView.setGuidelines(1);
+        picCropImageView.setImageResource(0);
+        picCropImageView.setVisibility(View.GONE);
+        effectGallery.setVisibility(View.GONE);
+        cropGalleryLayout.setVisibility(View.GONE);
+        tvEditor = findViewById(R.id.tvEditor);
+        tvEditor.setText(R.string.editor);
+        ivImageMaker = findViewById(R.id.ivImageMaker);
 
 
         setClicks();
     }
 
     private void setClicks() {
-        pic_donelayout.setOnClickListener(this);
-        pic_apply_layout.setOnClickListener(this);
+        doneLayout.setOnClickListener(this);
+        picApplyLayout.setOnClickListener(this);
 
         startAnimations();
 
@@ -303,18 +306,18 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
                 setIcon_Crop();
             }
 
-            pic_btn_gallery.addView(view);
+            viewGallery.addView(view);
             j++;
         } while (true);
     }
 
     private void setIcon_Crop() {
 
-        pic_imageview.setVisibility(View.GONE);
-        pic_cropImageView.setImageBitmap(pic_result);
-        pic_cropImageView.setVisibility(View.VISIBLE);
-        Animationview(pic_btn_gallery, crop_gallery);
-        AnimationviewTop(pic_apply_layout, pic_donelayout, 2);
+        ivImageMaker.setVisibility(View.GONE);
+        picCropImageView.setImageBitmap(pic_result);
+        picCropImageView.setVisibility(View.VISIBLE);
+        Animationview(viewGallery, cropGalleryLayout);
+        AnimationviewTop(picApplyLayout, doneLayout, 2);
         String[] as = {"custom", "1:1", "2:1", "1:2", "3:2", "2:3", "4:3", "4:6", "4:5", "5:6", "5:7", "9:16", "16:9"};
         int i = 0;
         do {
@@ -326,7 +329,7 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
             btn_crop.setId(i);
             btn_crop.setLayoutParams(new LinearLayout.LayoutParams(-2, -2));
             btn_crop.setText(as[i]);
-            crop_gallery.addView(view);
+            cropGalleryLayout.addView(view);
 
             btn_crop.setOnClickListener(view1 -> {
                 switch (btn_crop.getId()) {
@@ -334,69 +337,69 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
                         return;
 
                     case 0: // '\0'
-                        pic_cropImageView.setFixedAspectRatio(false);
+                        picCropImageView.setFixedAspectRatio(false);
                         return;
 
                     case 1: // '\001'
-                        pic_cropImageView.setFixedAspectRatio(true);
-                        pic_cropImageView.setAspectRatio(1, 1);
+                        picCropImageView.setFixedAspectRatio(true);
+                        picCropImageView.setAspectRatio(1, 1);
                         return;
 
                     case 2: // '\002'
-                        pic_cropImageView.setFixedAspectRatio(true);
-                        pic_cropImageView.setAspectRatio(2, 1);
+                        picCropImageView.setFixedAspectRatio(true);
+                        picCropImageView.setAspectRatio(2, 1);
                         return;
 
                     case 3: // '\003'
-                        pic_cropImageView.setFixedAspectRatio(true);
-                        pic_cropImageView.setAspectRatio(1, 2);
+                        picCropImageView.setFixedAspectRatio(true);
+                        picCropImageView.setAspectRatio(1, 2);
                         return;
 
                     case 4: // '\004'
-                        pic_cropImageView.setFixedAspectRatio(true);
-                        pic_cropImageView.setAspectRatio(3, 2);
+                        picCropImageView.setFixedAspectRatio(true);
+                        picCropImageView.setAspectRatio(3, 2);
                         return;
 
                     case 5: // '\005'
-                        pic_cropImageView.setFixedAspectRatio(true);
-                        pic_cropImageView.setAspectRatio(2, 3);
+                        picCropImageView.setFixedAspectRatio(true);
+                        picCropImageView.setAspectRatio(2, 3);
                         return;
 
                     case 6: // '\006'
-                        pic_cropImageView.setFixedAspectRatio(true);
-                        pic_cropImageView.setAspectRatio(4, 3);
+                        picCropImageView.setFixedAspectRatio(true);
+                        picCropImageView.setAspectRatio(4, 3);
                         return;
 
                     case 7: // '\007'
-                        pic_cropImageView.setFixedAspectRatio(true);
-                        pic_cropImageView.setAspectRatio(4, 6);
+                        picCropImageView.setFixedAspectRatio(true);
+                        picCropImageView.setAspectRatio(4, 6);
                         return;
 
                     case 8: // '\b'
-                        pic_cropImageView.setFixedAspectRatio(true);
-                        pic_cropImageView.setAspectRatio(4, 5);
+                        picCropImageView.setFixedAspectRatio(true);
+                        picCropImageView.setAspectRatio(4, 5);
                         return;
 
                     case 9: // '\t'
-                        pic_cropImageView.setFixedAspectRatio(true);
-                        pic_cropImageView.setAspectRatio(5, 6);
+                        picCropImageView.setFixedAspectRatio(true);
+                        picCropImageView.setAspectRatio(5, 6);
                         return;
 
                     case 10: // '\n'
-                        pic_cropImageView.setFixedAspectRatio(true);
-                        pic_cropImageView.setAspectRatio(5, 7);
+                        picCropImageView.setFixedAspectRatio(true);
+                        picCropImageView.setAspectRatio(5, 7);
                         return;
 
                     case 11: // '\013'
-                        pic_cropImageView.setFixedAspectRatio(true);
-                        pic_cropImageView.setAspectRatio(8, 10);
+                        picCropImageView.setFixedAspectRatio(true);
+                        picCropImageView.setAspectRatio(8, 10);
                         return;
 
                     case 12: // '\f'
-                        pic_cropImageView.setFixedAspectRatio(true);
+                        picCropImageView.setFixedAspectRatio(true);
                         break;
                 }
-                pic_cropImageView.setAspectRatio(16, 9);
+                picCropImageView.setAspectRatio(16, 9);
             });
             i++;
         } while (true);
@@ -417,7 +420,7 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), effectImages[i]);
             textview.setText(as[i]);
             imageView.setImageBitmap(bitmap);
-            effect_gallery.addView(view);
+            effectGallery.addView(view);
             imageView.setOnClickListener(view1 -> {
 
                 Log.d("clickedId", "onClick: " + imageView.getId());
@@ -473,53 +476,53 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
 
     public void AnimationviewTop(final View showanimview, final View hideanimview, final int Btnid) {
         hideanimview.startAnimation(animshowbtnup);
-        txt_editor.startAnimation(animshowbtnup);
+        tvEditor.startAnimation(animshowbtnup);
         animshowbtnup.setAnimationListener(new AnimationListener() {
 
             public void onAnimationEnd(Animation animation) {
-                txt_editor.startAnimation(animshowbtndown);
+                tvEditor.startAnimation(animshowbtndown);
                 hideanimview.setVisibility(View.GONE);
                 showanimview.setVisibility(View.VISIBLE);
                 showanimview.startAnimation(animshowbtndown);
                 switch (Btnid) {
                     default:
-                        txt_editor.setText(getString(R.string.edt_editor));
+                        tvEditor.setText(getString(R.string.edt_editor));
                         return;
 
                     case 1:
-                        txt_editor.setText(getString(R.string.edt_effect));
+                        tvEditor.setText(getString(R.string.edt_effect));
                         return;
 
                     case 2:
-                        txt_editor.setText(getString(R.string.edt_crop));
+                        tvEditor.setText(getString(R.string.edt_crop));
                         return;
 
                     case 3:
-                        txt_editor.setText(getString(R.string.edt_vintage));
+                        tvEditor.setText(getString(R.string.edt_vintage));
                         return;
 
                     case 4:
-                        txt_editor.setText(getString(R.string.edt_frame));
+                        tvEditor.setText(getString(R.string.edt_frame));
                         return;
 
                     case 5:
-                        txt_editor.setText(getString(R.string.edt_overlay));
+                        tvEditor.setText(getString(R.string.edt_overlay));
                         return;
 
                     case 6:
-                        txt_editor.setText(getString(R.string.edt_reset));
+                        tvEditor.setText(getString(R.string.edt_reset));
                         return;
 
                     case 7:
-                        txt_editor.setText(getString(R.string.edt_border));
+                        tvEditor.setText(getString(R.string.edt_border));
                         return;
 
                     case 8:
-                        txt_editor.setText(getString(R.string.edt_orientation));
+                        tvEditor.setText(getString(R.string.edt_orientation));
                         return;
 
                     case 9:
-                        txt_editor.setText(getString(R.string.edt_editor));
+                        tvEditor.setText(getString(R.string.edt_editor));
                         break;
                 }
             }
@@ -554,16 +557,16 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
     }
 
     private void checkcropIV() {
-        if (pic_cropImageView.getVisibility() == View.VISIBLE) {
-            pic_cropImageView.setVisibility(View.GONE);
-            pic_imageview.setVisibility(View.VISIBLE);
+        if (picCropImageView.getVisibility() == View.VISIBLE) {
+            picCropImageView.setVisibility(View.GONE);
+            ivImageMaker.setVisibility(View.VISIBLE);
         }
 
-        if (crop_gallery.getVisibility() == View.VISIBLE) {
-            crop_gallery.setVisibility(View.GONE);
+        if (cropGalleryLayout.getVisibility() == View.VISIBLE) {
+            cropGalleryLayout.setVisibility(View.GONE);
         }
-        if (effect_gallery.getVisibility() == View.VISIBLE) {
-            effect_gallery.setVisibility(View.GONE);
+        if (effectGallery.getVisibility() == View.VISIBLE) {
+            effectGallery.setVisibility(View.GONE);
         }
 
     }
@@ -586,7 +589,7 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
                 getAspectRatio(Imagepath, MaxResolution);
                 pic_result = getResizedOriginalBitmap(Imagepath, Orientation);
 
-                pic_imageview.setImageBitmap(pic_result);
+                ivImageMaker.setImageBitmap(pic_result);
                 Toast.makeText(getApplicationContext(), "Your original image is back !!!", Toast.LENGTH_SHORT).show();
                 if (bitmap != null && !bitmap.isRecycled()) {
                     bitmap.recycle();
@@ -605,8 +608,8 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
         int viewID;
         viewID = view.getId();
         if (viewID == 2) {
-            if (effect_gallery.getVisibility() == View.VISIBLE) {
-                effect_gallery.setVisibility(View.GONE);
+            if (effectGallery.getVisibility() == View.VISIBLE) {
+                effectGallery.setVisibility(View.GONE);
             }
 
         }
@@ -615,22 +618,22 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
 
             checkcropIV();
 
-            AnimationviewTop(pic_apply_layout, pic_donelayout, 8);
+            AnimationviewTop(picApplyLayout, doneLayout, 8);
         }
 
         if (viewID == 1) {
 
             checkcropIV();
             overlayid = -1;
-            Animationview(pic_btn_gallery, effect_gallery);
-            AnimationviewTop(pic_apply_layout, pic_donelayout, 1);
+            Animationview(viewGallery, effectGallery);
+            AnimationviewTop(picApplyLayout, doneLayout, 1);
 
         }
         if (viewID == 3) {
             checkcropIV();
             overlayid = -1;
 
-            AnimationviewTop(pic_apply_layout, pic_donelayout, 3);
+            AnimationviewTop(picApplyLayout, doneLayout, 3);
         }
 
         if (viewID == 4) {
@@ -638,14 +641,14 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
             checkcropIV();
             overlayid = -1;
 
-            AnimationviewTop(pic_apply_layout, pic_donelayout, 4);
+            AnimationviewTop(picApplyLayout, doneLayout, 4);
         }
 
         if (viewID == 5) {
             checkcropIV();
             overlayid = -1;
 
-            AnimationviewTop(pic_apply_layout, pic_donelayout, 5);
+            AnimationviewTop(picApplyLayout, doneLayout, 5);
             return;
         }
 
@@ -658,30 +661,30 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
             checkcropIV();
             PicMakerDidalog("You are loosing your edited image.Do you want to reset?");
 
-        } else if (viewID == R.id.pic_apply_layout) {
+        } else if (viewID == R.id.picApplyLayout) {
 
-            if (crop_gallery.getVisibility() == View.VISIBLE) {
-                Bitmap bitmap = pic_cropImageView.getCroppedImage();
+            if (cropGalleryLayout.getVisibility() == View.VISIBLE) {
+                Bitmap bitmap = picCropImageView.getCroppedImage();
                 pic_result = bitmap.copy(Config.ARGB_8888, true);
                 pic_forSketch = bitmap.copy(Config.ARGB_8888, true);
                 pic_forDraw = bitmap.copy(Config.ARGB_8888, true);
-                crop_gallery.setVisibility(View.GONE);
-                pic_cropImageView.setVisibility(View.GONE);
-                pic_cropImageView.setImageResource(0);
-                pic_imageview.setVisibility(View.VISIBLE);
-                pic_imageview.setImageBitmap(pic_result);
+                cropGalleryLayout.setVisibility(View.GONE);
+                picCropImageView.setVisibility(View.GONE);
+                picCropImageView.setImageResource(0);
+                ivImageMaker.setVisibility(View.VISIBLE);
+                ivImageMaker.setImageBitmap(pic_result);
 
                 sketchAsnyTaskFirst();
 
 
             }
-            if (effect_gallery.getVisibility() == View.VISIBLE) {
-                effect_gallery.setVisibility(View.GONE);
+            if (effectGallery.getVisibility() == View.VISIBLE) {
+                effectGallery.setVisibility(View.GONE);
             }
 
-            AnimationviewTop(pic_donelayout, pic_apply_layout, 9);
-            pic_btn_gallery.startAnimation(anim_bottom_show);
-            pic_btn_gallery.setVisibility(View.VISIBLE);
+            AnimationviewTop(doneLayout, picApplyLayout, 9);
+            viewGallery.startAnimation(anim_bottom_show);
+            viewGallery.setVisibility(View.VISIBLE);
 
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pic_eff_image);
             setIcon_Effects();
@@ -692,10 +695,10 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
             checkcropIV();
             overlayid = -1;
 
-            Animationview(pic_btn_gallery, effect_gallery);
-            AnimationviewTop(pic_donelayout, pic_apply_layout, 1);
+            Animationview(viewGallery, effectGallery);
+            AnimationviewTop(doneLayout, picApplyLayout, 1);
 
-        } else if (viewID == R.id.pic_done_layout) {
+        } else if (viewID == R.id.doneLayout) {
 
             saveBitmap(UUID.randomUUID().toString(), 100, pic_result);
             File file = new File(sendimagepath);
@@ -1252,13 +1255,13 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
             }
 
             getMExecutor().runMain(() -> {
-                gallery_layout.setVisibility(View.VISIBLE);
+                galleryLayout.setVisibility(View.VISIBLE);
                 if (getimage) {
                     if (pic_result == null || pic_result.getHeight() <= 5 || pic_result.getWidth() <= 5) {
                         Toast.makeText(getApplicationContext(), "Image Format not supported .", Toast.LENGTH_SHORT).show();
                         finish();
                     } else {
-                        pic_imageview.setImageBitmap(pic_result);
+                        ivImageMaker.setImageBitmap(pic_result);
                         stringMatching();
                     }
                 } else {
@@ -1291,11 +1294,11 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
             getMExecutor().runMain(() -> {
 
                 pic_result = eff;
+                
+                binding.viewContainer.setVisibility(View.VISIBLE);
+                binding.viewContainer.addView(new BlurView());
 
-                viewContainer.setVisibility(View.VISIBLE);
-                viewContainer.addView(new BlurView());
-
-                pic_imageview.setVisibility(View.INVISIBLE);
+                ivImageMaker.setVisibility(View.INVISIBLE);
 
                 dialogD.dismiss();
 
@@ -1322,7 +1325,7 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
 
             getMExecutor().runMain(() -> {
 
-                pic_imageview.setImageBitmap(pic_result);
+                ivImageMaker.setImageBitmap(pic_result);
 
                 dialogD.dismiss();
 
@@ -1438,9 +1441,9 @@ public class ImageRemakeActivity extends BaseActivity implements OnClickListener
 
                 } else {
                     sketchDone = true;
-                    viewContainer.setVisibility(INVISIBLE);
-                    pic_imageview.setVisibility(View.VISIBLE);
-                    pic_imageview.setImageBitmap(pic_result);
+                    binding.viewContainer.setVisibility(INVISIBLE);
+                    ivImageMaker.setVisibility(View.VISIBLE);
+                    ivImageMaker.setImageBitmap(pic_result);
                 }
 
             }
