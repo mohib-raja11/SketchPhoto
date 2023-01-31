@@ -15,7 +15,7 @@
         android:supportsRtl="false">
 
         <activity
-            android:name="com.photoeditor.sketchphotoeditor.pencilsketching.MainActivity"
+            android:name="com.sketch.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,25 +31,25 @@
 
 
         <activity
-            android:name="com.photoeditor.sketchphotoeditor.pencilsketching.sketchphoto.ui.DashboardActivity"
+            android:name="com.sketch.ui.DashboardActivity"
 
             android:theme="@style/AppTheme">
 
         </activity>
 
         <activity
-            android:name="com.photoeditor.sketchphotoeditor.pencilsketching.sketchphoto.ui.pencil.ImageRemakeActivity"
+            android:name="com.sketch.ui.pencil.ImageRemakeActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode" />
 
         <activity
-            android:name="com.photoeditor.sketchphotoeditor.pencilsketching.sketchphoto.ui.PhotoShare_Activity"
+            android:name="com.sketch.ui.PhotoShare_Activity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode" />
 
-        <activity android:name="com.photoeditor.sketchphotoeditor.pencilsketching.sketchphoto.ui.MyGalleryActivity" />
+        <activity android:name="com.sketch.ui.MyGalleryActivity" />
 
-        <activity android:name="com.photoeditor.sketchphotoeditor.pencilsketching.sketchphoto.ui.ViewImageActivity" />
+        <activity android:name="com.sketch.ui.ViewImageActivity" />
 
-        <activity android:name="com.photoeditor.sketchphotoeditor.pencilsketching.sketchphoto.ui.FullScreenImageActivity" />
+        <activity android:name="com.sketch.ui.FullScreenImageActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
