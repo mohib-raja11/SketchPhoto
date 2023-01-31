@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching'
+    namespace 'com.sketch'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching"
+        applicationId "com.sketch"
         minSdk 24
         targetSdk 33
         versionCode 1

@@ -53,7 +53,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.fileprovider"
+            android:authorities="com.sketch.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

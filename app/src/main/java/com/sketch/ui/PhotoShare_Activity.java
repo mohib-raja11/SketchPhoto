@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import androidx.exifinterface.media.ExifInterface;
 
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
+import com.sketch.R;
 import com.sketch.constant.SaveToStorageUtil;
 import com.sketch.ui.pencil.GPUImageFilterTools;
 

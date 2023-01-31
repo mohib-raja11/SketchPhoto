@@ -2,7 +2,7 @@ package com.sketch.utils;
 
 import android.content.Context;
 
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
+import com.sketch.R;
 
 import java.io.File;
 

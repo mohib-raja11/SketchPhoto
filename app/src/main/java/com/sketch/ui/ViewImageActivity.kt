@@ -14,8 +14,8 @@ import android.provider.MediaStore
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.databinding.ActivityViewTheImageBinding
+import com.sketch.R
+import com.sketch.databinding.ActivityViewTheImageBinding
 import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
 import java.io.File

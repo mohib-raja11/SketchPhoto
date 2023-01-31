@@ -3,7 +3,7 @@ package com.sketch.ui
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R
+import com.sketch.R
 import com.sketch.utils.toast
 
 class MainActivity : BaseActivity() {

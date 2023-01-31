@@ -10,7 +10,7 @@ import android.view.View
 import android.widget.Toast
 import com.esafirm.imagepicker.features.*
 import com.esafirm.imagepicker.model.Image
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R
+import com.sketch.R
 import com.sketch.constant.AppConstant
 import com.sketch.ui.pencil.ImageRemakeActivity
 

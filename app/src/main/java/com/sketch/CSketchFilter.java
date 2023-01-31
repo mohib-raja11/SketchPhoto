@@ -6,7 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.PorterDuff.Mode;
 import android.os.Handler;
 
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
+import com.sketch.R;
 import com.sketch.ui.pencil.others.BitmapHelper;
 import com.sketch.sketches.ColorLevels;
 import com.sketch.sketches.GalleryFileSizeHelper;

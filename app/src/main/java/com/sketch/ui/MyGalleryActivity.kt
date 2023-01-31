@@ -11,9 +11,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.databinding.ActivityMygalleryBinding
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.databinding.ItemGalleryBinding
+import com.sketch.R
+import com.sketch.databinding.ActivityMygalleryBinding
+import com.sketch.databinding.ItemGalleryBinding
 import com.sketch.ui.MyGalleryActivity.RecyclerAdapter.MyHolderView
 import com.sketch.utils.AppUtils
 import com.squareup.picasso.Callback

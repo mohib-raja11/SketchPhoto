@@ -18,7 +18,7 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals(
-            "com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching",
+            "com.sketch",
             appContext.packageName
         )
     }

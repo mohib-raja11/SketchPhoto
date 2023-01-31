@@ -56,7 +56,7 @@ import com.sketch.ui.BaseActivity;
 import com.sketch.ui.PhotoShare_Activity;
 import com.sketch.ui.pencil.others.ActivityHandler;
 import com.sketch.utils.AppUtils;
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
+import com.sketch.R;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

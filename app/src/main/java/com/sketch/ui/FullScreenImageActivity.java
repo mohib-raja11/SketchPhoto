@@ -5,7 +5,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 
-import com.photoeditor.sketch.photo.maker.editor.sketchphotoeditor.pencilsketching.R;
+import com.sketch.R;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
