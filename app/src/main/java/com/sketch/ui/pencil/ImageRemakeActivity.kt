@@ -1223,9 +1223,9 @@ class ImageRemakeActivity : BaseActivity() {
                     finish()
                 }
                 dialog.dismiss()
-                null
+
             }
-            null
+
         }
     }
 
@@ -1241,9 +1241,8 @@ class ImageRemakeActivity : BaseActivity() {
                 binding.viewContainer.addView(BlurView())
                 binding.ivImageMaker.visibility = View.INVISIBLE
                 dialogD.dismiss()
-                null
             }
-            null
+
         }
     }
 
@@ -1255,9 +1254,9 @@ class ImageRemakeActivity : BaseActivity() {
             mExecutor.runMain {
                 binding.ivImageMaker.setImageBitmap(pic_result)
                 dialogD.dismiss()
-                null
+
             }
-            null
+
         }
     }
 
