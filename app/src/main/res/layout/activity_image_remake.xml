@@ -110,18 +110,6 @@
         android:layout_centerInParent="true"
         android:visibility="invisible" />
 
-    <LinearLayout
-        android:id="@+id/seek_bar_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/galleryLayout"
-        android:background="@drawable/pic_gallery_bg"
-        android:orientation="horizontal"
-        android:paddingStart="5dp"
-        android:paddingTop="7dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="7dp"
-        android:visibility="gone" />
 
     <RelativeLayout
         android:id="@+id/galleryLayout"
@@ -147,6 +135,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/pic_maker_btn_top_padding"
                 android:visibility="gone" />
+
         </HorizontalScrollView>
 
         <HorizontalScrollView

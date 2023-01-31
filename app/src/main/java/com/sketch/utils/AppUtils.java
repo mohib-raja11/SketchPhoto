@@ -22,17 +22,4 @@ public class AppUtils {
         return rootPath;
     }
 
-    public static String getAppTempFolderPath(Context context) {
-        String directoryName = context.getString(R.string.app_name);
-
-        String rootPath = context.getFilesDir().getPath() + "/" + directoryName + "/";
-
-        if (new File(rootPath).exists()) {
-            return rootPath;
-        }
-
-        new File(rootPath).mkdirs();
-
-        return rootPath;
-    }
 }

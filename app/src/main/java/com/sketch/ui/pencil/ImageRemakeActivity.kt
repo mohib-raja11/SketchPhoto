@@ -103,6 +103,7 @@ class ImageRemakeActivity : BaseActivity() {
         val displaymetrics = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(displaymetrics)
         MaxResolution = displaymetrics.widthPixels
+
         initializeViews()
     }
 
@@ -138,7 +139,9 @@ class ImageRemakeActivity : BaseActivity() {
                     startActivity(intent)
                 }
             }
+
             picApplyLayout.setOnClickListener {
+
                 if (cropGalleryLayout.visibility == View.VISIBLE) {
                     val bitmap = picCropImageView.croppedImage
                     pic_result = bitmap.copy(Bitmap.Config.ARGB_8888, true)
@@ -151,6 +154,7 @@ class ImageRemakeActivity : BaseActivity() {
                     ivImageMaker.setImageBitmap(pic_result)
                     sketchAsnyTaskFirst()
                 }
+
                 if (effectGallery.visibility == View.VISIBLE) {
                     effectGallery.visibility = View.GONE
                 }
@@ -702,15 +706,18 @@ class ImageRemakeActivity : BaseActivity() {
     }
 
     fun saveBitmap(s: String?, i: Int, bitmap: Bitmap?) {
-        val s1 = AppUtils.getAppFolderPath(this)
-        File(s1).mkdirs()
-        val file: File
+        val rootFolder = AppUtils.getAppFolderPath(this)
+
         val flag: Boolean
         BitmapFactory.Options().inSampleSize = 5
-        sendimagepath = StringBuilder(s1).append(File.separator).append(s).append(".jpg").toString()
-        file = File(sendimagepath)
+        sendimagepath =
+            StringBuilder(rootFolder).append(File.separator).append(s).append(".jpg").toString()
+
+        val file = File(sendimagepath)
+
         flag = file.exists()
         var `as`: Array<String?>? = null
+
         try {
             if (flag) {
                 file.delete()
@@ -725,11 +732,13 @@ class ImageRemakeActivity : BaseActivity() {
             bufferedoutputstream.close()
             `as` = arrayOfNulls(1)
             `as`[0] = file.toString()
+
         } catch (nullpointerexception: NullPointerException) {
             Log.e("TAG", "saveBitmap: NullPointerException = " + nullpointerexception.message)
         } catch (e: IOException) {
-            e.printStackTrace()
+            Log.e("TAG", "saveBitmap: IOException = " + e.message)
         }
+
         MediaScannerConnection.scanFile(this, `as`, null) { s11: String?, uri: Uri? -> }
     }
 
