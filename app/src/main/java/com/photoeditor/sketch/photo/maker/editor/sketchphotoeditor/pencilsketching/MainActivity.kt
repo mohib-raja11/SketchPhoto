@@ -12,6 +12,9 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val en_US = "enUs"
+
+        Log.d("TAG", "onCreate: $en_US")
         mExecutor.apply {
             runWorker {
                 runMain {
