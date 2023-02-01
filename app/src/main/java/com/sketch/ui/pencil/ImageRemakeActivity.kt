@@ -1,6 +1,5 @@
 package com.sketch.ui.pencil
 
-
 import com.sketch.ui.BaseActivity
 import android.view.animation.Animation
 import com.edmodo.cropper.CropImageView
@@ -21,7 +20,6 @@ import android.media.MediaScannerConnection
 import android.media.MediaScannerConnection.OnScanCompletedListener
 import com.sketch.sketches.SecondSketchFilter
 import com.sketch.ragnarok.BitmapFilter
-import android.app.ProgressDialog
 import android.graphics.*
 import com.sketch.ui.pencil.ImageRemakeActivity.BlurView
 import android.net.Uri
@@ -34,6 +32,7 @@ import android.widget.*
 import androidx.exifinterface.media.ExifInterface
 import com.sketch.*
 import com.sketch.databinding.ActivityImageRemakeBinding
+import com.sketch.databinding.PicResetDialogBinding
 import java.io.*
 import java.lang.Exception
 import java.lang.NullPointerException
@@ -53,6 +52,7 @@ class ImageRemakeActivity : BaseActivity() {
     private var MaxResolution = 0
     private var imageheight = 0
     private var imagewidth = 0
+
     private var colorPencilBitmap: Bitmap? = null
     private var colorPencil2Bitmap: Bitmap? = null
     private var pencilsketchBitmap: Bitmap? = null
@@ -60,13 +60,17 @@ class ImageRemakeActivity : BaseActivity() {
     private var simpleSketchbitmap1: Bitmap? = null
     private var simpleSketchbitmap2: Bitmap? = null
     private var comicBitmap: Bitmap? = null
+
     private var Imagepath: String? = null
     private var sendimagepath: String = ""
+
     private var tool_array: Array<String>? = null
     private val `as` = arrayOf(
         "Color", "Pencil 1", "Color 2", "Pencil 2", "Pencil 3", "Pencil 4", "Pencil 5", "Sepia"
     )
+
     private var Orientation: Float? = null
+
     private var anim_bottom_show: Animation? = null
     private var anim_btnapply: Animation? = null
     private var animhidebtn: Animation? = null
@@ -75,6 +79,7 @@ class ImageRemakeActivity : BaseActivity() {
     private var animshowbtnup: Animation? = null
 
     private var imageuri: Uri? = null
+
     private val activityHelper: ActivityHandler
     private var exit_dialog: Dialog? = null
     private val effectImages = arrayOf(
@@ -87,6 +92,7 @@ class ImageRemakeActivity : BaseActivity() {
         R.drawable.pic_eff_6,
         R.drawable.pic_eff_7
     )
+
     private var MoveBack = false
     private var moveforword = true
     private var lineOne = true
@@ -100,6 +106,8 @@ class ImageRemakeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityImageRemakeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
         val displaymetrics = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(displaymetrics)
         MaxResolution = displaymetrics.widthPixels
@@ -111,6 +119,7 @@ class ImageRemakeActivity : BaseActivity() {
 
         binding.apply {
 
+            progressView.visibility = View.GONE
             viewGallery.setVisibility(View.VISIBLE)
 
             galleryLayout.setVisibility(View.GONE)
@@ -545,20 +554,26 @@ class ImageRemakeActivity : BaseActivity() {
     fun ExitDidalog(s: String?) {
         exit_dialog = Dialog(this)
         exit_dialog!!.window!!.setBackgroundDrawable(ColorDrawable(0))
-        exit_dialog!!.setContentView(R.layout.pic_reset_dialog)
-        (exit_dialog!!.findViewById<View>(R.id.pic_reset_txt) as TextView).text = s
-        val textview = exit_dialog!!.findViewById<TextView>(R.id.pic_dialog_yes)
-        val textview1 = exit_dialog!!.findViewById<TextView>(R.id.pic_dialog_no)
-        textview.text = getString(R.string.leave_edt)
-        textview1.text = getString(R.string.keep_edt)
-        textview.setOnClickListener { view: View? ->
-            exit_dialog!!.dismiss()
-            val intent = Intent()
-            setResult(RESULT_CANCELED, intent)
-            finish()
+        val exitDialogBinding = PicResetDialogBinding.inflate(layoutInflater)
+
+        exitDialogBinding.apply {
+            exit_dialog!!.setContentView(root)
+
+            picResetTxt.text = s
+
+            picResetTxt.text = getString(R.string.leave_edt)
+
+            picDialogYes.text = getString(R.string.keep_edt)
+            picDialogYes.setOnClickListener { view: View? ->
+                exit_dialog!!.dismiss()
+                val intent = Intent()
+                setResult(RESULT_CANCELED, intent)
+                finish()
+            }
+            picDialogNo.setOnClickListener { view: View? -> exit_dialog!!.dismiss() }
+            exit_dialog!!.show()
         }
-        textview1.setOnClickListener { view: View? -> exit_dialog!!.dismiss() }
-        exit_dialog!!.show()
+
     }
 
     private fun checkcropIV() {
@@ -1191,9 +1206,21 @@ class ImageRemakeActivity : BaseActivity() {
         activityHelper = ActivityHandler(this, this)
     }
 
+    fun showProgress(msg: String) {
+        binding.apply {
+            tvProgressMsg.text = msg
+            progressView.visibility = View.VISIBLE
+        }
+    }
+
+    fun hideProgress() {
+        binding.progressView.visibility = View.GONE
+    }
+
     fun loadImageAsycTask() {
-        val dialog = ProgressDialog.show(this@ImageRemakeActivity, "", "Loading...")
-        dialog.setCancelable(false)
+
+        showProgress("Loading...")
+
         intentExtra
         mExecutor.runWorker {
             val Orientation: Float
@@ -1231,17 +1258,17 @@ class ImageRemakeActivity : BaseActivity() {
                     ).show()
                     finish()
                 }
-                dialog.dismiss()
 
+                hideProgress()
             }
 
         }
     }
 
     private fun sketchAsnyTaskFirst() {
-        val dialogD: ProgressDialog
-        dialogD = ProgressDialog.show(this@ImageRemakeActivity, "", "Sketching...")
-        dialogD.setCancelable(false)
+
+        showProgress("Sketching...")
+
         mExecutor.runWorker {
             val eff = getSketchBitmap(pic_forDraw, 6)
             mExecutor.runMain {
@@ -1249,39 +1276,45 @@ class ImageRemakeActivity : BaseActivity() {
                 binding.viewContainer.visibility = View.VISIBLE
                 binding.viewContainer.addView(BlurView())
                 binding.ivImageMaker.visibility = View.INVISIBLE
-                dialogD.dismiss()
+                hideProgress()
             }
 
         }
     }
 
     fun sketchAsnyTask(viewId: Int) {
-        val dialogD = ProgressDialog.show(this@ImageRemakeActivity, "", "Sketching...")
-        dialogD.setCancelable(false)
+
+        showProgress("Sketching...")
+
         mExecutor.runWorker {
             pic_result = getSketchBitmap(pic_forSketch, viewId)
             mExecutor.runMain {
                 binding.ivImageMaker.setImageBitmap(pic_result)
-                dialogD.dismiss()
-
+                hideProgress()
             }
-
         }
     }
 
     inner class BlurView : View(mContext) {
+
         var mImagePos = PointF()
         var mImageSource = PointF()
         var mImageTarget = PointF()
+
         var mInterpolateTime: Long = 0
-        var bmOverlay: Bitmap
+
         var bitmap: Bitmap? = null
+        var bmOverlay: Bitmap
+
         var pcanvas: Canvas
+
         var x = 0
         var y = 0
         var r = 0
+
         var mWidth = 0
         var mHeight = 0
+
         var Tilltime = 0
         private val mPaint: Paint
 
@@ -1345,17 +1378,17 @@ class ImageRemakeActivity : BaseActivity() {
                     mImagePos.y = 0f
                     lineOne = false
                 }
-                var nextLine = false
+
                 if (mImagePos.y <= pic_forDraw!!.height) {
                     if (mImagePos.x <= 0) {
                         moveforword = true
                         MoveBack = false
-                        nextLine = true
+
                         mImagePos.y += (pic_result!!.height / 20).toFloat()
                     } else if (mImagePos.x >= pic_forDraw!!.width) {
                         moveforword = false
                         MoveBack = true
-                        nextLine = true
+
                         mImagePos.y += (pic_result!!.height / 20).toFloat()
                     }
                     if (moveforword) {
@@ -1370,10 +1403,6 @@ class ImageRemakeActivity : BaseActivity() {
                     binding.ivImageMaker.setImageBitmap(pic_result)
                 }
             }
-        }
-
-        override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-            super.onSizeChanged(w, h, oldw, oldh)
         }
 
         override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -1396,6 +1425,5 @@ class ImageRemakeActivity : BaseActivity() {
             return true
         }
     }
-
 
 }

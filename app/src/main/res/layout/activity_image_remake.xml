@@ -110,7 +110,6 @@
         android:layout_centerInParent="true"
         android:visibility="invisible" />
 
-
     <RelativeLayout
         android:id="@+id/galleryLayout"
         android:layout_width="fill_parent"
@@ -170,5 +169,30 @@
                 android:visibility="gone" />
         </HorizontalScrollView>
     </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/progressView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#0C9E617B"
+        android:gravity="center">
+
+
+        <ProgressBar
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:id="@+id/tvProgressMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Loading..."
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
 
 </RelativeLayout>
