@@ -127,7 +127,6 @@ class ImageRemakeActivity : BaseActivity() {
             progressView.visibility = View.GONE
             viewGallery.setVisibility(View.VISIBLE)
 
-            galleryLayout.setVisibility(View.GONE)
             picCropImageView.setGuidelines(1)
             picCropImageView.setImageResource(0)
 
@@ -309,38 +308,25 @@ class ImageRemakeActivity : BaseActivity() {
 
     @SuppressLint("ResourceType")
     private fun stringMatching() {
-        val `as` = tool_array
-        val i = `as`!!.size
-        var j = 0
-        do {
-            if (j >= i) {
-                return
-            }
 
-            val s = `as`[j]
+        val viewBinding = PicBtnLayoutBinding.inflate(layoutInflater)
+        viewBinding.apply {
 
-            val viewBinding = PicBtnLayoutBinding.inflate(layoutInflater)
-            viewBinding.apply {
+            btnImage.setOnClickListener(this@ImageRemakeActivity)
+            btnTxt.setOnClickListener(this@ImageRemakeActivity)
 
-                btnImage.setOnClickListener(this@ImageRemakeActivity)
-                btnTxt.setOnClickListener(this@ImageRemakeActivity)
+            btnTxt.text = getString(R.string.edt_crop)
+            btnImage.setImageResource(R.drawable.pic_crop)
 
-                if ("CROP".equals(s, ignoreCase = true)) {
-                    btnTxt.text = getString(R.string.edt_crop)
-                    btnImage.setImageResource(R.drawable.pic_crop)
+            btnImage.id = 2
+            btnTxt.id = 2
 
-                    btnImage.id = 2
-                    btnTxt.id = 2
+            setIcon_Crop()
 
-                    setIcon_Crop()
-                }
+            binding.viewGallery.addView(root)
 
-                binding.viewGallery.addView(root)
-                j++
+        }
 
-            }
-
-        } while (true)
     }
 
     private fun setIcon_Crop() {
@@ -642,7 +628,7 @@ class ImageRemakeActivity : BaseActivity() {
                     binding.ivImageMaker.setImageBitmap(pic_result)
 
                     mContext.toast("Your original image is back !!!")
-                   
+
                     if (bitmap != null && !bitmap.isRecycled) {
                         bitmap.recycle()
                         System.gc()
@@ -1275,7 +1261,6 @@ class ImageRemakeActivity : BaseActivity() {
                 }
             }
             mExecutor.runMain {
-                binding.galleryLayout.visibility = View.VISIBLE
                 if (getimage) {
                     if (pic_result == null || pic_result!!.height <= 5 || pic_result!!.width <= 5) {
 

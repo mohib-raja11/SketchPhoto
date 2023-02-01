@@ -116,8 +116,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/pic_gallery_bg"
-        android:gravity="center"
-        android:visibility="gone">
+        android:gravity="center">
 
         <HorizontalScrollView
             android:layout_width="fill_parent"

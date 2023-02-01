@@ -73,10 +73,9 @@ class DashboardActivity : BaseActivity() {
             return
         }
 
-        val `as` = arrayOf("CROP")
         val intent = Intent(this, ImageRemakeActivity::class.java)
         intent.data = uri
-        intent.putExtra("tool_title", `as`)
+
         startActivityForResult(intent, 5)
     }
 
