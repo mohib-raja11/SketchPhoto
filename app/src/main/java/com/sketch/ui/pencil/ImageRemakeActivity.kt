@@ -68,11 +68,6 @@ class ImageRemakeActivity : BaseActivity() {
     private var Imagepath: String? = null
     private var sendimagepath: String = ""
 
-    private var tool_array: Array<String>? = null
-    private val `as` = arrayOf(
-        "Color", "Pencil 1", "Color 2", "Pencil 2", "Pencil 3", "Pencil 4", "Pencil 5", "Sepia"
-    )
-
     private var Orientation: Float? = null
 
     private lateinit var anim_bottom_show: Animation
@@ -82,10 +77,7 @@ class ImageRemakeActivity : BaseActivity() {
     private lateinit var animshowbtndown: Animation
     private lateinit var animshowbtnup: Animation
 
-    private var imageuri: Uri? = null
-
     private val activityHelper: ActivityHandler
-    private var exit_dialog: Dialog? = null
 
     private val effectImages = arrayOf(
         R.drawable.pic_eff_0,
@@ -182,8 +174,6 @@ class ImageRemakeActivity : BaseActivity() {
                 AnimationviewTop(doneLayout, picApplyLayout, 1)
             }
 
-            loadImageAsycTask()
-
         }
 
         animhidebtn = AnimationUtils.loadAnimation(this, R.anim.hide_button_anims)
@@ -193,15 +183,9 @@ class ImageRemakeActivity : BaseActivity() {
         animshowbtndown = AnimationUtils.loadAnimation(this, R.anim.show_button_anims_down)
         anim_bottom_show = AnimationUtils.loadAnimation(this, R.anim.hide_button_anims_up)
 
+        loadImageAsycTask()
+
     }
-
-
-    private val intentExtra: Unit
-        get() {
-            val intent = intent
-            imageuri = intent.data
-            tool_array = intent.getStringArrayExtra("tool_title")
-        }
 
     private fun getAspectRatio(s: String, f: Float) {
         val options = BitmapFactory.Options()
@@ -370,7 +354,7 @@ class ImageRemakeActivity : BaseActivity() {
                     cropBtn.text = `as`[i]
                     cropGalleryLayout.addView(root)
 
-                    cropBtn.setOnClickListener { view1: View? ->
+                    cropBtn.setOnClickListener {
                         when (cropBtn.id) {
                             0 -> {
                                 picCropImageView.setFixedAspectRatio(false)
@@ -448,40 +432,39 @@ class ImageRemakeActivity : BaseActivity() {
     }
 
     private fun setIcon_Effects() {
-        var i = 0
-        do {
-            if (i >= `as`.size) {
-                return
-            }
+        val effectsArray = arrayOf(
+            "Color", "Pencil 1", "Color 2", "Pencil 2", "Pencil 3", "Pencil 4", "Pencil 5", "Sepia"
+        )
 
-            val picEffectViewBinding = PicEffectLayoutBinding.inflate(layoutInflater)
+        effectsArray.forEachIndexed() { index, effect ->
 
-            picEffectViewBinding.apply {
+            run {
+                val picEffectViewBinding = PicEffectLayoutBinding.inflate(layoutInflater)
 
-                image.id = i
-                image.layoutParams = LinearLayout.LayoutParams(-2, -2)
-                val bitmap = BitmapFactory.decodeResource(resources, effectImages[i])
+                picEffectViewBinding.apply {
 
-                txtView.text = `as`[i]
-                image.setImageBitmap(bitmap)
-                binding.effectGallery.addView(root)
-                image.setOnClickListener {
-                    Log.d("clickedId", "onClick: " + image.id)
-                    when (image.id) {
-                        0, 1, 2, 3, 4, 5, 6, 7 -> if (sketchDone) {
-                            sketchAsnyTask(image.id)
-                        }
-                        else -> if (sketchDone) {
-                            sketchAsnyTask(image.id)
+                    image.id = index
+                    image.layoutParams = LinearLayout.LayoutParams(-2, -2)
+                    val bitmap = BitmapFactory.decodeResource(resources, effectImages[index])
+
+                    txtView.text = effect
+                    image.setImageBitmap(bitmap)
+                    binding.effectGallery.addView(root)
+                    image.setOnClickListener {
+                        Log.d("clickedId", "onClick: " + image.id)
+                        when (image.id) {
+                            0, 1, 2, 3, 4, 5, 6, 7 -> if (sketchDone) {
+                                sketchAsnyTask(image.id)
+                            }
+                            else -> if (sketchDone) {
+                                sketchAsnyTask(image.id)
+                            }
                         }
                     }
+
                 }
-                i++
-
             }
-
-
-        } while (true)
+        }
     }
 
     override fun onBackPressed() {
@@ -490,7 +473,7 @@ class ImageRemakeActivity : BaseActivity() {
 
     fun Animationview(hideanimview: View?, showanimview: View?) {
         hideanimview!!.startAnimation(animhidebtn)
-        animhidebtn!!.setAnimationListener(object : Animation.AnimationListener {
+        animhidebtn.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationEnd(animation: Animation) {
                 hideanimview.visibility = View.GONE
                 showanimview!!.startAnimation(animsgallerybtn)
@@ -563,12 +546,12 @@ class ImageRemakeActivity : BaseActivity() {
     }
 
     fun ExitDidalog(s: String?) {
-        exit_dialog = Dialog(this)
-        exit_dialog!!.window!!.setBackgroundDrawable(ColorDrawable(0))
+        val exit_dialog = Dialog(this)
+        exit_dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
         val exitDialogBinding = PicResetDialogBinding.inflate(layoutInflater)
 
         exitDialogBinding.apply {
-            exit_dialog!!.setContentView(root)
+            exit_dialog.setContentView(root)
 
             picResetTxt.text = s
 
@@ -576,13 +559,13 @@ class ImageRemakeActivity : BaseActivity() {
 
             picDialogYes.text = getString(R.string.keep_edt)
             picDialogYes.setOnClickListener {
-                exit_dialog!!.dismiss()
+                exit_dialog.dismiss()
                 val intent = Intent()
                 setResult(RESULT_CANCELED, intent)
                 finish()
             }
-            picDialogNo.setOnClickListener { view: View? -> exit_dialog!!.dismiss() }
-            exit_dialog!!.show()
+            picDialogNo.setOnClickListener { exit_dialog.dismiss() }
+            exit_dialog.show()
         }
 
     }
@@ -705,21 +688,14 @@ class ImageRemakeActivity : BaseActivity() {
             pic_result = null
             System.gc()
         }
-        val i = `as`.size
-        var j = 0
-        do {
-            if (j >= i) {
-                animhidebtn.cancel()
-                animsgallerybtn.cancel()
-                animshowbtnup.cancel()
-                animshowbtndown.cancel()
-                anim_bottom_show.cancel()
-                anim_btnapply.cancel()
-                unbindDrawables(binding.mainLayout)
-                return
-            }
-            j++
-        } while (true)
+
+        animhidebtn.cancel()
+        animsgallerybtn.cancel()
+        animshowbtnup.cancel()
+        animshowbtndown.cancel()
+        anim_bottom_show.cancel()
+        anim_btnapply.cancel()
+        unbindDrawables(binding.mainLayout)
     }
 
     private fun unbindDrawables(view: View) {
@@ -734,7 +710,7 @@ class ImageRemakeActivity : BaseActivity() {
                 view.removeAllViews()
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            Log.e(tag, "unbindDrawables: ${e.message}")
         }
     }
 
@@ -1240,14 +1216,14 @@ class ImageRemakeActivity : BaseActivity() {
 
         showProgress("Loading...")
 
-        intentExtra
-
         mExecutor.runWorker {
+
+            val imageuri = intent.data
 
             if (imageuri == null) {
                 getimage = false
             } else {
-                Imagepath = getRealPathFromURI(imageuri!!)
+                Imagepath = getRealPathFromURI(imageuri)
                 if (Imagepath != null && (Imagepath!!.endsWith(".png") || Imagepath!!.endsWith(".jpg") || Imagepath!!.endsWith(
                         ".jpeg"
                     ) || Imagepath!!.endsWith(".bmp"))
