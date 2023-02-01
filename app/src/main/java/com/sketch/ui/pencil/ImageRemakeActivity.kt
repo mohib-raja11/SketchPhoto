@@ -32,6 +32,8 @@ import android.widget.*
 import androidx.exifinterface.media.ExifInterface
 import com.sketch.*
 import com.sketch.databinding.ActivityImageRemakeBinding
+import com.sketch.databinding.PicBtnLayoutBinding
+import com.sketch.databinding.PicEffectLayoutBinding
 import com.sketch.databinding.PicResetDialogBinding
 import java.io.*
 import java.lang.Exception
@@ -315,13 +317,17 @@ class ImageRemakeActivity : BaseActivity() {
             if (j >= i) {
                 return
             }
+
             val s = `as`[j]
+
             @SuppressLint("InflateParams") val view =
                 layoutInflater.inflate(R.layout.pic_btn_layout, null)
             val imagebutton = view.findViewById<ImageButton>(R.id.btn_image)
             val textview = view.findViewById<TextView>(R.id.btn_txt)
+
             imagebutton.setOnClickListener(this)
             textview.setOnClickListener(this)
+
             if ("CROP".equals(s, ignoreCase = true)) {
                 textview.text = getString(R.string.edt_crop)
                 imagebutton.setImageResource(R.drawable.pic_crop)
@@ -329,6 +335,7 @@ class ImageRemakeActivity : BaseActivity() {
                 textview.id = 2
                 setIcon_Crop()
             }
+
             binding.viewGallery.addView(view)
             j++
         } while (true)
@@ -448,28 +455,34 @@ class ImageRemakeActivity : BaseActivity() {
             if (i >= `as`.size) {
                 return
             }
-            @SuppressLint("InflateParams") val view =
-                layoutInflater.inflate(R.layout.pic_effect_layout, null)
-            val imageView = view.findViewById<ImageView>(R.id.image)
-            val textview = view.findViewById<TextView>(R.id.txt_view)
-            imageView.id = i
-            imageView.layoutParams = LinearLayout.LayoutParams(-2, -2)
-            val bitmap = BitmapFactory.decodeResource(resources, effectImages[i])
-            textview.text = `as`[i]
-            imageView.setImageBitmap(bitmap)
-            binding.effectGallery.addView(view)
-            imageView.setOnClickListener { view1: View? ->
-                Log.d("clickedId", "onClick: " + imageView.id)
-                when (imageView.id) {
-                    0, 1, 2, 3, 4, 5, 6, 7 -> if (sketchDone) {
-                        sketchAsnyTask(imageView.id)
-                    }
-                    else -> if (sketchDone) {
-                        sketchAsnyTask(imageView.id)
+
+            val picEffectViewBinding = PicEffectLayoutBinding.inflate(layoutInflater)
+
+            picEffectViewBinding.apply {
+
+                image.id = i
+                image.layoutParams = LinearLayout.LayoutParams(-2, -2)
+                val bitmap = BitmapFactory.decodeResource(resources, effectImages[i])
+
+                txtView.text = `as`[i]
+                image.setImageBitmap(bitmap)
+                binding.effectGallery.addView(root)
+                image.setOnClickListener { view1: View? ->
+                    Log.d("clickedId", "onClick: " + image.id)
+                    when (image.id) {
+                        0, 1, 2, 3, 4, 5, 6, 7 -> if (sketchDone) {
+                            sketchAsnyTask(image.id)
+                        }
+                        else -> if (sketchDone) {
+                            sketchAsnyTask(image.id)
+                        }
                     }
                 }
+                i++
+
             }
-            i++
+
+
         } while (true)
     }
 
@@ -596,33 +609,41 @@ class ImageRemakeActivity : BaseActivity() {
     fun PicMakerDidalog(s: String?) {
         val pic_maker_dialog = Dialog(this)
         pic_maker_dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
-        pic_maker_dialog.setContentView(R.layout.pic_reset_dialog)
-        (pic_maker_dialog.findViewById<View>(R.id.pic_reset_txt) as TextView).text = s
-        val textview = pic_maker_dialog.findViewById<TextView>(R.id.pic_dialog_yes)
-        val textview1 = pic_maker_dialog.findViewById<TextView>(R.id.pic_dialog_no)
-        textview.text = getString(R.string.reset_edt)
-        textview1.text = getString(R.string.continue_edt)
-        textview.setOnClickListener { view: View? ->
-            val bitmap = pic_result
-            if (Imagepath != null) {
-                pic_maker_dialog.dismiss()
-                Orientation = getImageOrientation(Imagepath!!)
-                getAspectRatio(Imagepath!!, MaxResolution.toFloat())
-                pic_result = getResizedOriginalBitmap(Imagepath, Orientation!!)
-                binding.ivImageMaker.setImageBitmap(pic_result)
-                Toast.makeText(
-                    applicationContext, "Your original image is back !!!", Toast.LENGTH_SHORT
-                ).show()
-                if (bitmap != null && !bitmap.isRecycled) {
-                    bitmap.recycle()
-                    System.gc()
+
+        val picResetDialogBinding = PicResetDialogBinding.inflate(layoutInflater)
+
+        picResetDialogBinding.apply {
+
+            pic_maker_dialog.setContentView(root)
+
+            picResetTxt.text = s
+
+            picDialogYes.text = getString(R.string.reset_edt)
+            picDialogNo.text = getString(R.string.continue_edt)
+            picDialogYes.setOnClickListener { view: View? ->
+                val bitmap = pic_result
+                if (Imagepath != null) {
+                    pic_maker_dialog.dismiss()
+                    Orientation = getImageOrientation(Imagepath!!)
+                    getAspectRatio(Imagepath!!, MaxResolution.toFloat())
+                    pic_result = getResizedOriginalBitmap(Imagepath, Orientation!!)
+                    binding.ivImageMaker.setImageBitmap(pic_result)
+                    Toast.makeText(
+                        applicationContext, "Your original image is back !!!", Toast.LENGTH_SHORT
+                    ).show()
+                    if (bitmap != null && !bitmap.isRecycled) {
+                        bitmap.recycle()
+                        System.gc()
+                    }
+                } else {
+                    Toast.makeText(applicationContext, "Invalid image path.", Toast.LENGTH_SHORT)
+                        .show()
                 }
-            } else {
-                Toast.makeText(applicationContext, "Invalid image path.", Toast.LENGTH_SHORT).show()
             }
+            picDialogNo.setOnClickListener { view: View? -> pic_maker_dialog.dismiss() }
+            pic_maker_dialog.show()
         }
-        textview1.setOnClickListener { view: View? -> pic_maker_dialog.dismiss() }
-        pic_maker_dialog.show()
+
     }
 
     override fun onClick(view: View) {
@@ -697,7 +718,7 @@ class ImageRemakeActivity : BaseActivity() {
                 animshowbtndown!!.cancel()
                 anim_bottom_show!!.cancel()
                 anim_btnapply!!.cancel()
-                unbindDrawables(findViewById(R.id.main_layout))
+                unbindDrawables(binding.mainLayout)
                 return
             }
             j++
