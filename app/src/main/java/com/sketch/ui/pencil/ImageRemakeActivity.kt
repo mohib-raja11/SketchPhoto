@@ -33,6 +33,7 @@ import androidx.exifinterface.media.ExifInterface
 import com.sketch.*
 import com.sketch.databinding.ActivityImageRemakeBinding
 import com.sketch.databinding.PicBtnLayoutBinding
+import com.sketch.databinding.PicCropLayoutBinding
 import com.sketch.databinding.PicEffectLayoutBinding
 import com.sketch.databinding.PicResetDialogBinding
 import java.io.*
@@ -320,24 +321,27 @@ class ImageRemakeActivity : BaseActivity() {
 
             val s = `as`[j]
 
-            @SuppressLint("InflateParams") val view =
-                layoutInflater.inflate(R.layout.pic_btn_layout, null)
-            val imagebutton = view.findViewById<ImageButton>(R.id.btn_image)
-            val textview = view.findViewById<TextView>(R.id.btn_txt)
+            val viewBinding = PicBtnLayoutBinding.inflate(layoutInflater)
+            viewBinding.apply {
 
-            imagebutton.setOnClickListener(this)
-            textview.setOnClickListener(this)
+                btnImage.setOnClickListener(this@ImageRemakeActivity)
+                btnTxt.setOnClickListener(this@ImageRemakeActivity)
 
-            if ("CROP".equals(s, ignoreCase = true)) {
-                textview.text = getString(R.string.edt_crop)
-                imagebutton.setImageResource(R.drawable.pic_crop)
-                imagebutton.id = 2
-                textview.id = 2
-                setIcon_Crop()
+                if ("CROP".equals(s, ignoreCase = true)) {
+                    btnTxt.text = getString(R.string.edt_crop)
+                    btnImage.setImageResource(R.drawable.pic_crop)
+
+                    btnImage.id = 2
+                    btnTxt.id = 2
+
+                    setIcon_Crop()
+                }
+
+                binding.viewGallery.addView(root)
+                j++
+
             }
 
-            binding.viewGallery.addView(view)
-            j++
         } while (true)
     }
 
@@ -350,6 +354,7 @@ class ImageRemakeActivity : BaseActivity() {
             picCropImageView.visibility = View.VISIBLE
             Animationview(viewGallery, cropGalleryLayout)
             AnimationviewTop(picApplyLayout, doneLayout, 2)
+
             val `as` = arrayOf(
                 "custom",
                 "1:1",
@@ -370,80 +375,89 @@ class ImageRemakeActivity : BaseActivity() {
                 if (i >= `as`.size) {
                     return
                 }
-                @SuppressLint("InflateParams") val view =
-                    layoutInflater.inflate(R.layout.pic_crop_layout, null)
-                val btn_crop = view.findViewById<Button>(R.id.crop_btn)
-                btn_crop.id = i
-                btn_crop.layoutParams = LinearLayout.LayoutParams(-2, -2)
-                btn_crop.text = `as`[i]
-                cropGalleryLayout.addView(view)
-                btn_crop.setOnClickListener { view1: View? ->
-                    when (btn_crop.id) {
-                        0 -> {
-                            picCropImageView.setFixedAspectRatio(false)
-                            return@setOnClickListener
+
+                val picCropViewBinding = PicCropLayoutBinding.inflate(layoutInflater)
+
+                picCropViewBinding.apply {
+
+
+                    cropBtn.id = i
+                    cropBtn.layoutParams = LinearLayout.LayoutParams(-2, -2)
+                    cropBtn.text = `as`[i]
+                    cropGalleryLayout.addView(root)
+
+                    cropBtn.setOnClickListener { view1: View? ->
+                        when (cropBtn.id) {
+                            0 -> {
+                                picCropImageView.setFixedAspectRatio(false)
+                                return@setOnClickListener
+                            }
+                            1 -> {
+                                picCropImageView.setFixedAspectRatio(true)
+                                picCropImageView.setAspectRatio(1, 1)
+                                return@setOnClickListener
+                            }
+                            2 -> {
+                                picCropImageView.setFixedAspectRatio(true)
+                                picCropImageView.setAspectRatio(2, 1)
+                                return@setOnClickListener
+                            }
+                            3 -> {
+                                picCropImageView.setFixedAspectRatio(true)
+                                picCropImageView.setAspectRatio(1, 2)
+                                return@setOnClickListener
+                            }
+                            4 -> {
+                                picCropImageView.setFixedAspectRatio(true)
+                                picCropImageView.setAspectRatio(3, 2)
+                                return@setOnClickListener
+                            }
+                            5 -> {
+                                picCropImageView.setFixedAspectRatio(true)
+                                picCropImageView.setAspectRatio(2, 3)
+                                return@setOnClickListener
+                            }
+                            6 -> {
+                                picCropImageView.setFixedAspectRatio(true)
+                                picCropImageView.setAspectRatio(4, 3)
+                                return@setOnClickListener
+                            }
+                            7 -> {
+                                picCropImageView.setFixedAspectRatio(true)
+                                picCropImageView.setAspectRatio(4, 6)
+                                return@setOnClickListener
+                            }
+                            8 -> {
+                                picCropImageView.setFixedAspectRatio(true)
+                                picCropImageView.setAspectRatio(4, 5)
+                                return@setOnClickListener
+                            }
+                            9 -> {
+                                picCropImageView.setFixedAspectRatio(true)
+                                picCropImageView.setAspectRatio(5, 6)
+                                return@setOnClickListener
+                            }
+                            10 -> {
+                                picCropImageView.setFixedAspectRatio(true)
+                                picCropImageView.setAspectRatio(5, 7)
+                                return@setOnClickListener
+                            }
+                            11 -> {
+                                picCropImageView.setFixedAspectRatio(true)
+                                picCropImageView.setAspectRatio(8, 10)
+                                return@setOnClickListener
+                            }
+                            12 -> picCropImageView.setFixedAspectRatio(true)
+                            else -> return@setOnClickListener
                         }
-                        1 -> {
-                            picCropImageView.setFixedAspectRatio(true)
-                            picCropImageView.setAspectRatio(1, 1)
-                            return@setOnClickListener
-                        }
-                        2 -> {
-                            picCropImageView.setFixedAspectRatio(true)
-                            picCropImageView.setAspectRatio(2, 1)
-                            return@setOnClickListener
-                        }
-                        3 -> {
-                            picCropImageView.setFixedAspectRatio(true)
-                            picCropImageView.setAspectRatio(1, 2)
-                            return@setOnClickListener
-                        }
-                        4 -> {
-                            picCropImageView.setFixedAspectRatio(true)
-                            picCropImageView.setAspectRatio(3, 2)
-                            return@setOnClickListener
-                        }
-                        5 -> {
-                            picCropImageView.setFixedAspectRatio(true)
-                            picCropImageView.setAspectRatio(2, 3)
-                            return@setOnClickListener
-                        }
-                        6 -> {
-                            picCropImageView.setFixedAspectRatio(true)
-                            picCropImageView.setAspectRatio(4, 3)
-                            return@setOnClickListener
-                        }
-                        7 -> {
-                            picCropImageView.setFixedAspectRatio(true)
-                            picCropImageView.setAspectRatio(4, 6)
-                            return@setOnClickListener
-                        }
-                        8 -> {
-                            picCropImageView.setFixedAspectRatio(true)
-                            picCropImageView.setAspectRatio(4, 5)
-                            return@setOnClickListener
-                        }
-                        9 -> {
-                            picCropImageView.setFixedAspectRatio(true)
-                            picCropImageView.setAspectRatio(5, 6)
-                            return@setOnClickListener
-                        }
-                        10 -> {
-                            picCropImageView.setFixedAspectRatio(true)
-                            picCropImageView.setAspectRatio(5, 7)
-                            return@setOnClickListener
-                        }
-                        11 -> {
-                            picCropImageView.setFixedAspectRatio(true)
-                            picCropImageView.setAspectRatio(8, 10)
-                            return@setOnClickListener
-                        }
-                        12 -> picCropImageView.setFixedAspectRatio(true)
-                        else -> return@setOnClickListener
+                        picCropImageView.setAspectRatio(16, 9)
                     }
-                    picCropImageView.setAspectRatio(16, 9)
+
+                    i++
+
                 }
-                i++
+
+
             } while (true)
         }
 
@@ -650,9 +664,8 @@ class ImageRemakeActivity : BaseActivity() {
 
         binding.apply {
 
+            val viewID = view.id
 
-            val viewID: Int
-            viewID = view.id
             if (viewID == 2) {
                 if (effectGallery.visibility == View.VISIBLE) {
                     effectGallery.visibility = View.GONE
