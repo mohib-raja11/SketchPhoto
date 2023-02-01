@@ -36,6 +36,7 @@ import com.sketch.databinding.PicBtnLayoutBinding
 import com.sketch.databinding.PicCropLayoutBinding
 import com.sketch.databinding.PicEffectLayoutBinding
 import com.sketch.databinding.PicResetDialogBinding
+import com.sketch.utils.toast
 import java.io.*
 import java.lang.Exception
 import java.lang.NullPointerException
@@ -74,17 +75,18 @@ class ImageRemakeActivity : BaseActivity() {
 
     private var Orientation: Float? = null
 
-    private var anim_bottom_show: Animation? = null
-    private var anim_btnapply: Animation? = null
-    private var animhidebtn: Animation? = null
-    private var animsgallerybtn: Animation? = null
-    private var animshowbtndown: Animation? = null
-    private var animshowbtnup: Animation? = null
+    private lateinit var anim_bottom_show: Animation
+    private lateinit var anim_btnapply: Animation
+    private lateinit var animhidebtn: Animation
+    private lateinit var animsgallerybtn: Animation
+    private lateinit var animshowbtndown: Animation
+    private lateinit var animshowbtnup: Animation
 
     private var imageuri: Uri? = null
 
     private val activityHelper: ActivityHandler
     private var exit_dialog: Dialog? = null
+
     private val effectImages = arrayOf(
         R.drawable.pic_eff_0,
         R.drawable.pic_eff_1,
@@ -128,21 +130,17 @@ class ImageRemakeActivity : BaseActivity() {
             galleryLayout.setVisibility(View.GONE)
             picCropImageView.setGuidelines(1)
             picCropImageView.setImageResource(0)
+
             picCropImageView.setVisibility(View.GONE)
             effectGallery.setVisibility(View.GONE)
             cropGalleryLayout.setVisibility(View.GONE)
+
             tvEditor.setText(R.string.editor)
 
-        }
-
-        setClicks()
-    }
-
-    private fun setClicks() {
-        binding.apply {
             doneLayout.setOnClickListener {
 
                 saveBitmap(UUID.randomUUID().toString(), 100, pic_result)
+
                 val file = File(sendimagepath)
                 if (file.exists()) {
                     val uri = Uri.fromFile(file)
@@ -184,20 +182,20 @@ class ImageRemakeActivity : BaseActivity() {
                 Animationview(viewGallery, effectGallery)
                 AnimationviewTop(doneLayout, picApplyLayout, 1)
             }
+
+            loadImageAsycTask()
+
         }
 
-        startAnimations()
-    }
-
-    private fun startAnimations() {
-        loadImageAsycTask()
         animhidebtn = AnimationUtils.loadAnimation(this, R.anim.hide_button_anims)
         animsgallerybtn = AnimationUtils.loadAnimation(this, R.anim.rightleft_gallery_anims)
         animshowbtnup = AnimationUtils.loadAnimation(this, R.anim.show_button_anims_up)
         anim_btnapply = AnimationUtils.loadAnimation(this, R.anim.show_button_anims_up)
         animshowbtndown = AnimationUtils.loadAnimation(this, R.anim.show_button_anims_down)
         anim_bottom_show = AnimationUtils.loadAnimation(this, R.anim.hide_button_anims_up)
+
     }
+
 
     private val intentExtra: Unit
         get() {
@@ -481,7 +479,7 @@ class ImageRemakeActivity : BaseActivity() {
                 txtView.text = `as`[i]
                 image.setImageBitmap(bitmap)
                 binding.effectGallery.addView(root)
-                image.setOnClickListener { view1: View? ->
+                image.setOnClickListener {
                     Log.d("clickedId", "onClick: " + image.id)
                     when (image.id) {
                         0, 1, 2, 3, 4, 5, 6, 7 -> if (sketchDone) {
@@ -523,7 +521,7 @@ class ImageRemakeActivity : BaseActivity() {
     fun AnimationviewTop(showanimview: View?, hideanimview: View?, Btnid: Int) {
         hideanimview!!.startAnimation(animshowbtnup)
         binding.tvEditor.startAnimation(animshowbtnup)
-        animshowbtnup!!.setAnimationListener(object : Animation.AnimationListener {
+        animshowbtnup.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationEnd(animation: Animation) {
                 binding.tvEditor.startAnimation(animshowbtndown)
                 hideanimview.visibility = View.GONE
@@ -591,7 +589,7 @@ class ImageRemakeActivity : BaseActivity() {
             picResetTxt.text = getString(R.string.leave_edt)
 
             picDialogYes.text = getString(R.string.keep_edt)
-            picDialogYes.setOnClickListener { view: View? ->
+            picDialogYes.setOnClickListener {
                 exit_dialog!!.dismiss()
                 val intent = Intent()
                 setResult(RESULT_CANCELED, intent)
@@ -642,16 +640,16 @@ class ImageRemakeActivity : BaseActivity() {
                     getAspectRatio(Imagepath!!, MaxResolution.toFloat())
                     pic_result = getResizedOriginalBitmap(Imagepath, Orientation!!)
                     binding.ivImageMaker.setImageBitmap(pic_result)
-                    Toast.makeText(
-                        applicationContext, "Your original image is back !!!", Toast.LENGTH_SHORT
-                    ).show()
+
+                    mContext.toast("Your original image is back !!!")
+                   
                     if (bitmap != null && !bitmap.isRecycled) {
                         bitmap.recycle()
                         System.gc()
                     }
                 } else {
-                    Toast.makeText(applicationContext, "Invalid image path.", Toast.LENGTH_SHORT)
-                        .show()
+
+                    mContext.toast("Invalid image path.")
                 }
             }
             picDialogNo.setOnClickListener { view: View? -> pic_maker_dialog.dismiss() }
@@ -725,12 +723,12 @@ class ImageRemakeActivity : BaseActivity() {
         var j = 0
         do {
             if (j >= i) {
-                animhidebtn!!.cancel()
-                animsgallerybtn!!.cancel()
-                animshowbtnup!!.cancel()
-                animshowbtndown!!.cancel()
-                anim_bottom_show!!.cancel()
-                anim_btnapply!!.cancel()
+                animhidebtn.cancel()
+                animsgallerybtn.cancel()
+                animshowbtnup.cancel()
+                animshowbtndown.cancel()
+                anim_bottom_show.cancel()
+                anim_btnapply.cancel()
                 unbindDrawables(binding.mainLayout)
                 return
             }
@@ -788,7 +786,7 @@ class ImageRemakeActivity : BaseActivity() {
             Log.e("TAG", "saveBitmap: IOException = " + e.message)
         }
 
-        MediaScannerConnection.scanFile(this, `as`, null) { s11: String?, uri: Uri? -> }
+        MediaScannerConnection.scanFile(this, `as`, null) { _: String?, _: Uri? -> }
     }
 
     fun getSketchBitmap(bm1: Bitmap?, type: Int): Bitmap? {
@@ -957,6 +955,7 @@ class ImageRemakeActivity : BaseActivity() {
     }
 
     fun fastblur(sentBitmap: Bitmap, radius: Int): Bitmap? {
+
         val bitmap = sentBitmap.copy(sentBitmap.config, true)
         if (radius < 1) {
             return null
@@ -1256,8 +1255,9 @@ class ImageRemakeActivity : BaseActivity() {
         showProgress("Loading...")
 
         intentExtra
+
         mExecutor.runWorker {
-            val Orientation: Float
+
             if (imageuri == null) {
                 getimage = false
             } else {
@@ -1266,7 +1266,7 @@ class ImageRemakeActivity : BaseActivity() {
                         ".jpeg"
                     ) || Imagepath!!.endsWith(".bmp"))
                 ) {
-                    Orientation = getImageOrientation(Imagepath!!)
+                    val Orientation = getImageOrientation(Imagepath!!)
                     getAspectRatio(Imagepath!!, MaxResolution.toFloat())
                     pic_result = getResizedOriginalBitmap(Imagepath, Orientation)
                     pic_forSketch = getResizedOriginalBitmap(Imagepath, Orientation)
@@ -1278,18 +1278,18 @@ class ImageRemakeActivity : BaseActivity() {
                 binding.galleryLayout.visibility = View.VISIBLE
                 if (getimage) {
                     if (pic_result == null || pic_result!!.height <= 5 || pic_result!!.width <= 5) {
-                        Toast.makeText(
-                            applicationContext, "Image Format not supported .", Toast.LENGTH_SHORT
-                        ).show()
+
+                        mContext.toast("Image Format not supported .")
+
                         finish()
                     } else {
                         binding.ivImageMaker.setImageBitmap(pic_result)
                         stringMatching()
                     }
                 } else {
-                    Toast.makeText(
-                        applicationContext, "Unsupported media file.", Toast.LENGTH_SHORT
-                    ).show()
+
+                    mContext.toast("Unsupported media file.")
+
                     finish()
                 }
 
