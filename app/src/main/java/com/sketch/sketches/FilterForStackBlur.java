@@ -9,6 +9,7 @@ import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import java.lang.reflect.Array;
 
 public final class FilterForStackBlur extends ImageFilerName {
+
     int blurValue;
 
     public FilterForStackBlur() {
@@ -21,8 +22,7 @@ public final class FilterForStackBlur extends ImageFilerName {
         int[] mArray = new int[(width * height)];
         bitmap.getPixels(mArray, 0, width, 0, 0, width, height);
         makeItBlur(mArray, width, height);
-        Bitmap createBitmap = Bitmap.createBitmap(width, height,
-                Config.ARGB_8888);
+        Bitmap createBitmap = Bitmap.createBitmap(width, height, Config.ARGB_8888);
         createBitmap.setPixels(mArray, 0, width, 0, 0, width, height);
         return createBitmap;
     }
@@ -55,12 +55,10 @@ public final class FilterForStackBlur extends ImageFilerName {
             i17 = (i18 + 1) >> 1;
             int i19 = i17 * i17;
             short[] sArr4 = new short[(i19 * AccessibilityNodeInfoCompat.ACTION_NEXT_AT_MOVEMENT_GRANULARITY)];
-            for (i17 = 0; i17 < i19
-                    * AccessibilityNodeInfoCompat.ACTION_NEXT_AT_MOVEMENT_GRANULARITY; i17++) {
+            for (i17 = 0; i17 < i19 * AccessibilityNodeInfoCompat.ACTION_NEXT_AT_MOVEMENT_GRANULARITY; i17++) {
                 sArr4[i17] = (short) (i17 / i19);
             }
-            int[][] mArray3 = (int[][]) Array.newInstance(Integer.TYPE,
-                    new int[]{i18, 3});
+            int[][] mArray3 = (int[][]) Array.newInstance(Integer.TYPE, new int[]{i18, 3});
             int i20 = i3 + 1;
             int i21 = 0;
             int i22 = 0;
@@ -186,8 +184,7 @@ public final class FilterForStackBlur extends ImageFilerName {
                 i8 = i22;
                 i22 = i13;
                 for (i10 = 0; i10 < i2; i10++) {
-                    mArray[i22] = ((-16777216 | (sArr4[i21] << 16)) | (sArr4[i14] << 8))
-                            | sArr4[i11];
+                    mArray[i22] = ((-16777216 | (sArr4[i21] << 16)) | (sArr4[i14] << 8)) | sArr4[i11];
                     i21 -= i8;
                     i14 -= i7;
                     i11 -= i6;

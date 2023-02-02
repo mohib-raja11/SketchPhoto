@@ -1,43 +1,36 @@
 package com.sketch.ui.pencil
 
-import com.sketch.ui.BaseActivity
-import android.view.animation.Animation
 import android.annotation.SuppressLint
-import android.os.Bundle
-import android.util.DisplayMetrics
-import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import android.app.Dialog
-import com.sketch.ui.PhotoShare_Activity
-import android.view.ViewGroup
-import com.sketch.utils.AppUtils
-import android.media.MediaScannerConnection
-import com.sketch.sketches.SecondSketchFilter
-import com.sketch.ragnarok.BitmapFilter
+import android.content.Intent
 import android.graphics.*
+import android.graphics.drawable.ColorDrawable
+import android.media.MediaScannerConnection
 import android.net.Uri
+import android.os.Bundle
 import android.os.SystemClock
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.exifinterface.media.ExifInterface
 import com.sketch.*
-import com.sketch.databinding.ActivityImageRemakeBinding
-import com.sketch.databinding.PicBtnLayoutBinding
-import com.sketch.databinding.PicCropLayoutBinding
-import com.sketch.databinding.PicEffectLayoutBinding
-import com.sketch.databinding.PicResetDialogBinding
+import com.sketch.databinding.*
+import com.sketch.ragnarok.BitmapFilter
 import com.sketch.sketch_util.CSketchFilter
 import com.sketch.sketch_util.SketchColorFilter2
 import com.sketch.sketch_util.SketchFilter
 import com.sketch.sketch_util.SketchFilter2
+import com.sketch.sketches.SecondSketchFilter
+import com.sketch.ui.BaseActivity
+import com.sketch.ui.PhotoShare_Activity
+import com.sketch.utils.AppUtils
 import com.sketch.utils.toast
 import java.io.*
-import java.lang.Exception
-import java.lang.NullPointerException
-import java.lang.StringBuilder
 import java.nio.IntBuffer
 import java.util.*
 
@@ -863,7 +856,7 @@ class ImageRemakeActivity : BaseActivity() {
                 val secondSketchFilter = SecondSketchFilter()
                 if (simpleSketchbitmap2 == null) {
                     try {
-                        simpleSketchbitmap2 = secondSketchFilter.getSimpleSketch(bm1)
+                        simpleSketchbitmap2 = secondSketchFilter.getSimpleSketch(bm1!!)
                         sketchBitmap = simpleSketchbitmap2
                     } catch (e: Throwable) {
                         e.printStackTrace()
@@ -875,7 +868,7 @@ class ImageRemakeActivity : BaseActivity() {
             7 -> if (simpleSketchbitmap2 == null) {
                 try {
                     val secondSketchFilter1 = SecondSketchFilter()
-                    simpleSketchbitmap2 = secondSketchFilter1.getSimpleSketch(bm1)
+                    simpleSketchbitmap2 = secondSketchFilter1.getSimpleSketch(bm1!!)
                     sketchBitmap = ConvertToSepia(simpleSketchbitmap2)
                 } catch (e: Throwable) {
                     e.printStackTrace()
