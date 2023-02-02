@@ -2,7 +2,6 @@ package com.sketch.ui.pencil
 
 import com.sketch.ui.BaseActivity
 import android.view.animation.Animation
-import com.sketch.ui.pencil.others.ActivityHandler
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -56,6 +55,7 @@ class ImageRemakeActivity : BaseActivity() {
 
     private var colorPencilBitmap: Bitmap? = null
     private var colorPencil2Bitmap: Bitmap? = null
+
     private var pencilsketchBitmap: Bitmap? = null
     private var pencil2Bitmap: Bitmap? = null
     private var simpleSketchbitmap1: Bitmap? = null
@@ -74,7 +74,6 @@ class ImageRemakeActivity : BaseActivity() {
     private lateinit var animshowbtndown: Animation
     private lateinit var animshowbtnup: Animation
 
-    private val activityHelper: ActivityHandler
     private var MoveBack = false
     private var moveforword = true
     private var lineOne = true
@@ -434,7 +433,7 @@ class ImageRemakeActivity : BaseActivity() {
 
 
 
-        effectsArray.forEachIndexed() { index, effect ->
+        effectsArray.forEachIndexed() { index, _ ->
 
             run {
                 val picEffectViewBinding = PicEffectLayoutBinding.inflate(layoutInflater)
@@ -763,9 +762,7 @@ class ImageRemakeActivity : BaseActivity() {
 
         when (type) {
             0 -> {
-                val sketchColorFilter2 = SketchColorFilter2(
-                    this@ImageRemakeActivity, activityHelper
-                )
+                val sketchColorFilter2 = SketchColorFilter2(this@ImageRemakeActivity)
 
                 if (colorPencil2Bitmap == null) {
                     try {
@@ -780,7 +777,7 @@ class ImageRemakeActivity : BaseActivity() {
             }
             1 -> {
                 val sketchFilter = SketchFilter(
-                    this@ImageRemakeActivity, activityHelper
+                    this@ImageRemakeActivity
                 )
                 if (pencilsketchBitmap == null) {
                     try {
@@ -794,7 +791,7 @@ class ImageRemakeActivity : BaseActivity() {
                 }
             }
             2 -> {
-                val printFilter = SketchColorFilter(this@ImageRemakeActivity, activityHelper)
+                val printFilter = SketchColorFilter(this@ImageRemakeActivity)
                 if (colorPencilBitmap == null) {
                     try {
                         colorPencilBitmap = printFilter.getSketchFromBH(bm1)
@@ -808,7 +805,7 @@ class ImageRemakeActivity : BaseActivity() {
             }
             3 -> {
                 val sketchFilter2 = SketchFilter2(
-                    this@ImageRemakeActivity, activityHelper
+                    this@ImageRemakeActivity
                 )
                 if (pencil2Bitmap == null) {
                     try {
@@ -823,7 +820,7 @@ class ImageRemakeActivity : BaseActivity() {
             }
             4 -> {
                 val cSketchFilter = CSketchFilter(
-                    this@ImageRemakeActivity, activityHelper
+                    this@ImageRemakeActivity
                 )
                 if (comicBitmap == null) {
                     try {
@@ -1214,9 +1211,6 @@ class ImageRemakeActivity : BaseActivity() {
 
     var getimage = false
 
-    init {
-        activityHelper = ActivityHandler(this, this)
-    }
 
     fun showProgress(msg: String) {
         binding.apply {

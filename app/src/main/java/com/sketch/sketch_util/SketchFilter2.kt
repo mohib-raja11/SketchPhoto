@@ -14,7 +14,7 @@ import android.graphics.PorterDuff
 import android.os.Handler
 import com.sketch.sketches.FirstSketchFilter
 
-class SketchFilter2(activity: Activity, handler: Handler?) : BitmapHelper(activity, handler) {
+class SketchFilter2(activity: Activity) : BitmapHelper() {
     var penci2SketchValue1 = 6
     var penci2SketchValue2 = 70
 

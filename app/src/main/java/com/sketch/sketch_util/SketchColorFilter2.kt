@@ -14,7 +14,7 @@ import android.graphics.PorterDuff
 import android.os.Handler
 import com.sketch.sketches.SecondSketchFilter
 
-class SketchColorFilter2(activity: Activity, handler: Handler?) : BitmapHelper(activity, handler) {
+class SketchColorFilter2(activity: Activity) : BitmapHelper() {
     var colorPencilValue: Int
     var colorPencilValue2: Int
     private val mContext: Context
@@ -26,8 +26,9 @@ class SketchColorFilter2(activity: Activity, handler: Handler?) : BitmapHelper(a
     }
 
     @Throws(Throwable::class)
+
     override fun getSketchFromBH(scaleBitmap: Bitmap): Bitmap {
-        var bitmap: Bitmap? = null
+        var bitmap: Bitmap?
         val colorLevels: ColorLevels
         val a = GalleryFileSizeHelper.scaleItBitmap(scaleBitmap, 1.0)
         val thresoldHelper = ThresoldHelper()

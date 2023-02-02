@@ -18,8 +18,7 @@ public class SketchColorFilter extends BitmapHelper {
     int colorPencilValue2;
     private final Context d;
 
-    public SketchColorFilter(Activity activity, Handler handler) {
-        super(activity, handler);
+    public SketchColorFilter(Activity activity) {
         d = activity;
         this.colorPencilValue = 2;
         this.colorPencilValue2 = 80;

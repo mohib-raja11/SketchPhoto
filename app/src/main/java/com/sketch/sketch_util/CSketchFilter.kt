@@ -14,7 +14,7 @@ import android.graphics.PorterDuff
 import android.os.Handler
 import com.sketch.sketches.SecondSketchFilter
 
-class CSketchFilter(activity: Activity, handler: Handler?) : BitmapHelper(activity, handler) {
+class CSketchFilter(activity: Activity) : BitmapHelper() {
 
     var comicIntValue1 = 2
     var comicIntValue2 = 90
@@ -27,9 +27,10 @@ class CSketchFilter(activity: Activity, handler: Handler?) : BitmapHelper(activi
 
     @Throws(Throwable::class)
     override fun getSketchFromBH(scaleBitmap: Bitmap): Bitmap {
-        val colorLevels: ColorLevels
+
         var a = GalleryFileSizeHelper.scaleItBitmap(scaleBitmap, 1.0)
         val thresoldHelper = ThresoldHelper()
+
         thresoldHelper.setThresholdValue(comicIntValue2)
         val a2 = thresoldHelper.getThresholdBitmap(a)
         GalleryFileSizeHelper.MakeBitmapForMerge(
@@ -38,6 +39,7 @@ class CSketchFilter(activity: Activity, handler: Handler?) : BitmapHelper(activi
             FilterSizeHelper.getFSHbitmap(a2, R.drawable.sketch_9, R.drawable.sketch_9),
             PorterDuff.Mode.SCREEN
         )
+
         thresoldHelper.setThresholdValue(30)
         val bitmap3 = thresoldHelper.getThresholdBitmap(a)
         GalleryFileSizeHelper.mergeBitmapWithPorterMode(a2, bitmap3, PorterDuff.Mode.MULTIPLY)
@@ -47,11 +49,12 @@ class CSketchFilter(activity: Activity, handler: Handler?) : BitmapHelper(activi
         secondSketchFilter.getSimpleSketchValue(comicIntValue1)
         val bitmap4 = secondSketchFilter.getSimpleSketch(scaleBitmap)
         a = bitmap4
-        colorLevels = ColorLevels()
+        val colorLevels = ColorLevels()
         a = colorLevels.getColorLevelBitmap(a)
         GalleryFileSizeHelper.mergeBitmapWithPorterMode(a, bitmap3, PorterDuff.Mode.MULTIPLY)
         a.recycle()
         System.gc()
+
         return bitmap3
     }
 }

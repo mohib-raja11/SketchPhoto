@@ -6,12 +6,13 @@ import android.graphics.Bitmap.Config;
 import androidx.core.view.MotionEventCompat;
 
 public final class ColorLevels extends ImageFilerName {
+
     private int[][] colorLevelArray;
 
     public ColorLevels() {
     }
 
-    public final Bitmap getColorLevelBitmap(Bitmap bitmap) {
+    public Bitmap getColorLevelBitmap(Bitmap bitmap) {
         int i;
         int i2;
         int width = bitmap.getWidth();
@@ -27,11 +28,7 @@ public final class ColorLevels extends ImageFilerName {
             for (i2 = 0; i2 < width; i2++) {
                 int i4 = mArray[i];
                 if (this.colorLevelArray != null) {
-                    i4 = this.colorLevelArray[2][i4
-                            & MotionEventCompat.ACTION_MASK]
-                            | (((-16777216 & i4) | (this.colorLevelArray[0][(i4 >> 16)
-                            & MotionEventCompat.ACTION_MASK] << 16)) | (this.colorLevelArray[1][(i4 >> 8)
-                            & MotionEventCompat.ACTION_MASK] << 8));
+                    i4 = this.colorLevelArray[2][i4 & MotionEventCompat.ACTION_MASK] | (((-16777216 & i4) | (this.colorLevelArray[0][(i4 >> 16) & MotionEventCompat.ACTION_MASK] << 16)) | (this.colorLevelArray[1][(i4 >> 8) & MotionEventCompat.ACTION_MASK] << 8));
                 }
                 mArray[i] = i4;
                 i++;
@@ -41,8 +38,7 @@ public final class ColorLevels extends ImageFilerName {
         }
         this.colorLevelArray = null;
 
-        Bitmap createBitmap = Bitmap.createBitmap(width, height,
-                Config.ARGB_8888);
+        Bitmap createBitmap = Bitmap.createBitmap(width, height, Config.ARGB_8888);
         if (createBitmap == null) {
             return bitmap;
         }
