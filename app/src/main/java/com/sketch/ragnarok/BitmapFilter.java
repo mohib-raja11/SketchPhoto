@@ -3,9 +3,7 @@ package com.sketch.ragnarok;
 import android.graphics.Bitmap;
 
 public class BitmapFilter {
-    /**
-     * filter style id;
-     */
+
     private static final int GRAY_STYLE = 1; // gray scale
     private static final int RELIEF_STYLE = 2; // relief
     private static final int AVERAGE_BLUR_STYLE = 3; // average blur

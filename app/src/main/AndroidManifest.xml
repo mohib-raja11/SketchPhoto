@@ -10,12 +10,12 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/icon"
+        android:supportsRtl="false"
         android:theme="@style/Theme.SketchPhoto"
-        tools:targetApi="s"
-        android:supportsRtl="false">
+        tools:targetApi="s">
 
         <activity
-            android:name="com.sketch.ui.MainActivity"
+            android:name="com.sketch.ui.DashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,14 +26,6 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
-        </activity>
-
-
-        <activity
-            android:name="com.sketch.ui.DashboardActivity"
-
-            android:theme="@style/AppTheme">
 
         </activity>
 

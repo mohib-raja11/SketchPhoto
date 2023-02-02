@@ -30,6 +30,10 @@ import com.sketch.databinding.PicBtnLayoutBinding
 import com.sketch.databinding.PicCropLayoutBinding
 import com.sketch.databinding.PicEffectLayoutBinding
 import com.sketch.databinding.PicResetDialogBinding
+import com.sketch.sketch_util.CSketchFilter
+import com.sketch.sketch_util.SketchColorFilter2
+import com.sketch.sketch_util.SketchFilter
+import com.sketch.sketch_util.SketchFilter2
 import com.sketch.utils.toast
 import java.io.*
 import java.lang.Exception
@@ -41,7 +45,6 @@ import java.util.*
 class ImageRemakeActivity : BaseActivity() {
 
     companion object {
-        var overlayid = -1
         var pic_result: Bitmap? = null
         var pic_forSketch: Bitmap? = null
         var pic_forDraw: Bitmap? = null
@@ -72,18 +75,6 @@ class ImageRemakeActivity : BaseActivity() {
     private lateinit var animshowbtnup: Animation
 
     private val activityHelper: ActivityHandler
-
-    private val effectImages = arrayOf(
-        R.drawable.pic_eff_0,
-        R.drawable.pic_eff_1,
-        R.drawable.pic_eff_2,
-        R.drawable.pic_eff_3,
-        R.drawable.pic_eff_4,
-        R.drawable.pic_eff_5,
-        R.drawable.pic_eff_6,
-        R.drawable.pic_eff_7
-    )
-
     private var MoveBack = false
     private var moveforword = true
     private var lineOne = true
@@ -158,12 +149,13 @@ class ImageRemakeActivity : BaseActivity() {
                 viewGallery.visibility = View.VISIBLE
                 val bitmap = BitmapFactory.decodeResource(resources, R.drawable.pic_eff_image)
                 setIcon_Effects()
+
                 if (bitmap != null && !bitmap.isRecycled) {
                     bitmap.recycle()
                     System.gc()
                 }
                 checkcropIV()
-                overlayid = -1
+
                 Animationview(viewGallery, effectGallery)
                 AnimationviewTop(doneEditLayoutBtn, picCropViewDone, 1)
             }
@@ -200,6 +192,7 @@ class ImageRemakeActivity : BaseActivity() {
     }
 
     fun getResizedOriginalBitmap(s: String?, f2: Float): Bitmap? {
+
         val options: BitmapFactory.Options
         var i: Int
         var j: Int
@@ -211,6 +204,7 @@ class ImageRemakeActivity : BaseActivity() {
         var bitmap: Bitmap?
         var matrix: Matrix
         try {
+
             options = BitmapFactory.Options()
             options.inJustDecodeBounds = true
             BitmapFactory.decodeStream(FileInputStream(s), null, options)
@@ -218,9 +212,11 @@ class ImageRemakeActivity : BaseActivity() {
             j = options.outHeight
             k = imagewidth
             l = imageheight
+
         } catch (filenotfoundexception: FileNotFoundException) {
             return null
         }
+
         i1 = 1
         do {
             if (i / 2 <= k) {
@@ -421,10 +417,22 @@ class ImageRemakeActivity : BaseActivity() {
         }
     }
 
+
+    data class EffectItem(val name: String, val icon: Int)
+
     private fun setIcon_Effects() {
-        val effectsArray = arrayOf(
-            "Color", "Pencil 1", "Color 2", "Pencil 2", "Pencil 3", "Pencil 4", "Pencil 5", "Sepia"
-        )
+
+        val effectsArray = arrayListOf<EffectItem>()
+        effectsArray.add(EffectItem("Color", R.drawable.pic_eff_0))
+        effectsArray.add(EffectItem("Pencil 1", R.drawable.pic_eff_1))
+        effectsArray.add(EffectItem("Color 2", R.drawable.pic_eff_2))
+        effectsArray.add(EffectItem("Pencil 2", R.drawable.pic_eff_3))
+        effectsArray.add(EffectItem("Pencil 3", R.drawable.pic_eff_4))
+        effectsArray.add(EffectItem("Pencil 4", R.drawable.pic_eff_5))
+        effectsArray.add(EffectItem("Pencil 5", R.drawable.pic_eff_6))
+        effectsArray.add(EffectItem("Sepia", R.drawable.pic_eff_7))
+
+
 
         effectsArray.forEachIndexed() { index, effect ->
 
@@ -435,13 +443,16 @@ class ImageRemakeActivity : BaseActivity() {
 
                     image.id = index
                     image.layoutParams = LinearLayout.LayoutParams(-2, -2)
-                    val bitmap = BitmapFactory.decodeResource(resources, effectImages[index])
+                    val bitmap = BitmapFactory.decodeResource(resources, effectsArray[index].icon)
 
-                    txtView.text = effect
+                    txtView.text = effectsArray[index].name
+
                     image.setImageBitmap(bitmap)
                     binding.effectGallery.addView(root)
                     image.setOnClickListener {
+
                         Log.d("clickedId", "onClick: " + image.id)
+
                         when (image.id) {
                             0, 1, 2, 3, 4, 5, 6, 7 -> if (sketchDone) {
                                 sketchAsnyTask(image.id)
@@ -482,7 +493,9 @@ class ImageRemakeActivity : BaseActivity() {
         binding.tvEditor.startAnimation(animshowbtnup)
         animshowbtnup.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationEnd(animation: Animation) {
+
                 binding.tvEditor.startAnimation(animshowbtndown)
+
                 hideanimview.visibility = View.GONE
                 showanimview!!.visibility = View.VISIBLE
                 showanimview.startAnimation(animshowbtndown)
@@ -634,23 +647,23 @@ class ImageRemakeActivity : BaseActivity() {
             }
             if (viewID == 1) {
                 checkcropIV()
-                overlayid = -1
+
                 Animationview(viewGallery, effectGallery)
                 AnimationviewTop(picCropViewDone, doneEditLayoutBtn, 1)
             }
             if (viewID == 3) {
                 checkcropIV()
-                overlayid = -1
+
                 AnimationviewTop(picCropViewDone, doneEditLayoutBtn, 3)
             }
             if (viewID == 4) {
                 checkcropIV()
-                overlayid = -1
+
                 AnimationviewTop(picCropViewDone, doneEditLayoutBtn, 4)
             }
             if (viewID == 5) {
                 checkcropIV()
-                overlayid = -1
+
                 AnimationviewTop(picCropViewDone, doneEditLayoutBtn, 5)
                 return
             }
@@ -668,11 +681,13 @@ class ImageRemakeActivity : BaseActivity() {
 
     public override fun onDestroy() {
         super.onDestroy()
+
         if (GPUImageFilterTools.overlayBmp != null && !GPUImageFilterTools.overlayBmp.isRecycled) {
             GPUImageFilterTools.overlayBmp.recycle()
             GPUImageFilterTools.overlayBmp = null
             System.gc()
         }
+
         if (pic_result != null && !pic_result!!.isRecycled) {
             pic_result!!.recycle()
             pic_result = null
@@ -685,6 +700,7 @@ class ImageRemakeActivity : BaseActivity() {
         animshowbtndown.cancel()
         anim_bottom_show.cancel()
         anim_btnapply.cancel()
+
         unbindDrawables(binding.mainLayout)
     }
 
@@ -742,14 +758,18 @@ class ImageRemakeActivity : BaseActivity() {
     }
 
     fun getSketchBitmap(bm1: Bitmap?, type: Int): Bitmap? {
+
         var sketchBitmap = bm1
+
         when (type) {
             0 -> {
-                val sketchColorFilter2 =
-                    SketchColorFilter2(this@ImageRemakeActivity, activityHelper)
+                val sketchColorFilter2 = SketchColorFilter2(
+                    this@ImageRemakeActivity, activityHelper
+                )
+
                 if (colorPencil2Bitmap == null) {
                     try {
-                        colorPencil2Bitmap = sketchColorFilter2.getSketchFromBH(bm1)
+                        colorPencil2Bitmap = sketchColorFilter2.getSketchFromBH(bm1!!)
                         sketchBitmap = colorPencil2Bitmap
                     } catch (e: Throwable) {
                         e.printStackTrace()
@@ -759,10 +779,12 @@ class ImageRemakeActivity : BaseActivity() {
                 }
             }
             1 -> {
-                val sketchFilter = SketchFilter(this@ImageRemakeActivity, activityHelper)
+                val sketchFilter = SketchFilter(
+                    this@ImageRemakeActivity, activityHelper
+                )
                 if (pencilsketchBitmap == null) {
                     try {
-                        pencilsketchBitmap = sketchFilter.getSketchFromBH(bm1)
+                        pencilsketchBitmap = sketchFilter.getSketchFromBH(bm1!!)
                         sketchBitmap = pencilsketchBitmap
                     } catch (e: Throwable) {
                         e.printStackTrace()
@@ -785,10 +807,12 @@ class ImageRemakeActivity : BaseActivity() {
                 }
             }
             3 -> {
-                val sketchFilter2 = SketchFilter2(this@ImageRemakeActivity, activityHelper)
+                val sketchFilter2 = SketchFilter2(
+                    this@ImageRemakeActivity, activityHelper
+                )
                 if (pencil2Bitmap == null) {
                     try {
-                        pencil2Bitmap = sketchFilter2.getSketchFromBH(bm1)
+                        pencil2Bitmap = sketchFilter2.getSketchFromBH(bm1!!)
                         sketchBitmap = pencil2Bitmap
                     } catch (e: Throwable) {
                         e.printStackTrace()
@@ -798,10 +822,12 @@ class ImageRemakeActivity : BaseActivity() {
                 }
             }
             4 -> {
-                val cSketchFilter = CSketchFilter(this@ImageRemakeActivity, activityHelper)
+                val cSketchFilter = CSketchFilter(
+                    this@ImageRemakeActivity, activityHelper
+                )
                 if (comicBitmap == null) {
                     try {
-                        comicBitmap = cSketchFilter.getSketchFromBH(bm1)
+                        comicBitmap = cSketchFilter.getSketchFromBH(bm1!!)
                         sketchBitmap = comicBitmap
                     } catch (e: Throwable) {
                         e.printStackTrace()
@@ -1139,7 +1165,7 @@ class ImageRemakeActivity : BaseActivity() {
         buffBlend.rewind()
         val buffOut = IntBuffer.allocate(base.width * base.height)
         buffOut.rewind()
-        
+
         while (buffOut.position() < buffOut.limit()) {
             val filterInt = buffBlend.get()
             val srcInt = buffBase.get()
@@ -1201,7 +1227,12 @@ class ImageRemakeActivity : BaseActivity() {
 
     fun hideProgress() {
         mExecutor.apply {
-            runWorker(10, { binding.progressView.visibility = View.GONE })
+            runWorker(1000, {
+
+                runMain {
+                    binding.progressView.visibility = View.GONE
+                }
+            })
         }
     }
 
@@ -1275,7 +1306,9 @@ class ImageRemakeActivity : BaseActivity() {
         showProgress("Sketching...")
 
         mExecutor.runWorker {
+
             pic_result = getSketchBitmap(pic_forSketch, viewId)
+
             mExecutor.runMain {
                 binding.ivImageMaker.setImageBitmap(pic_result)
                 hideProgress()
