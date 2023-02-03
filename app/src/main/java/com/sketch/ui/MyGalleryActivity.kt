@@ -22,8 +22,9 @@ import java.io.File
 
 class MyGalleryActivity : BaseActivity() {
     private lateinit var mainAdapter: RecyclerAdapter
-    var nameList = ArrayList<String>()
-    var namePathList = ArrayList<String>()
+
+    val filesList = arrayListOf<ImageModel>()
+
     private var extention = ".jpg"
     private var extentionPng = ".png"
     private var tvNoItem: TextView? = null
@@ -62,6 +63,8 @@ class MyGalleryActivity : BaseActivity() {
         super.onResume()
     }
 
+    data class ImageModel(val imageName: String, val imagePath: String)
+
     //***********************************Mohib: getting list of saved files************************************
     @SuppressLint("NotifyDataSetChanged")
     private fun loadingImages() {
@@ -69,8 +72,7 @@ class MyGalleryActivity : BaseActivity() {
         val directory = File(rootPath)
         val listFile = directory.listFiles()
 
-        nameList.clear()
-        namePathList.clear()
+        val tempList = arrayListOf<ImageModel>()
 
         if (listFile != null && listFile.isNotEmpty()) {
             //Mohib: if saved files are then show dialog of all files to choose
@@ -80,17 +82,22 @@ class MyGalleryActivity : BaseActivity() {
                         extentionPng
                     )
                 ) {
-                    nameList.add(listFile[i].name)
-                    namePathList.add(listFile[i].absolutePath)
+
+                    tempList.add(ImageModel(listFile[i].name, listFile[i].absolutePath))
                 }
             }
         } else {
             Toast.makeText(this, "no file found", Toast.LENGTH_SHORT).show()
         }
 
+        //MR: to show last as first
+        val reversedList = tempList.asReversed()
+        filesList.clear()
+        filesList.addAll(reversedList)
+
         mainAdapter.notifyDataSetChanged()
 
-        if (namePathList.size > 0) {
+        if (filesList.size > 0) {
             tvNoItem!!.visibility = View.GONE
         } else {
             tvNoItem!!.visibility = View.VISIBLE
@@ -110,22 +117,23 @@ class MyGalleryActivity : BaseActivity() {
 
         override fun onBindViewHolder(myHolderView: MyHolderView, pos: Int) {
 
-            myHolderView.tvName.text = nameList[pos]
+            myHolderView.tvName.text = filesList[pos].imageName
 
-            Picasso.get().load(File(namePathList[pos])).into(myHolderView.iv1, object : Callback {
-                override fun onSuccess() {}
-                override fun onError(e: Exception) {}
-            })
+            Picasso.get().load(File(filesList[pos].imagePath))
+                .into(myHolderView.iv1, object : Callback {
+                    override fun onSuccess() {}
+                    override fun onError(e: Exception) {}
+                })
 
             myHolderView.itemView.setOnClickListener {
                 val intent = Intent(this@MyGalleryActivity, ViewImageActivity::class.java)
-                intent.putExtra("ImgUrl", namePathList[pos])
+                intent.putExtra("ImgUrl", filesList[pos].imagePath)
                 startActivity(intent)
             }
         }
 
         override fun getItemCount(): Int {
-            return nameList.size
+            return filesList.size
         }
 
         inner class MyHolderView(itemView: ItemGalleryBinding) :

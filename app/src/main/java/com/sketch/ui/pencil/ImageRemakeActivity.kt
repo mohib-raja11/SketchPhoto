@@ -55,7 +55,7 @@ class ImageRemakeActivity : BaseActivity() {
     private var simpleSketchbitmap2: Bitmap? = null
     private var comicBitmap: Bitmap? = null
 
-    private var Imagepath: String? = null
+    private var imagepath: String? = null
     private var sendimagepath: String = ""
 
     private var Orientation: Float? = null
@@ -169,7 +169,7 @@ class ImageRemakeActivity : BaseActivity() {
         animshowbtndown = AnimationUtils.loadAnimation(this, R.anim.show_button_anims_down)
         anim_bottom_show = AnimationUtils.loadAnimation(this, R.anim.hide_button_anims_up)
 
-        loadImageAsycTask()
+        loadingImageFirstTime()
 
     }
 
@@ -280,8 +280,7 @@ class ImageRemakeActivity : BaseActivity() {
         return f
     }
 
-    @SuppressLint("ResourceType")
-    private fun stringMatching() {
+    private fun setCropOptions() {
 
         val viewBinding = PicBtnLayoutBinding.inflate(layoutInflater)
         viewBinding.apply {
@@ -606,11 +605,11 @@ class ImageRemakeActivity : BaseActivity() {
             picDialogNo.text = getString(R.string.continue_edt)
             picDialogYes.setOnClickListener { view: View? ->
                 val bitmap = pic_result
-                if (Imagepath != null) {
+                if (imagepath != null) {
                     pic_maker_dialog.dismiss()
-                    Orientation = getImageOrientation(Imagepath!!)
-                    getAspectRatio(Imagepath!!, MaxResolution.toFloat())
-                    pic_result = getResizedOriginalBitmap(Imagepath, Orientation!!)
+                    Orientation = getImageOrientation(imagepath!!)
+                    getAspectRatio(imagepath!!, MaxResolution.toFloat())
+                    pic_result = getResizedOriginalBitmap(imagepath, Orientation!!)
                     binding.ivImageMaker.setImageBitmap(pic_result)
 
                     mContext.toast("Your original image is back !!!")
@@ -721,8 +720,7 @@ class ImageRemakeActivity : BaseActivity() {
     }
 
     fun saveBitmap(
-        quality: Int = 100,
-        bitmap: Bitmap?
+        quality: Int = 100, bitmap: Bitmap?
     ) {
         val rootFolder = AppUtils.getAppFolderPath(this)
 
@@ -1216,8 +1214,6 @@ class ImageRemakeActivity : BaseActivity() {
         return bmpGrayscale
     }
 
-    var getimage = false
-
 
     fun showProgress(msg: String) {
         binding.apply {
@@ -1232,9 +1228,11 @@ class ImageRemakeActivity : BaseActivity() {
 
     }
 
-    fun loadImageAsycTask() {
+    fun loadingImageFirstTime() {
 
         showProgress("Loading...")
+
+        var getimage = false
 
         mExecutor.apply {
             runWorker {
@@ -1244,16 +1242,16 @@ class ImageRemakeActivity : BaseActivity() {
                 if (imageuri == null) {
                     getimage = false
                 } else {
-                    Imagepath = getRealPathFromURI(imageuri)
-                    if (Imagepath != null && (Imagepath!!.endsWith(".png") || Imagepath!!.endsWith(".jpg") || Imagepath!!.endsWith(
+                    imagepath = getRealPathFromURI(imageuri)
+                    if (imagepath != null && (imagepath!!.endsWith(".png") || imagepath!!.endsWith(".jpg") || imagepath!!.endsWith(
                             ".jpeg"
-                        ) || Imagepath!!.endsWith(".bmp"))
+                        ) || imagepath!!.endsWith(".bmp"))
                     ) {
-                        val Orientation = getImageOrientation(Imagepath!!)
-                        getAspectRatio(Imagepath!!, MaxResolution.toFloat())
-                        pic_result = getResizedOriginalBitmap(Imagepath, Orientation)
-                        pic_forSketch = getResizedOriginalBitmap(Imagepath, Orientation)
-                        pic_forDraw = getResizedOriginalBitmap(Imagepath, Orientation)
+                        val Orientation = getImageOrientation(imagepath!!)
+                        getAspectRatio(imagepath!!, MaxResolution.toFloat())
+                        pic_result = getResizedOriginalBitmap(imagepath, Orientation)
+                        pic_forSketch = getResizedOriginalBitmap(imagepath, Orientation)
+                        pic_forDraw = getResizedOriginalBitmap(imagepath, Orientation)
                         getimage = true
                     }
                 }
@@ -1266,7 +1264,8 @@ class ImageRemakeActivity : BaseActivity() {
                             finish()
                         } else {
                             binding.ivImageMaker.setImageBitmap(pic_result)
-                            stringMatching()
+
+                            setCropOptions()
                         }
                     } else {
 
