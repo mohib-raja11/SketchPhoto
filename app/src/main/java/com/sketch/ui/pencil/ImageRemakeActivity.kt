@@ -70,7 +70,7 @@ class ImageRemakeActivity : BaseActivity() {
     private var MoveBack = false
     private var moveforword = true
     private var lineOne = true
-    private var sketchDone = false
+    private var sketchFirstTimeDone = false
 
     private lateinit var binding: ActivityImageRemakeBinding
 
@@ -130,6 +130,7 @@ class ImageRemakeActivity : BaseActivity() {
                     picCropImageView.imageResource = 0
                     ivImageMaker.visibility = View.VISIBLE
                     ivImageMaker.setImageBitmap(pic_result)
+
                     sketchAsnyTaskFirst()
                 }
 
@@ -324,18 +325,17 @@ class ImageRemakeActivity : BaseActivity() {
             croppStyles.forEachIndexed { index, crop ->
                 run {
 
-                    val picCropViewBinding = PicCropLayoutBinding.inflate(layoutInflater)
+                    val picCropViewBinding = PicCropItemViewBinding.inflate(layoutInflater)
 
                     picCropViewBinding.apply {
 
+                        tvCrop.id = index
+                        tvCrop.text = croppStyles[index]
 
-                        cropBtn.id = index
-                        cropBtn.layoutParams = LinearLayout.LayoutParams(-2, -2)
-                        cropBtn.text = croppStyles[index]
                         cropGalleryLayout.addView(root)
 
-                        cropBtn.setOnClickListener {
-                            when (cropBtn.id) {
+                        tvCrop.setOnClickListener {
+                            when (tvCrop.id) {
                                 0 -> {
                                     picCropImageView.setFixedAspectRatio(false)
                                     return@setOnClickListener
@@ -446,10 +446,10 @@ class ImageRemakeActivity : BaseActivity() {
                         Log.d("clickedId", "onClick: " + image.id)
 
                         when (image.id) {
-                            0, 1, 2, 3, 4, 5, 6, 7 -> if (sketchDone) {
+                            0, 1, 2, 3, 4, 5, 6, 7 -> if (sketchFirstTimeDone) {
                                 sketchAsnyTask(image.id)
                             }
-                            else -> if (sketchDone) {
+                            else -> if (sketchFirstTimeDone) {
                                 sketchAsnyTask(image.id)
                             }
                         }
@@ -1349,9 +1349,11 @@ class ImageRemakeActivity : BaseActivity() {
             super.onDraw(canvas)
             canvas.drawBitmap(pic_result!!, 0f, 0f, null)
             pcanvas.drawBitmap(pic_forDraw!!, 0f, 0f, null)
+
             pcanvas.drawCircle(
                 mImagePos.x, mImagePos.y, (pic_result!!.height / 20).toFloat(), mPaint
             )
+
             update()
             invalidate()
             canvas.drawBitmap(bmOverlay, 0f, 0f, null)
@@ -1367,7 +1369,9 @@ class ImageRemakeActivity : BaseActivity() {
         }
 
         fun update() {
+
             if (Tilltime < 400) {
+
                 val INTERPOLATION_LENGTH: Long = 200
                 val time = SystemClock.uptimeMillis()
                 if (time - mInterpolateTime > INTERPOLATION_LENGTH) {
@@ -1381,6 +1385,7 @@ class ImageRemakeActivity : BaseActivity() {
                 mImagePos.x = mImageSource.x + (mImageTarget.x - mImageSource.x) * t
                 mImagePos.y = mImageSource.y + (mImageTarget.y - mImageSource.y) * t
                 Tilltime++
+
             } else {
                 if (lineOne) {
                     mImagePos.y = 0f
@@ -1405,7 +1410,7 @@ class ImageRemakeActivity : BaseActivity() {
                         mImagePos.x -= (pic_result!!.width / 20).toFloat()
                     }
                 } else {
-                    sketchDone = true
+                    sketchFirstTimeDone = true
                     binding.viewContainer.visibility = INVISIBLE
                     binding.ivImageMaker.visibility = VISIBLE
                     binding.ivImageMaker.setImageBitmap(pic_result)
