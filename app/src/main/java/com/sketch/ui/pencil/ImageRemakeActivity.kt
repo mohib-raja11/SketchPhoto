@@ -95,14 +95,14 @@ class ImageRemakeActivity : BaseActivity() {
 
             progressView.visibility = View.GONE
 
-            viewGalleryHolderLayout.setVisibility(View.VISIBLE)
+            viewGalleryHolderLayout.visibility = View.VISIBLE
 
             picCropImageView.setGuidelines(1)
-            picCropImageView.setImageResource(0)
+            picCropImageView.imageResource = 0
 
-            picCropImageView.setVisibility(View.GONE)
-            effectsHolderLayout.setVisibility(View.GONE)
-            cropOptionsHolderLayout.setVisibility(View.GONE)
+            picCropImageView.visibility = View.GONE
+            effectsHolderLayout.visibility = View.GONE
+            cropOptionsHolderLayout.visibility = View.GONE
 
             tvEditor.setText(R.string.editor)
 
@@ -147,7 +147,7 @@ class ImageRemakeActivity : BaseActivity() {
                 viewGalleryHolderLayout.startAnimation(anim_bottom_show)
                 viewGalleryHolderLayout.visibility = View.VISIBLE
                 val bitmap = BitmapFactory.decodeResource(resources, R.drawable.pic_eff_image)
-                
+
                 setEffectsFunctionality()
 
                 if (bitmap != null && !bitmap.isRecycled) {
@@ -435,7 +435,7 @@ class ImageRemakeActivity : BaseActivity() {
 
 
 
-        effectsArray.forEachIndexed() { index, effect ->
+        effectsArray.forEachIndexed { index, effect ->
 
             run {
                 val picEffectViewBinding = EffectItemViewBinding.inflate(layoutInflater)
@@ -891,8 +891,8 @@ class ImageRemakeActivity : BaseActivity() {
             } else {
                 sketchBitmap = ConvertToSepia(simpleSketchbitmap2)
             }
-            8 -> sketchBitmap = BitmapFilter.changeStyle(bm1, BitmapFilter.OIL_STYLE)
-            9 -> sketchBitmap = BitmapFilter.changeStyle(bm1, BitmapFilter.SKETCH_STYLE)
+            8 -> sketchBitmap = BitmapFilter.changeStyle(bm1!!, BitmapFilter.OIL_STYLE)
+            9 -> sketchBitmap = BitmapFilter.changeStyle(bm1!!, BitmapFilter.SKETCH_STYLE)
         }
         return sketchBitmap
         // result = Color
