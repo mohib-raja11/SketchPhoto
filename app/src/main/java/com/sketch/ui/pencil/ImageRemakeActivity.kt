@@ -147,7 +147,8 @@ class ImageRemakeActivity : BaseActivity() {
                 viewGalleryHolderLayout.startAnimation(anim_bottom_show)
                 viewGalleryHolderLayout.visibility = View.VISIBLE
                 val bitmap = BitmapFactory.decodeResource(resources, R.drawable.pic_eff_image)
-                setIcon_Effects()
+                
+                setEffectsFunctionality()
 
                 if (bitmap != null && !bitmap.isRecycled) {
                     bitmap.recycle()
@@ -280,6 +281,7 @@ class ImageRemakeActivity : BaseActivity() {
         return f
     }
 
+    @SuppressLint("ResourceType")
     private fun setCropOptions() {
 
         val viewBinding = PicBtnLayoutBinding.inflate(layoutInflater)
@@ -418,9 +420,10 @@ class ImageRemakeActivity : BaseActivity() {
 
     data class EffectItem(val name: String, val icon: Int)
 
-    private fun setIcon_Effects() {
+    private fun setEffectsFunctionality() {
 
         val effectsArray = arrayListOf<EffectItem>()
+
         effectsArray.add(EffectItem("Color", R.drawable.pic_eff_0))
         effectsArray.add(EffectItem("Pencil 1", R.drawable.pic_eff_1))
         effectsArray.add(EffectItem("Color 2", R.drawable.pic_eff_2))
