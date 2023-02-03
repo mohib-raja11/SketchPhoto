@@ -16,7 +16,7 @@
 
 
         <ImageButton
-            android:id="@+id/btn_image"
+            android:id="@+id/btnImage"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_gravity="center"
@@ -29,7 +29,7 @@
             android:src="@drawable/pic_crop" />
 
         <TextView
-            android:id="@+id/btn_txt"
+            android:id="@+id/btnTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
