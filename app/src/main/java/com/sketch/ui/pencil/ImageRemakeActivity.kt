@@ -95,7 +95,7 @@ class ImageRemakeActivity : BaseActivity() {
 
             progressView.visibility = View.GONE
 
-            viewGallery.setVisibility(View.VISIBLE)
+            viewGalleryHolderLayout.setVisibility(View.VISIBLE)
 
             picCropImageView.setGuidelines(1)
             picCropImageView.setImageResource(0)
@@ -144,8 +144,8 @@ class ImageRemakeActivity : BaseActivity() {
                 }
 
                 AnimationviewTop(doneEditLayoutBtn, picCropViewDone, 9)
-                viewGallery.startAnimation(anim_bottom_show)
-                viewGallery.visibility = View.VISIBLE
+                viewGalleryHolderLayout.startAnimation(anim_bottom_show)
+                viewGalleryHolderLayout.visibility = View.VISIBLE
                 val bitmap = BitmapFactory.decodeResource(resources, R.drawable.pic_eff_image)
                 setIcon_Effects()
 
@@ -156,7 +156,7 @@ class ImageRemakeActivity : BaseActivity() {
 
                 checkcropIV()
 
-                Animationview(viewGallery, effectsHolderLayout)
+                Animationview(viewGalleryHolderLayout, effectsHolderLayout)
                 AnimationviewTop(doneEditLayoutBtn, picCropViewDone, 1)
             }
 
@@ -297,7 +297,7 @@ class ImageRemakeActivity : BaseActivity() {
 
             setIcon_Crop()
 
-            binding.viewGallery.addView(root)
+            binding.viewGalleryHolderLayout.addView(root)
 
         }
 
@@ -310,7 +310,7 @@ class ImageRemakeActivity : BaseActivity() {
             ivImageMaker.visibility = View.GONE
             picCropImageView.setImageBitmap(pic_result)
             picCropImageView.visibility = View.VISIBLE
-            Animationview(viewGallery, cropOptionsHolderLayout)
+            Animationview(viewGalleryHolderLayout, cropOptionsHolderLayout)
             AnimationviewTop(picCropViewDone, doneEditLayoutBtn, 2)
 
             val croppStyles = arrayOf(
@@ -575,6 +575,7 @@ class ImageRemakeActivity : BaseActivity() {
     private fun checkcropIV() {
 
         binding.apply {
+
             if (picCropImageView.visibility == View.VISIBLE) {
                 picCropImageView.visibility = View.GONE
                 ivImageMaker.visibility = View.VISIBLE
@@ -647,7 +648,7 @@ class ImageRemakeActivity : BaseActivity() {
             if (viewID == 1) {
                 checkcropIV()
 
-                Animationview(viewGallery, effectsHolderLayout)
+                Animationview(viewGalleryHolderLayout, effectsHolderLayout)
                 AnimationviewTop(picCropViewDone, doneEditLayoutBtn, 1)
             }
             if (viewID == 3) {

@@ -159,7 +159,7 @@
             android:scrollbars="none">
 
             <LinearLayout
-                android:id="@+id/viewGallery"
+                android:id="@+id/viewGalleryHolderLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
