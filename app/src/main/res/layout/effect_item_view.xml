@@ -1,55 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/LinearLayout01"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
-    android:orientation="horizontal">
+    android:background="@color/colorPrimary"
+    android:gravity="center_horizontal">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#7CAEF9"
-        android:orientation="horizontal">
+        android:layout_marginHorizontal="5dp"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/effectIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:background="#C5DCFF"
+            android:contentDescription="@string/app_name"
+            android:padding="6dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/pic_eff_image" />
 
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:background="#C5DCFF"
-                android:contentDescription="@string/app_name"
-                android:padding="6dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/pic_eff_image" />
-
-            <TextView
-                android:id="@+id/txt_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|center"
-                android:paddingLeft="1dp"
-                android:paddingRight="1dp"
-                android:paddingBottom="1dp"
-                android:text="@string/effects"
-                android:textColor="#292929"
-                android:textSize="@dimen/pic_maker_effs_size"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="@dimen/pic_maker_eff_gallery_space"
-            android:layout_height="@dimen/pic_maker_eff_gallery_space"
-            android:background="@color/transparent" />
+        <TextView
+            android:id="@+id/effectName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:paddingBottom="1dp"
+            android:text="@string/effects"
+            android:textColor="#292929"
+            android:textSize="@dimen/pic_maker_effs_size"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
 
-
-</LinearLayout>
+</RelativeLayout>

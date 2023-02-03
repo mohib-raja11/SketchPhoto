@@ -432,34 +432,34 @@ class ImageRemakeActivity : BaseActivity() {
 
 
 
-        effectsArray.forEachIndexed() { index, _ ->
+        effectsArray.forEachIndexed() { index, effect ->
 
             run {
                 val picEffectViewBinding = EffectItemViewBinding.inflate(layoutInflater)
 
                 picEffectViewBinding.apply {
 
-                    image.id = index
-                    image.layoutParams = LinearLayout.LayoutParams(-2, -2)
-                    val bitmap = BitmapFactory.decodeResource(resources, effectsArray[index].icon)
+                    effectIcon.id = index
 
-                    txtView.text = effectsArray[index].name
+                    val bitmap = BitmapFactory.decodeResource(resources, effect.icon)
+                    effectName.text = effect.name
+                    effectIcon.setImageBitmap(bitmap)
+                    effectIcon.setOnClickListener {
 
-                    image.setImageBitmap(bitmap)
-                    binding.effectsHolderLayout.addView(root)
-                    image.setOnClickListener {
+                        Log.d("clickedId", "onClick: " + effectIcon.id)
 
-                        Log.d("clickedId", "onClick: " + image.id)
-
-                        when (image.id) {
+                        when (effectIcon.id) {
                             0, 1, 2, 3, 4, 5, 6, 7 -> if (sketchFirstTimeDone) {
-                                sketchAsnyTask(image.id)
+                                sketchAsnyTask(effectIcon.id)
                             }
                             else -> if (sketchFirstTimeDone) {
-                                sketchAsnyTask(image.id)
+                                sketchAsnyTask(effectIcon.id)
                             }
                         }
                     }
+
+                    binding.effectsHolderLayout.addView(root)
+
 
                 }
             }
