@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_alignParentTop="true"
-        android:background="#7CAEF9">
+        android:background="@color/colorPrimary">
 
         <ImageView
             android:id="@+id/ivBack"
