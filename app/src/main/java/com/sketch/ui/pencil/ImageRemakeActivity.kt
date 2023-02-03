@@ -94,6 +94,7 @@ class ImageRemakeActivity : BaseActivity() {
         binding.apply {
 
             progressView.visibility = View.GONE
+
             viewGallery.setVisibility(View.VISIBLE)
 
             picCropImageView.setGuidelines(1)
@@ -107,7 +108,7 @@ class ImageRemakeActivity : BaseActivity() {
 
             doneEditLayoutBtn.setOnClickListener {
 
-                saveBitmap(UUID.randomUUID().toString(), 100, pic_result)
+                saveBitmap(100, pic_result)
 
                 val file = File(sendimagepath)
                 if (file.exists()) {
@@ -556,9 +557,9 @@ class ImageRemakeActivity : BaseActivity() {
 
             picResetTxt.text = s
 
-            picResetTxt.text = getString(R.string.leave_edt)
+            picResetTxt.text = getString(R.string.keep_edt)
 
-            picDialogYes.text = getString(R.string.keep_edt)
+            picDialogYes.text = getString(R.string.leave_edt)
             picDialogYes.setOnClickListener {
                 exit_dialog.dismiss()
                 val intent = Intent()
@@ -718,13 +719,19 @@ class ImageRemakeActivity : BaseActivity() {
         }
     }
 
-    fun saveBitmap(s: String?, i: Int, bitmap: Bitmap?) {
+    fun saveBitmap(
+        quality: Int = 100,
+        bitmap: Bitmap?
+    ) {
         val rootFolder = AppUtils.getAppFolderPath(this)
+
+        val randomString = UUID.randomUUID().toString()
 
         val flag: Boolean
         BitmapFactory.Options().inSampleSize = 5
         sendimagepath =
-            StringBuilder(rootFolder).append(File.separator).append(s).append(".jpg").toString()
+            StringBuilder(rootFolder).append(File.separator).append(randomString).append(".jpg")
+                .toString()
 
         val file = File(sendimagepath)
 
@@ -740,7 +747,7 @@ class ImageRemakeActivity : BaseActivity() {
             }
             val fileoutputstream = FileOutputStream(file)
             val bufferedoutputstream = BufferedOutputStream(fileoutputstream)
-            bitmap!!.compress(Bitmap.CompressFormat.PNG, i, bufferedoutputstream)
+            bitmap!!.compress(Bitmap.CompressFormat.PNG, quality, bufferedoutputstream)
             bufferedoutputstream.flush()
             bufferedoutputstream.close()
             `as` = arrayOfNulls(1)
