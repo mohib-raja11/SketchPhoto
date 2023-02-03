@@ -11,6 +11,24 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
         <!-- Customize your theme here. -->
+    </style>
+
+
+    <style name="appButtonStyle" >
+
+        <item name="background">@color/btn_bg_color</item>
+
+
+    </style>
+
+    <style name="appImageButtonStyle" >
+
+        <item name="android:layout_width">65dp</item>
+        <item name="android:layout_height">90dp</item>
+        <item name="android:layout_margin">7dp</item>
+
+
     </style>
 </resources>
