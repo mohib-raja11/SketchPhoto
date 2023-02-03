@@ -435,7 +435,7 @@ class ImageRemakeActivity : BaseActivity() {
         effectsArray.forEachIndexed() { index, _ ->
 
             run {
-                val picEffectViewBinding = PicEffectLayoutBinding.inflate(layoutInflater)
+                val picEffectViewBinding = EffectItemViewBinding.inflate(layoutInflater)
 
                 picEffectViewBinding.apply {
 
@@ -1219,62 +1219,60 @@ class ImageRemakeActivity : BaseActivity() {
     }
 
     fun hideProgress() {
-        mExecutor.apply {
-            runWorker(1000, {
 
-                runMain {
-                    binding.progressView.visibility = View.GONE
-                }
-            })
-        }
+        binding.progressView.visibility = View.GONE
+
     }
 
     fun loadImageAsycTask() {
 
         showProgress("Loading...")
 
-        mExecutor.runWorker {
+        mExecutor.apply {
+            runWorker {
 
-            val imageuri = intent.data
+                val imageuri = intent.data
 
-            if (imageuri == null) {
-                getimage = false
-            } else {
-                Imagepath = getRealPathFromURI(imageuri)
-                if (Imagepath != null && (Imagepath!!.endsWith(".png") || Imagepath!!.endsWith(".jpg") || Imagepath!!.endsWith(
-                        ".jpeg"
-                    ) || Imagepath!!.endsWith(".bmp"))
-                ) {
-                    val Orientation = getImageOrientation(Imagepath!!)
-                    getAspectRatio(Imagepath!!, MaxResolution.toFloat())
-                    pic_result = getResizedOriginalBitmap(Imagepath, Orientation)
-                    pic_forSketch = getResizedOriginalBitmap(Imagepath, Orientation)
-                    pic_forDraw = getResizedOriginalBitmap(Imagepath, Orientation)
-                    getimage = true
+                if (imageuri == null) {
+                    getimage = false
+                } else {
+                    Imagepath = getRealPathFromURI(imageuri)
+                    if (Imagepath != null && (Imagepath!!.endsWith(".png") || Imagepath!!.endsWith(".jpg") || Imagepath!!.endsWith(
+                            ".jpeg"
+                        ) || Imagepath!!.endsWith(".bmp"))
+                    ) {
+                        val Orientation = getImageOrientation(Imagepath!!)
+                        getAspectRatio(Imagepath!!, MaxResolution.toFloat())
+                        pic_result = getResizedOriginalBitmap(Imagepath, Orientation)
+                        pic_forSketch = getResizedOriginalBitmap(Imagepath, Orientation)
+                        pic_forDraw = getResizedOriginalBitmap(Imagepath, Orientation)
+                        getimage = true
+                    }
                 }
-            }
-            mExecutor.runMain {
-                if (getimage) {
-                    if (pic_result == null || pic_result!!.height <= 5 || pic_result!!.width <= 5) {
+                runMain {
+                    if (getimage) {
+                        if (pic_result == null || pic_result!!.height <= 5 || pic_result!!.width <= 5) {
 
-                        mContext.toast("Image Format not supported .")
+                            mContext.toast("Image Format not supported .")
+
+                            finish()
+                        } else {
+                            binding.ivImageMaker.setImageBitmap(pic_result)
+                            stringMatching()
+                        }
+                    } else {
+
+                        mContext.toast("Unsupported media file.")
 
                         finish()
-                    } else {
-                        binding.ivImageMaker.setImageBitmap(pic_result)
-                        stringMatching()
                     }
-                } else {
 
-                    mContext.toast("Unsupported media file.")
-
-                    finish()
+                    hideProgress()
                 }
 
-                hideProgress()
             }
-
         }
+
     }
 
     private fun sketchAsnyTaskFirst() {
