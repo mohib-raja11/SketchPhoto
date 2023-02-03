@@ -125,7 +125,7 @@
             android:scrollbars="none">
 
             <LinearLayout
-                android:id="@+id/cropGalleryLayout"
+                android:id="@+id/cropOptionsHolderLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -141,7 +141,7 @@
             android:scrollbars="none">
 
             <LinearLayout
-                android:id="@+id/effectGallery"
+                android:id="@+id/effectsHolderLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/pic_maker_btn_top_padding"

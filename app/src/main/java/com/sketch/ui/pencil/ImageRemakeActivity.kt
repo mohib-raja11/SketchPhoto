@@ -100,8 +100,8 @@ class ImageRemakeActivity : BaseActivity() {
             picCropImageView.setImageResource(0)
 
             picCropImageView.setVisibility(View.GONE)
-            effectGallery.setVisibility(View.GONE)
-            cropGalleryLayout.setVisibility(View.GONE)
+            effectsHolderLayout.setVisibility(View.GONE)
+            cropOptionsHolderLayout.setVisibility(View.GONE)
 
             tvEditor.setText(R.string.editor)
 
@@ -120,13 +120,17 @@ class ImageRemakeActivity : BaseActivity() {
 
             picCropViewDone.setOnClickListener {
 
-                if (cropGalleryLayout.visibility == View.VISIBLE) {
+                if (cropOptionsHolderLayout.visibility == View.VISIBLE) {
+
                     val bitmap = picCropImageView.croppedImage
+
                     pic_result = bitmap.copy(Bitmap.Config.ARGB_8888, true)
                     pic_forSketch = bitmap.copy(Bitmap.Config.ARGB_8888, true)
                     pic_forDraw = bitmap.copy(Bitmap.Config.ARGB_8888, true)
-                    cropGalleryLayout.visibility = View.GONE
+
+                    cropOptionsHolderLayout.visibility = View.GONE
                     picCropImageView.visibility = View.GONE
+
                     picCropImageView.imageResource = 0
                     ivImageMaker.visibility = View.VISIBLE
                     ivImageMaker.setImageBitmap(pic_result)
@@ -134,9 +138,10 @@ class ImageRemakeActivity : BaseActivity() {
                     sketchAsnyTaskFirst()
                 }
 
-                if (effectGallery.visibility == View.VISIBLE) {
-                    effectGallery.visibility = View.GONE
+                if (effectsHolderLayout.visibility == View.VISIBLE) {
+                    effectsHolderLayout.visibility = View.GONE
                 }
+
                 AnimationviewTop(doneEditLayoutBtn, picCropViewDone, 9)
                 viewGallery.startAnimation(anim_bottom_show)
                 viewGallery.visibility = View.VISIBLE
@@ -147,9 +152,10 @@ class ImageRemakeActivity : BaseActivity() {
                     bitmap.recycle()
                     System.gc()
                 }
+
                 checkcropIV()
 
-                Animationview(viewGallery, effectGallery)
+                Animationview(viewGallery, effectsHolderLayout)
                 AnimationviewTop(doneEditLayoutBtn, picCropViewDone, 1)
             }
 
@@ -303,7 +309,7 @@ class ImageRemakeActivity : BaseActivity() {
             ivImageMaker.visibility = View.GONE
             picCropImageView.setImageBitmap(pic_result)
             picCropImageView.visibility = View.VISIBLE
-            Animationview(viewGallery, cropGalleryLayout)
+            Animationview(viewGallery, cropOptionsHolderLayout)
             AnimationviewTop(picCropViewDone, doneEditLayoutBtn, 2)
 
             val croppStyles = arrayOf(
@@ -332,7 +338,7 @@ class ImageRemakeActivity : BaseActivity() {
                         tvCrop.id = index
                         tvCrop.text = croppStyles[index]
 
-                        cropGalleryLayout.addView(root)
+                        cropOptionsHolderLayout.addView(root)
 
                         tvCrop.setOnClickListener {
                             when (tvCrop.id) {
@@ -440,7 +446,7 @@ class ImageRemakeActivity : BaseActivity() {
                     txtView.text = effectsArray[index].name
 
                     image.setImageBitmap(bitmap)
-                    binding.effectGallery.addView(root)
+                    binding.effectsHolderLayout.addView(root)
                     image.setOnClickListener {
 
                         Log.d("clickedId", "onClick: " + image.id)
@@ -572,11 +578,11 @@ class ImageRemakeActivity : BaseActivity() {
                 picCropImageView.visibility = View.GONE
                 ivImageMaker.visibility = View.VISIBLE
             }
-            if (cropGalleryLayout.visibility == View.VISIBLE) {
-                cropGalleryLayout.visibility = View.GONE
+            if (cropOptionsHolderLayout.visibility == View.VISIBLE) {
+                cropOptionsHolderLayout.visibility = View.GONE
             }
-            if (effectGallery.visibility == View.VISIBLE) {
-                effectGallery.visibility = View.GONE
+            if (effectsHolderLayout.visibility == View.VISIBLE) {
+                effectsHolderLayout.visibility = View.GONE
             }
         }
 
@@ -629,8 +635,8 @@ class ImageRemakeActivity : BaseActivity() {
             val viewID = view.id
 
             if (viewID == 2) {
-                if (effectGallery.visibility == View.VISIBLE) {
-                    effectGallery.visibility = View.GONE
+                if (effectsHolderLayout.visibility == View.VISIBLE) {
+                    effectsHolderLayout.visibility = View.GONE
                 }
             }
             if (viewID == 8) {
@@ -640,7 +646,7 @@ class ImageRemakeActivity : BaseActivity() {
             if (viewID == 1) {
                 checkcropIV()
 
-                Animationview(viewGallery, effectGallery)
+                Animationview(viewGallery, effectsHolderLayout)
                 AnimationviewTop(picCropViewDone, doneEditLayoutBtn, 1)
             }
             if (viewID == 3) {
