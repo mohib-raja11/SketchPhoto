@@ -4,7 +4,6 @@
     <color name="colorPrimary">#7CAEF9</color>
     <color name="colorPrimaryDark">#3988ff</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="transparent">#00000000</color>
     <color name="stroke_gallery">#ff464950</color>
     <color name="headerbar_selected_tab_color">#34b4e3</color>
     <color name="btn_bg_color">#06a2f2</color>
