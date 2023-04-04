@@ -25,9 +25,9 @@ class DashboardActivity : BaseActivity() {
 
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.btnPrivacy -> gotothisLink(AppConstant.privacyLink)
+            /*R.id.btnPrivacy -> gotothisLink(AppConstant.privacyLink)
             R.id.btnRateUs -> gotothisLink("market://details?id=$packageName")
-            R.id.btnMoreApps -> gotothisLink(AppConstant.moreAppsLink)
+            R.id.btnMoreApps -> gotothisLink(AppConstant.moreAppsLink)*/
             R.id.btnStart -> pickImageWithLib()
             R.id.btnGallery -> startActivity(Intent(mContext, MyGalleryActivity::class.java))
 

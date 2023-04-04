@@ -3,124 +3,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/rlToolBar"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@color/colorPrimary"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_main" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:text="@string/app_name"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/ll_bottom"
-        android:layout_below="@id/rlToolBar"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="5dp"
-        android:weightSum="10">
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <RelativeLayout
+
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="6">
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/icon" />
 
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:contentDescription="@string/app_name"
-                android:src="@mipmap/icon" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginHorizontal="30dp">
-
-                <Button
-                    android:id="@+id/btnStart"
-                    style="@style/appButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="10"
-                    android:onClick="onClick"
-                    android:text="@string/start"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="italic" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:id="@+id/btnGallery"
-                    style="@style/appButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="10"
-                    android:onClick="onClick"
-                    android:text="@string/my_work"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="italic" />
-
-            </LinearLayout>
-
-        </RelativeLayout>
+        <Button
+            android:id="@+id/btnStart"
+            style="@style/appButtonStyle"
+            android:text="@string/start"/>
 
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/btnRateUs"
-                style="@style/appImageButtonStyle"
-                android:background="@drawable/ic_rate_us"
-                android:contentDescription="@string/app_name"
-                android:onClick="onClick" />
-
-            <ImageButton
-                android:id="@+id/btnPrivacy"
-                style="@style/appImageButtonStyle"
-                android:background="@drawable/ic_privacy_policy"
-                android:contentDescription="@string/app_name"
-                android:onClick="onClick" />
-
-            <ImageButton
-                android:id="@+id/btnMoreApps"
-                style="@style/appImageButtonStyle"
-                android:background="@drawable/ic_more_apps"
-                android:contentDescription="@string/app_name"
-                android:onClick="onClick" />
+        <Button
+            android:id="@+id/btnGallery"
+            style="@style/appButtonStyle"
+            android:text="@string/my_work"
+            android:layout_marginTop="35dp"/>
 
 
-        </LinearLayout>
 
     </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/ll_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentBottom="true" />
 
 
 </RelativeLayout>
