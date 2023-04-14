@@ -16,8 +16,6 @@ import android.provider.MediaStore
 import android.util.DisplayMetrics
 
 import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.exifinterface.media.ExifInterface
 import com.sketch.R
@@ -44,7 +42,6 @@ class ColorEditingActivity : BaseActivity() {
     private var currentapiVersion = 0
     private var MaxResolution = 0
 
-    private var color_layout: LinearLayout? = null
 
     var savedok = false
     var getimage = false
@@ -68,6 +65,11 @@ class ColorEditingActivity : BaseActivity() {
         currentapiVersion = Build.VERSION.SDK_INT
         loadImageAsycTask()
 
+
+    }
+
+    private fun initViews() {
+
         binding.apply {
             greenButton.setOnClickListener { v: View? ->
                 EffectAsnycFun(0)
@@ -86,33 +88,33 @@ class ColorEditingActivity : BaseActivity() {
             }
             resetButton.setOnClickListener { v: View? ->
                 loadImageAsycTask()
-                color_layout!!.visibility = View.INVISIBLE
+                colorLayout.visibility = View.INVISIBLE
             }
             doneButton.setOnClickListener { v: View? ->
-                color_layout!!.visibility = View.INVISIBLE
+                colorLayout.visibility = View.INVISIBLE
             }
-            effectButton.setOnClickListener { v: View? -> color_layout!!.visibility = View.VISIBLE }
+            effectButton.setOnClickListener { v: View? -> colorLayout.visibility = View.VISIBLE }
+
+            btnDelete.setOnClickListener { v: View? -> deleteCurrentImage() }
+            saveBtn.setOnClickListener { v: View? ->
+                val bitmap = mGPUImage!!.bitmapWithFilterApplied
+                saveImage(bitmap)
+            }
+            shareBtn.setOnClickListener { v: View? ->
+                val bitmap = mGPUImage!!.bitmapWithFilterApplied
+                val uri = getImageUri(mContext, bitmap)
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "image/jpg"
+                intent.putExtra(Intent.EXTRA_STREAM, uri)
+                startActivity(
+                    Intent.createChooser(
+                        intent, resources.getString(R.string.share_img_via)
+                    )
+                )
+            }
         }
 
-    }
 
-    private fun initViews() {
-        color_layout = findViewById(R.id.top_color_button)
-
-
-        findViewById<View>(R.id.btnDelete).setOnClickListener { v: View? -> deleteCurrentImage() }
-        findViewById<View>(R.id.save_btn).setOnClickListener { v: View? ->
-            val bitmap = mGPUImage!!.bitmapWithFilterApplied
-            saveImage(bitmap)
-        }
-        findViewById<View>(R.id.share_btn).setOnClickListener { v: View? ->
-            val bitmap = mGPUImage!!.bitmapWithFilterApplied
-            val uri = getImageUri(mContext, bitmap)
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "image/jpg"
-            intent.putExtra(Intent.EXTRA_STREAM, uri)
-            startActivity(Intent.createChooser(intent, resources.getString(R.string.share_img_via)))
-        }
     }
 
     private val intentExtra: Unit
@@ -134,11 +136,11 @@ class ColorEditingActivity : BaseActivity() {
         }
     }
 
-    private fun getImageOrientation(s: String?): Float {
+    private fun getImageOrientation(fileName: String): Float {
         val i: Int
         val f: Float
         i = try {
-            ExifInterface(s!!).getAttributeInt("Orientation", 1)
+            ExifInterface(fileName).getAttributeInt("Orientation", 1)
         } catch (ioexception: IOException) {
             ioexception.printStackTrace()
             return 0.0f
@@ -157,10 +159,10 @@ class ColorEditingActivity : BaseActivity() {
         return f
     }
 
-    private fun getAspectRatio(s: String?, f: Float) {
+    private fun getAspectRatio(pathName: String, f: Float) {
         val options = BitmapFactory.Options()
         options.inJustDecodeBounds = true
-        BitmapFactory.decodeFile(s, options)
+        BitmapFactory.decodeFile(pathName, options)
         val f1 = options.outWidth.toFloat() / options.outHeight.toFloat()
         val f2: Float
         val f3: Float
@@ -262,7 +264,7 @@ class ColorEditingActivity : BaseActivity() {
                     file.delete()
                 }
                 if (currentapiVersion > 18) {
-                    scanFile(shareuri!!.path, true)
+                    scanFile(shareuri!!.path!!, true)
                 }
                 if (currentapiVersion <= 18) {
                     try {
@@ -280,9 +282,9 @@ class ColorEditingActivity : BaseActivity() {
         super.onDestroy()
     }
 
-    private fun scanFile(s: String?, isDelete: Boolean) {
+    private fun scanFile(file: String, isDelete: Boolean) {
         try {
-            MediaScannerConnection.scanFile(applicationContext, arrayOf(s), null) { s1, uri ->
+            MediaScannerConnection.scanFile(applicationContext, arrayOf(file), null) { s1, uri ->
                 if (isDelete && uri != null) {
                     applicationContext.contentResolver.delete(uri, null, null)
                 }
@@ -293,8 +295,8 @@ class ColorEditingActivity : BaseActivity() {
         }
     }
 
-    protected fun Image_effect(i: Int) {
-        GPUImageFilterTools.Applyeffects(i, this) { gpuimagefilter: GPUImageFilter? ->
+    protected fun Image_effect(pos: Int) {
+        GPUImageFilterTools.Applyeffects(pos, this) { gpuimagefilter: GPUImageFilter? ->
             switchFilterTo(gpuimagefilter)
             mGPUImage!!.requestRender()
         }

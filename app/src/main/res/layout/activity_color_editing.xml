@@ -62,7 +62,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/top_color_button"
+        android:id="@+id/colorLayout"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/top_buttons"
@@ -108,7 +108,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:layout_below="@+id/top_color_button" />
+        android:layout_below="@+id/colorLayout" />
 
     <ImageView
         android:id="@+id/picImageView"
