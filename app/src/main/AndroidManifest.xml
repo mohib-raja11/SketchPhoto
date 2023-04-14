@@ -34,7 +34,7 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode" />
 
         <activity
-            android:name="com.sketch.ui.PhotoShare_Activity"
+            android:name="com.sketch.ui.ColorEditingActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode" />
 
         <activity android:name="com.sketch.ui.MyGalleryActivity" />

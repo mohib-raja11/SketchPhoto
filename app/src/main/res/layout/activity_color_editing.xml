@@ -21,7 +21,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/reset_button"
+            android:id="@+id/resetButton"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_gravity="center"
@@ -35,7 +35,7 @@
             android:visibility="invisible" />
 
         <ImageButton
-            android:id="@+id/effect_button"
+            android:id="@+id/effectButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -71,7 +71,7 @@
         android:visibility="invisible">
 
         <ImageButton
-            android:id="@+id/red_button"
+            android:id="@+id/redButton"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_gravity="center"
@@ -82,7 +82,7 @@
             android:src="#ff0000" />
 
         <ImageButton
-            android:id="@+id/blue_button"
+            android:id="@+id/blueButton"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_gravity="center"
@@ -93,7 +93,7 @@
             android:src="#00008E" />
 
         <ImageButton
-            android:id="@+id/green_button"
+            android:id="@+id/greenButton"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_gravity="center"
@@ -104,12 +104,18 @@
             android:src="#47ec47" />
     </LinearLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@+id/top_color_button" />
+
     <ImageView
-        android:id="@+id/finalimg"
+        android:id="@+id/picImageView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_above="@+id/ll_bottom"
-        android:layout_below="@+id/top_color_button"
+        android:layout_below="@+id/recyclerView"
         android:layout_alignParentStart="true"
         android:adjustViewBounds="true"
         android:contentDescription="@string/app_name" />

@@ -27,7 +27,7 @@ import com.sketch.sketch_util.SketchFilter
 import com.sketch.sketch_util.SketchFilter2
 import com.sketch.sketches.SecondSketchFilter
 import com.sketch.ui.BaseActivity
-import com.sketch.ui.PhotoShare_Activity
+import com.sketch.ui.ColorEditingActivity
 import com.sketch.utils.AppUtils
 import com.sketch.utils.toast
 import java.io.*
@@ -113,7 +113,7 @@ class ImageRemakeActivity : BaseActivity() {
                 val file = File(sendimagepath)
                 if (file.exists()) {
                     val uri = Uri.fromFile(file)
-                    val intent = Intent(this@ImageRemakeActivity, PhotoShare_Activity::class.java)
+                    val intent = Intent(this@ImageRemakeActivity, ColorEditingActivity::class.java)
                     intent.data = uri
                     startActivity(intent)
                 }
