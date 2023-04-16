@@ -23,20 +23,19 @@
             android:layout_marginTop="20dp"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
-            android:src="@mipmap/icon" />
+            android:src="@drawable/app_icon" />
 
         <Button
             android:id="@+id/btnStart"
             style="@style/appButtonStyle"
-            android:text="@string/start"/>
+            android:text="@string/start" />
 
 
         <Button
             android:id="@+id/btnGallery"
             style="@style/appButtonStyle"
-            android:text="@string/my_work"
-            android:layout_marginTop="35dp"/>
-
+            android:layout_marginTop="35dp"
+            android:text="@string/my_work" />
 
 
     </LinearLayout>

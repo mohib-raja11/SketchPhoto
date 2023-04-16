@@ -11,16 +11,50 @@ android {
         applicationId "wishpool.sketch.photo.drawing"
         minSdk 24
         targetSdk 33
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+    signingConfigs {
+
+        debug {
+            keyAlias 'wishpool'
+            keyPassword 'wishpoool'
+            storeFile file('../keys/wishpool.jks')
+            storePassword 'wishpoool'
+        }
+
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            keyAlias 'wishpool'
+            keyPassword 'wishpoool'
+            storeFile file('../keys/wishpool.jks')
+            storePassword 'wishpoool'
         }
     }
+
+    buildTypes {
+
+
+        debug {
+//            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+        release {
+
+            crunchPngs false // or true
+            debuggable true
+            minifyEnabled true
+            shrinkResources true
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -38,7 +72,7 @@ android {
     lint {
         baseline = file("lint-baseline.xml")
     }*/
-    
+
 }
 
 dependencies {
