@@ -4,15 +4,13 @@ plugins {
 }
 
 android {
-    namespace 'com.sketch'
+    namespace 'wishpool.sketch'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.sketch"
+        applicationId "wishpool.sketch.photo.drawing"
         minSdk 24
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
