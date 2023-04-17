@@ -18,8 +18,6 @@ import wishpool.sketch.R
 import wishpool.sketch.databinding.ActivityMygalleryBinding
 import wishpool.sketch.databinding.ItemGalleryBinding
 import wishpool.sketch.ui.MyGalleryActivity.RecyclerAdapter.MyHolderView
-import wishpool.sketch.utils.getAppDrawingFolderPath
-import wishpool.sketch.utils.getAppSketchPhotoFolderPath
 import java.io.File
 
 class MyGalleryActivity : BaseActivity() {
@@ -36,11 +34,11 @@ class MyGalleryActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMygalleryBinding
 
-    companion object{
-        fun start(context: Context, baseFolderPath : String, title : String){
+    companion object {
+        fun start(context: Context, baseFolderPath: String, title: String) {
             val intent = Intent(context, MyGalleryActivity::class.java)
-            intent.putExtra("baseFolderPath",baseFolderPath )
-            intent.putExtra("title",title )
+            intent.putExtra("baseFolderPath", baseFolderPath)
+            intent.putExtra("title", title)
             context.startActivity(intent)
         }
     }
@@ -61,7 +59,7 @@ class MyGalleryActivity : BaseActivity() {
 
         binding.apply {
 
-            tvTitle.setText(title)
+            tvTitle.text = title
 
             recyclerView.layoutManager = mLayoutManager
             recyclerView.itemAnimator = DefaultItemAnimator()
@@ -112,27 +110,27 @@ class MyGalleryActivity : BaseActivity() {
 
         //MR: now loading hand drawing photos
 
-       /* val handDrawing = File(getAppDrawingFolderPath())
-        val handDrawingList = handDrawing.listFiles()
+        /* val handDrawing = File(getAppDrawingFolderPath())
+         val handDrawingList = handDrawing.listFiles()
 
-        if (handDrawingList != null && handDrawingList.isNotEmpty()) {
-            //Mohib: if saved files are then show dialog of all files to choose
+         if (handDrawingList != null && handDrawingList.isNotEmpty()) {
+             //Mohib: if saved files are then show dialog of all files to choose
 
-            for (i in handDrawingList.indices) {
-                if (handDrawingList[i].name.endsWith(extention) || handDrawingList[i].name.endsWith(
-                        extentionPng
-                    )
-                ) {
+             for (i in handDrawingList.indices) {
+                 if (handDrawingList[i].name.endsWith(extention) || handDrawingList[i].name.endsWith(
+                         extentionPng
+                     )
+                 ) {
 
-                    tempList.add(
-                        ImageModel(
-                            handDrawingList[i].name,
-                            handDrawingList[i].absolutePath
-                        )
-                    )
-                }
-            }
-        }*/
+                     tempList.add(
+                         ImageModel(
+                             handDrawingList[i].name,
+                             handDrawingList[i].absolutePath
+                         )
+                     )
+                 }
+             }
+         }*/
 
 
         //MR: to show last as first

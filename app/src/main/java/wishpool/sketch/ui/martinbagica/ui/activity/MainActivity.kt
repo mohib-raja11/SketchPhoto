@@ -2,17 +2,14 @@ package wishpool.sketch.ui.martinbagica.ui.activity
 
 import android.app.AlertDialog
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import wishpool.sketch.R
 import wishpool.sketch.ui.BaseActivity
 import wishpool.sketch.ui.martinbagica.domain.manager.FileManager
-import wishpool.sketch.ui.martinbagica.domain.manager.PermissionManager
 import wishpool.sketch.ui.martinbagica.ui.component.DrawingView
 import wishpool.sketch.ui.martinbagica.ui.dialog.StrokeSelectorDialog
 import wishpool.sketch.utils.getAppSelectedColor
@@ -106,26 +103,6 @@ class MainActivity : BaseActivity() {
         val uri = FileManager.saveBitmap(this, mDrawingView.bitmap)
         toast("Drawing saved successfully.")
 //        startShareDialog(uri!!)
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<String>, grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            PermissionManager.REQUEST_WRITE_STORAGE -> {
-                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    val uri = FileManager.saveBitmap(this, mDrawingView.bitmap)
-                    startShareDialog(uri!!)
-                } else {
-                    Toast.makeText(
-                        this,
-                        "The app was not allowed to write to your storage. Hence, it cannot function properly. Please consider granting it this permission",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            }
-        }
     }
 
     fun onBackgroundFillOptionClick() {

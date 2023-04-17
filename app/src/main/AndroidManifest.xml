@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="1"
-    android:versionName="1.0">
+    android:versionCode="2"
+    android:versionName="1.0.0">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
 
-        android:label="@string/app_name"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
         android:theme="@style/Theme.SketchPhoto">
 
         <activity
@@ -45,7 +45,8 @@
 
         <activity android:name="wishpool.sketch.ui.FullScreenImageActivity" />
 
-        <activity android:name=".ui.martinbagica.ui.activity.MainActivity"/>
+        <activity android:name=".ui.martinbagica.ui.activity.MainActivity" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="wishpool.sketch.fileprovider"
