@@ -33,8 +33,9 @@
     <string name="share_img_via">Share image by…</string>
     <string name="wall_paper_succesfully_set">Successfully Wallpaper Set</string>
     <string name="editor">EDITOR</string>
-    <string name="hand_drawing">Hand Drawing</string>
+    <string name="hand_drawing">Start Hand Drawing</string>
     <string name="my_work">Saved Sketches</string>
+    <string name="saved_drawaing">Saved Drawing</string>
     <string name="start">Start Sketching</string>
     <string name="keep_editing">Keep Editing</string>
     <string name="leave_editor">Leave Editor</string>

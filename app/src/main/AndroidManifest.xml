@@ -45,8 +45,6 @@
 
         <activity android:name="wishpool.sketch.ui.FullScreenImageActivity" />
 
-        <activity android:name=".ui.hand_drawing.HandDrawingActivity"/>
-
         <activity android:name=".ui.martinbagica.ui.activity.MainActivity"/>
         <provider
             android:name="androidx.core.content.FileProvider"

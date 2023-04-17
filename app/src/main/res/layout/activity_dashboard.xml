@@ -45,6 +45,12 @@
             android:text="@string/hand_drawing" />
 
 
+        <Button
+            android:id="@+id/btnGalleryDrawing"
+            style="@style/appButtonStyle"
+            android:layout_marginTop="35dp"
+            android:text="@string/saved_drawaing" />
+
     </LinearLayout>
 
 

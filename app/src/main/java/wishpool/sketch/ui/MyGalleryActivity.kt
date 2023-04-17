@@ -1,6 +1,7 @@
 package wishpool.sketch.ui
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -17,7 +18,8 @@ import wishpool.sketch.R
 import wishpool.sketch.databinding.ActivityMygalleryBinding
 import wishpool.sketch.databinding.ItemGalleryBinding
 import wishpool.sketch.ui.MyGalleryActivity.RecyclerAdapter.MyHolderView
-import wishpool.sketch.utils.AppUtils
+import wishpool.sketch.utils.getAppDrawingFolderPath
+import wishpool.sketch.utils.getAppSketchPhotoFolderPath
 import java.io.File
 
 class MyGalleryActivity : BaseActivity() {
@@ -29,7 +31,19 @@ class MyGalleryActivity : BaseActivity() {
     private var extentionPng = ".png"
     private var tvNoItem: TextView? = null
 
+    var baseFolderPath = ""
+    var title = "My Work"
+
     private lateinit var binding: ActivityMygalleryBinding
+
+    companion object{
+        fun start(context: Context, baseFolderPath : String, title : String){
+            val intent = Intent(context, MyGalleryActivity::class.java)
+            intent.putExtra("baseFolderPath",baseFolderPath )
+            intent.putExtra("title",title )
+            context.startActivity(intent)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,11 +52,17 @@ class MyGalleryActivity : BaseActivity() {
 
         setContentView(binding.root)
 
+        baseFolderPath = intent.getStringExtra("baseFolderPath")!!
+        title = intent.getStringExtra("title")!!
+
         tvNoItem = findViewById(R.id.tvNoItem)
         mainAdapter = RecyclerAdapter()
         val mLayoutManager: RecyclerView.LayoutManager = GridLayoutManager(this, 2)
 
         binding.apply {
+
+            tvTitle.setText(title)
+
             recyclerView.layoutManager = mLayoutManager
             recyclerView.itemAnimator = DefaultItemAnimator()
             recyclerView.adapter = mainAdapter
@@ -68,7 +88,7 @@ class MyGalleryActivity : BaseActivity() {
     //***********************************Mohib: getting list of saved files************************************
     @SuppressLint("NotifyDataSetChanged")
     private fun loadingImages() {
-        val rootPath = AppUtils.getAppFolderPath(mContext)
+        val rootPath = baseFolderPath
         val directory = File(rootPath)
         val listFile = directory.listFiles()
 
@@ -89,6 +109,31 @@ class MyGalleryActivity : BaseActivity() {
         } else {
             Toast.makeText(this, "no file found", Toast.LENGTH_SHORT).show()
         }
+
+        //MR: now loading hand drawing photos
+
+       /* val handDrawing = File(getAppDrawingFolderPath())
+        val handDrawingList = handDrawing.listFiles()
+
+        if (handDrawingList != null && handDrawingList.isNotEmpty()) {
+            //Mohib: if saved files are then show dialog of all files to choose
+
+            for (i in handDrawingList.indices) {
+                if (handDrawingList[i].name.endsWith(extention) || handDrawingList[i].name.endsWith(
+                        extentionPng
+                    )
+                ) {
+
+                    tempList.add(
+                        ImageModel(
+                            handDrawingList[i].name,
+                            handDrawingList[i].absolutePath
+                        )
+                    )
+                }
+            }
+        }*/
+
 
         //MR: to show last as first
         val reversedList = tempList.asReversed()

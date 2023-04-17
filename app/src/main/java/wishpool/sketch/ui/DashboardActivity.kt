@@ -12,6 +12,8 @@ import com.esafirm.imagepicker.model.Image
 import wishpool.sketch.R
 import wishpool.sketch.ui.martinbagica.ui.activity.MainActivity
 import wishpool.sketch.ui.pencil.ImageRemakeActivity
+import wishpool.sketch.utils.getAppDrawingFolderPath
+import wishpool.sketch.utils.getAppSketchPhotoFolderPath
 import wishpool.sketch.utils.openNextActivity
 import wishpool.sketch.utils.toast
 
@@ -31,7 +33,16 @@ class DashboardActivity : BaseActivity() {
             R.id.btnMoreApps -> gotothisLink(AppConstant.moreAppsLink)*/
             R.id.btnHandDrawing -> openNextActivity(MainActivity::class.java)
             R.id.btnStart -> pickImageWithLib()
-            R.id.btnGallery -> openNextActivity(MyGalleryActivity::class.java)
+            R.id.btnGallery -> MyGalleryActivity.start(
+                mContext,
+                getAppSketchPhotoFolderPath(),
+                getString(R.string.my_work)
+            )
+            R.id.btnGalleryDrawing -> MyGalleryActivity.start(
+                mContext,
+                getAppDrawingFolderPath(),
+                getString(R.string.saved_drawaing)
+            )
 
         }
     }

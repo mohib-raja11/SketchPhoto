@@ -6,12 +6,11 @@ import android.graphics.Bitmap.CompressFormat;
 import android.text.format.DateFormat;
 import android.util.Log;
 
-import wishpool.sketch.utils.AppUtils;
+import wishpool.sketch.utils.Ext_funsKt;
+
 
 import java.io.FileOutputStream;
 import java.util.Date;
-
-import wishpool.sketch.utils.AppUtils;
 
 public class SaveToStorageUtil {
 
@@ -27,7 +26,7 @@ public class SaveToStorageUtil {
     }
 
     public static String saveReal(Bitmap bitmap, String imgName, Context context) {
-        String path = AppUtils.getAppFolderPath(context) + imgName;
+        String path = Ext_funsKt.getAppSketchPhotoFolderPath(context) + imgName;
         try {
             FileOutputStream out = new FileOutputStream(path);
             bitmap.compress(CompressFormat.JPEG, 100, out);

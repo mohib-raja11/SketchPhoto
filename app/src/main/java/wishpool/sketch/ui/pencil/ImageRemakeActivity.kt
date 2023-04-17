@@ -18,9 +18,8 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.exifinterface.media.ExifInterface
-import wishpool.sketch.R
-import wishpool.sketch.databinding.*
 import wishpool.sketch.*
+import wishpool.sketch.databinding.*
 import wishpool.sketch.ragnarok.BitmapFilter
 import wishpool.sketch.sketch_util.CSketchFilter
 import wishpool.sketch.sketch_util.SketchColorFilter2
@@ -29,7 +28,7 @@ import wishpool.sketch.sketch_util.SketchFilter2
 import wishpool.sketch.sketches.SecondSketchFilter
 import wishpool.sketch.ui.BaseActivity
 import wishpool.sketch.ui.ColorEditingActivity
-import wishpool.sketch.utils.AppUtils
+import wishpool.sketch.utils.getAppSketchPhotoFolderPath
 import wishpool.sketch.utils.toast
 import java.io.*
 import java.nio.IntBuffer
@@ -726,7 +725,7 @@ class ImageRemakeActivity : BaseActivity() {
     fun saveBitmap(
         quality: Int = 100, bitmap: Bitmap?
     ) {
-        val rootFolder = AppUtils.getAppFolderPath(this)
+        val rootFolder = getAppSketchPhotoFolderPath()
 
         val randomString = UUID.randomUUID().toString()
 

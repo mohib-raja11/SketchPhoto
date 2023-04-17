@@ -2,7 +2,6 @@ package wishpool.sketch.ui
 
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -12,19 +11,17 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.provider.MediaStore
+import android.os.Looper
 import android.util.DisplayMetrics
-
 import android.view.View
 import android.widget.Toast
 import androidx.exifinterface.media.ExifInterface
-import wishpool.sketch.R
-import wishpool.sketch.databinding.ActivityColorEditingBinding
-import wishpool.sketch.constant.SaveToStorageUtil
-
-import wishpool.sketch.ui.pencil.GPUImageFilterTools
 import jp.co.cyberagent.android.gpuimage.GPUImage
 import jp.co.cyberagent.android.gpuimage.GPUImageFilter
+import wishpool.sketch.R
+import wishpool.sketch.databinding.ActivityColorEditingBinding
+import wishpool.sketch.utils.getImageUriFromBitmap
+import wishpool.sketch.utils.toast
 import java.io.*
 
 class ColorEditingActivity : BaseActivity() {
@@ -103,7 +100,7 @@ class ColorEditingActivity : BaseActivity() {
             }
             shareBtn.setOnClickListener { v: View? ->
                 val bitmap = mGPUImage!!.bitmapWithFilterApplied
-                val uri = getImageUri(mContext, bitmap)
+                val uri = getImageUriFromBitmap(bitmap)
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.type = "image/jpg"
                 intent.putExtra(Intent.EXTRA_STREAM, uri)
@@ -230,9 +227,10 @@ class ColorEditingActivity : BaseActivity() {
 
     fun saveImage(bitmap: Bitmap?) {
         wishpool.sketch.constant.SaveToStorageUtil.saveReal(bitmap, mContext)
-        Toast.makeText(mContext, getString(R.string.img_saved_successfully), Toast.LENGTH_SHORT)
-            .show()
-        Handler().postDelayed({
+
+        mContext.toast(getString(R.string.img_saved_successfully))
+
+        Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(mContext, DashboardActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
             startActivity(intent)
@@ -297,7 +295,10 @@ class ColorEditingActivity : BaseActivity() {
     }
 
     protected fun Image_effect(pos: Int) {
-        wishpool.sketch.ui.pencil.GPUImageFilterTools.Applyeffects(pos, this) { gpuimagefilter: GPUImageFilter? ->
+        wishpool.sketch.ui.pencil.GPUImageFilterTools.Applyeffects(
+            pos,
+            this
+        ) { gpuimagefilter: GPUImageFilter? ->
             switchFilterTo(gpuimagefilter)
             mGPUImage!!.requestRender()
         }
@@ -308,14 +309,6 @@ class ColorEditingActivity : BaseActivity() {
             mFilter = gpuimagefilter
             mGPUImage!!.setFilter(mFilter)
         }
-    }
-
-    fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path =
-            MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
-        return Uri.parse(path)
     }
 
     private fun deleteCurrentImage() {
