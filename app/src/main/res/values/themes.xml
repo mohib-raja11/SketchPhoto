@@ -37,6 +37,14 @@
         <item name="android:layout_height">90dp</item>
         <item name="android:layout_margin">7dp</item>
 
+    </style>
 
+    <style name="iconDrawingStyle">
+
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginHorizontal">4dp</item>
+        <item name="android:onClick">onClick</item>
     </style>
 </resources>

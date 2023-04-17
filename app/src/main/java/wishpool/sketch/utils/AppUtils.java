@@ -2,8 +2,6 @@ package wishpool.sketch.utils;
 
 import android.content.Context;
 
-import wishpool.sketch.R;
-
 import java.io.File;
 
 public class AppUtils {

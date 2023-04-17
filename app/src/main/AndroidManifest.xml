@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
 
@@ -13,7 +14,6 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/app_icon"
-        android:supportsRtl="false"
         android:theme="@style/Theme.SketchPhoto">
 
         <activity
@@ -45,6 +45,9 @@
 
         <activity android:name="wishpool.sketch.ui.FullScreenImageActivity" />
 
+        <activity android:name=".ui.hand_drawing.HandDrawingActivity"/>
+
+        <activity android:name=".ui.martinbagica.ui.activity.MainActivity"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="wishpool.sketch.fileprovider"

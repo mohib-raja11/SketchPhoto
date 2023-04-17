@@ -35,7 +35,6 @@ android {
 
     buildTypes {
 
-
         debug {
 //            debuggable true
             minifyEnabled false
@@ -44,8 +43,7 @@ android {
         }
         release {
 
-            crunchPngs false // or true
-            debuggable true
+            debuggable false
             minifyEnabled true
             shrinkResources true
 
@@ -92,5 +90,7 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.8'
 
     implementation 'com.github.esafirm:android-image-picker:3.0.0'
+
+//    implementation 'org.xdty.preference:color-picker:0.0.4'
 
 }

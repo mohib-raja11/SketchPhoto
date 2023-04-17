@@ -7,12 +7,12 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import com.esafirm.imagepicker.features.*
 import com.esafirm.imagepicker.model.Image
 import wishpool.sketch.R
-import wishpool.sketch.constant.AppConstant
+import wishpool.sketch.ui.martinbagica.ui.activity.MainActivity
 import wishpool.sketch.ui.pencil.ImageRemakeActivity
+import wishpool.sketch.utils.openNextActivity
 import wishpool.sketch.utils.toast
 
 class DashboardActivity : BaseActivity() {
@@ -21,6 +21,7 @@ class DashboardActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
+
     }
 
     override fun onClick(view: View) {
@@ -28,8 +29,9 @@ class DashboardActivity : BaseActivity() {
             /*R.id.btnPrivacy -> gotothisLink(AppConstant.privacyLink)
             R.id.btnRateUs -> gotothisLink("market://details?id=$packageName")
             R.id.btnMoreApps -> gotothisLink(AppConstant.moreAppsLink)*/
+            R.id.btnHandDrawing -> openNextActivity(MainActivity::class.java)
             R.id.btnStart -> pickImageWithLib()
-            R.id.btnGallery -> startActivity(Intent(mContext, MyGalleryActivity::class.java))
+            R.id.btnGallery -> openNextActivity(MyGalleryActivity::class.java)
 
         }
     }
