@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -91,6 +93,8 @@ dependencies {
 
     implementation 'com.github.esafirm:android-image-picker:3.0.0'
     implementation 'com.github.QuadFlask:colorpicker:0.0.15'
-//    implementation 'org.xdty.preference:color-picker:0.0.4'
+
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.9'
+    implementation 'com.google.firebase:firebase-analytics-ktx:20.1.2'
 
 }
