@@ -67,11 +67,11 @@ android {
         viewBinding = true
     }
 
-    /* MR: lint file to create to see issues, this commented because it takes time when build
+    // MR: lint file to create to see issues, this commented because it takes time when build
 
     lint {
         baseline = file("lint-baseline.xml")
-    }*/
+    }
 
 }
 
