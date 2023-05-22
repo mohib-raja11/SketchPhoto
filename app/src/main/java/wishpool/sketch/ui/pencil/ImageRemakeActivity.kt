@@ -473,12 +473,12 @@ class ImageRemakeActivity : BaseActivity() {
         ExitDidalog(getString(R.string.pic_exit_txt))
     }
 
-    fun Animationview(hideanimview: View?, showanimview: View?) {
-        hideanimview!!.startAnimation(animhidebtn)
+    private fun Animationview(hideanimview: View, showanimview: View) {
+        hideanimview.startAnimation(animhidebtn)
         animhidebtn.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationEnd(animation: Animation) {
                 hideanimview.visibility = View.GONE
-                showanimview!!.startAnimation(animsgallerybtn)
+                showanimview.startAnimation(animsgallerybtn)
                 showanimview.visibility = View.VISIBLE
             }
 
@@ -489,7 +489,7 @@ class ImageRemakeActivity : BaseActivity() {
         })
     }
 
-    fun AnimationviewTop(showanimview: View?, hideanimview: View?, Btnid: Int) {
+    private fun AnimationviewTop(showanimview: View?, hideanimview: View?, Btnid: Int) {
         hideanimview!!.startAnimation(animshowbtnup)
         binding.tvEditor.startAnimation(animshowbtnup)
         animshowbtnup.setAnimationListener(object : Animation.AnimationListener {
@@ -549,7 +549,7 @@ class ImageRemakeActivity : BaseActivity() {
         })
     }
 
-    fun ExitDidalog(s: String?) {
+    fun ExitDidalog(msg: String) {
         val exit_dialog = Dialog(this)
         exit_dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
         val exitDialogBinding = PicResetDialogBinding.inflate(layoutInflater)
@@ -557,11 +557,8 @@ class ImageRemakeActivity : BaseActivity() {
         exitDialogBinding.apply {
             exit_dialog.setContentView(root)
 
-            picResetTxt.text = s
+            picResetTxt.text = msg
 
-            picResetTxt.text = getString(R.string.keep_edt)
-
-            picDialogYes.text = getString(R.string.leave_edt)
             picDialogYes.setOnClickListener {
                 exit_dialog.dismiss()
                 val intent = Intent()
@@ -681,7 +678,7 @@ class ImageRemakeActivity : BaseActivity() {
 
     }
 
-    public override fun onDestroy() {
+    override fun onDestroy() {
         super.onDestroy()
 
         if (GPUImageFilterTools.overlayBmp != null && !GPUImageFilterTools.overlayBmp.isRecycled) {
@@ -722,7 +719,7 @@ class ImageRemakeActivity : BaseActivity() {
         }
     }
 
-    fun saveBitmap(
+    private fun saveBitmap(
         quality: Int = 100, bitmap: Bitmap?
     ) {
         val rootFolder = getAppSketchPhotoFolderPath()
@@ -764,7 +761,7 @@ class ImageRemakeActivity : BaseActivity() {
         MediaScannerConnection.scanFile(this, `as`, null) { _: String?, _: Uri? -> }
     }
 
-    fun getSketchBitmap(bm1: Bitmap?, type: Int): Bitmap? {
+    private fun getSketchBitmap(bm1: Bitmap?, type: Int): Bitmap? {
 
         var sketchBitmap = bm1
 
@@ -892,19 +889,17 @@ class ImageRemakeActivity : BaseActivity() {
                 sketchBitmap = ConvertToSepia(simpleSketchbitmap2)
             }
             8 -> sketchBitmap = BitmapFilter.changeStyle(
-                bm1!!,
-                BitmapFilter.OIL_STYLE
+                bm1!!, BitmapFilter.OIL_STYLE
             )
             9 -> sketchBitmap = BitmapFilter.changeStyle(
-                bm1!!,
-                BitmapFilter.SKETCH_STYLE
+                bm1!!, BitmapFilter.SKETCH_STYLE
             )
         }
         return sketchBitmap
         // result = Color
     }
 
-    fun ConvertToSepia(sampleBitmap: Bitmap?): Bitmap {
+    private fun ConvertToSepia(sampleBitmap: Bitmap?): Bitmap {
         val sepMat = floatArrayOf(
             0.3930000066757202f,
             0.7689999938011169f,
@@ -943,7 +938,7 @@ class ImageRemakeActivity : BaseActivity() {
         return rBitmap
     }
 
-    fun fastblur(sentBitmap: Bitmap, radius: Int): Bitmap? {
+    private fun fastblur(sentBitmap: Bitmap, radius: Int): Bitmap? {
 
         val bitmap = sentBitmap.copy(sentBitmap.config, true)
         if (radius < 1) {
@@ -1150,7 +1145,7 @@ class ImageRemakeActivity : BaseActivity() {
         return bitmap
     }
 
-    fun invert(original: Bitmap): Bitmap {
+    private fun invert(original: Bitmap): Bitmap {
         // Create mutable Bitmap to invert, argument true makes it mutable
         val inversion = original.copy(Bitmap.Config.ARGB_8888, true)
         val RGB_MASK = 0x00FFFFFF
@@ -1165,7 +1160,7 @@ class ImageRemakeActivity : BaseActivity() {
         return inversion
     }
 
-    fun ColorDodgeBlend(source: Bitmap?, layer: Bitmap): Bitmap {
+    private fun ColorDodgeBlend(source: Bitmap?, layer: Bitmap): Bitmap {
         val base = source!!.copy(Bitmap.Config.ARGB_8888, true)
         val blend = layer.copy(Bitmap.Config.ARGB_8888, false)
         val buffBase = IntBuffer.allocate(base.width * base.height)
@@ -1207,7 +1202,7 @@ class ImageRemakeActivity : BaseActivity() {
         )).toInt()
     }
 
-    fun toGrayscale(bmpOriginal: Bitmap?): Bitmap {
+    private fun toGrayscale(bmpOriginal: Bitmap?): Bitmap {
         val width: Int
         val height: Int
         height = bmpOriginal!!.height
@@ -1224,20 +1219,20 @@ class ImageRemakeActivity : BaseActivity() {
     }
 
 
-    fun showProgress(msg: String) {
+    private fun showProgress(msg: String) {
         binding.apply {
             tvProgressMsg.text = msg
             progressView.visibility = View.VISIBLE
         }
     }
 
-    fun hideProgress() {
+    private fun hideProgress() {
 
         binding.progressView.visibility = View.GONE
 
     }
 
-    fun loadingImageFirstTime() {
+    private fun loadingImageFirstTime() {
 
         showProgress("Loading...")
 
@@ -1308,7 +1303,7 @@ class ImageRemakeActivity : BaseActivity() {
         }
     }
 
-    fun sketchAsnyTask(viewId: Int) {
+    private fun sketchAsnyTask(viewId: Int) {
 
         showProgress("Sketching...")
 
@@ -1388,7 +1383,7 @@ class ImageRemakeActivity : BaseActivity() {
             )
         }
 
-        fun update() {
+        private fun update() {
 
             if (Tilltime < 400) {
 

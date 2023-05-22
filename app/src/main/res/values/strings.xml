@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">Sketch Photo</string>
-    <string name="pic_exit_txt">Wait! You did not save your image. Are you sure to close this editor?</string>
+    <string name="pic_exit_txt">Wait! You did not save your drawing. Are you sure to close this editor?</string>
     <string name="edt_crop">Crop</string>
     <string name="todo">Crop</string>
     <string name="edt_orientation">Orientation</string>

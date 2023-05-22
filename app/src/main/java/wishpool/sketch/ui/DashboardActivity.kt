@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.esafirm.imagepicker.features.*
+import com.esafirm.imagepicker.model.Folder
 import com.esafirm.imagepicker.model.Image
 import wishpool.sketch.R
 import wishpool.sketch.ui.martinbagica.ui.activity.MainActivity
@@ -49,8 +50,15 @@ class DashboardActivity : BaseActivity() {
 
 
     private fun pickImageWithLib() {
+
+        val config = ImagePickerConfig {
+            mode = ImagePickerMode.SINGLE
+            isFolderMode = true
+            theme = R.style.imagePickerTheme
+
+        }
         run {
-            launcher.launch()
+            launcher.launch(config)
 
         }
     }

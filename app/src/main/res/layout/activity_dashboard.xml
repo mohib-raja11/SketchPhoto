@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg_main" />
+        android:src="@drawable/bg_home" />
 
 
     <LinearLayout
@@ -17,39 +17,124 @@
         android:orientation="vertical">
 
 
-        <ImageView
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="180dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_home_top" />
+
+            <TextView
+                style="@style/appTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/redressed_regular"
+                android:text="Well Come ! \n Pencil Sketch"
+                android:textColor="@color/white"
+                android:textSize="22dp" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="20dp"
-            android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
-            android:src="@drawable/app_icon" />
-
-        <Button
-            android:id="@+id/btnStart"
-            style="@style/appButtonStyle"
-            android:text="@string/start" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
 
-        <Button
-            android:id="@+id/btnGallery"
-            style="@style/appButtonStyle"
-            android:layout_marginTop="35dp"
-            android:text="@string/my_work" />
+        </LinearLayout>
 
 
-        <Button
-            android:id="@+id/btnHandDrawing"
-            style="@style/appButtonStyle"
-            android:layout_marginTop="35dp"
-            android:text="@string/hand_drawing" />
+        <androidx.cardview.widget.CardView style="@style/homeCardStyle">
+
+            <LinearLayout
+                android:id="@+id/btnStart"
+                style="@style/homeTileViewStyle"
+                android:background="@color/white">
+
+                <ImageView
+                    style="@style/homeTileImageStyle"
+                    android:src="@drawable/ic_start_sketch" />
+
+                <TextView
+                    style="@style/homeTileTextStyle"
+                    android:text="@string/start" />
 
 
-        <Button
-            android:id="@+id/btnGalleryDrawing"
-            style="@style/appButtonStyle"
-            android:layout_marginTop="35dp"
-            android:text="@string/saved_drawaing" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView style="@style/homeCardStyle">
+
+            <LinearLayout
+                android:id="@+id/btnHandDrawing"
+                style="@style/homeTileViewStyle"
+                android:background="@color/white">
+
+                <ImageView
+                    style="@style/homeTileImageStyle"
+                    android:src="@drawable/ic_hand_drawing" />
+
+                <TextView
+                    style="@style/homeTileTextStyle"
+                    android:text="@string/hand_drawing"
+                    android:textSize="24dp" />
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView style="@style/homeCardStyle">
+
+            <LinearLayout
+                android:id="@+id/btnGallery"
+                style="@style/homeTileViewStyle"
+                android:background="@color/white">
+
+                <ImageView
+                    style="@style/homeTileImageStyle"
+                    android:src="@drawable/ic_saved_sketches" />
+
+                <TextView
+                    style="@style/homeTileTextStyle"
+                    android:text="@string/my_work" />
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            style="@style/homeCardStyle"
+            android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                android:id="@+id/btnGalleryDrawing"
+                style="@style/homeTileViewStyle"
+                android:background="@color/white">
+
+                <ImageView
+                    style="@style/homeTileImageStyle"
+                    android:src="@drawable/ic_saved_drawing" />
+
+                <TextView
+                    style="@style/homeTileTextStyle"
+                    android:text="@string/saved_drawaing" />
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
 
     </LinearLayout>
 
