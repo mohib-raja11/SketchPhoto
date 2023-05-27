@@ -8,21 +8,25 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.esafirm.imagepicker.features.*
-import com.esafirm.imagepicker.model.Folder
 import com.esafirm.imagepicker.model.Image
+import com.google.android.gms.ads.MobileAds
 import wishpool.sketch.R
 import wishpool.sketch.ui.martinbagica.ui.activity.MainActivity
 import wishpool.sketch.ui.pencil.ImageRemakeActivity
-import wishpool.sketch.utils.getAppDrawingFolderPath
-import wishpool.sketch.utils.getAppSketchPhotoFolderPath
-import wishpool.sketch.utils.openNextActivity
-import wishpool.sketch.utils.toast
+import wishpool.sketch.utils.*
 
 class DashboardActivity : BaseActivity() {
+
+    private lateinit var adsUtil: AdsUtil
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
+
+        MobileAds.initialize(this) {}
+
+        adsUtil = AdsUtil()
+        adsUtil.loadAd(application)
 
 
     }
@@ -33,7 +37,15 @@ class DashboardActivity : BaseActivity() {
             R.id.btnRateUs -> gotothisLink("market://details?id=$packageName")
             R.id.btnMoreApps -> gotothisLink(AppConstant.moreAppsLink)*/
             R.id.btnHandDrawing -> openNextActivity(MainActivity::class.java)
-            R.id.btnStart -> pickImageWithLib()
+            R.id.btnStart -> {
+
+                adsUtil.showAd(this) {
+                    pickImageWithLib()
+                }
+
+            }
+
+
             R.id.btnGallery -> MyGalleryActivity.start(
                 mContext,
                 getAppSketchPhotoFolderPath(),

@@ -25,6 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -46,6 +47,11 @@
         <activity android:name="wishpool.sketch.ui.FullScreenImageActivity" />
 
         <activity android:name=".ui.martinbagica.ui.activity.MainActivity" />
+
+        <!-- MR: test id ca-app-pub-3940256099942544~3347511713-->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admobAppAdId" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

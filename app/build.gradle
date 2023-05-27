@@ -38,10 +38,16 @@ android {
     buildTypes {
 
         debug {
-//            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
+
+            resValue "string", "admobAppAdId", "ca-app-pub-3940256099942544~3347511713"
+            resValue "string", "admobOpenAdId", "c51"
+            resValue "string", "admobBannerAdId", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "admobInterstitialAdId", "ca-app-pub-3940256099942544/1033173712"
+            resValue "string", "admobNativeAdId", "ca-app-pub-3940256099942544/2247696110"
+
         }
         release {
 
@@ -51,6 +57,12 @@ android {
 
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+
+            resValue "string", "admobAppAdId", "ca-app-pub-2680165054071022~3449998102"
+            resValue "string", "admobOpenAdId", "ca-app-pub-2680165054071022/1753773051"
+            resValue "string", "admobBannerAdId", "ca-app-pub-2680165054071022/6389649844"
+            resValue "string", "admobInterstitialAdId", "ca-app-pub-2680165054071022/9283406492"
+            resValue "string", "admobNativeAdId", "ca-app-pub-2680165054071022/1001591798"
 
         }
     }
@@ -96,5 +108,8 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.9'
     implementation 'com.google.firebase:firebase-analytics-ktx:20.1.2'
+
+    implementation 'com.google.android.gms:play-services-ads:22.1.0'
+
 
 }
