@@ -22,12 +22,12 @@ class AdsUtil {
 
         val adRequest = AdRequest.Builder().build()
 
-        InterstitialAd.load(
-            app,
+        InterstitialAd.load(app,
             "ca-app-pub-3940256099942544/1033173712",
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
+                    Log.d(TAG, "onAdFailedToLoad: ")
                     Log.d(TAG, adError.toString())
                     mInterstitialAd = null
                 }
@@ -68,19 +68,18 @@ class AdsUtil {
                 Log.d(TAG, "Ad showed fullscreen content.")
             }
         }
-
     }
-
 
     fun showAd(activity: Activity, callback1: (Boolean) -> Unit) {
 
+        Log.d(TAG, "showAd: come in")
         callBack = callback1
-        if (mInterstitialAd != null) {
+        if (mInterstitialAd != null && mInterstitialAd.is) {
             mInterstitialAd?.show(activity)
         } else {
-            Log.d("TAG", "The interstitial ad wasn't ready yet.")
+            Log.d(TAG, "The interstitial ad wasn't ready yet.")
 
-            callBack?.let { it(false) }
+            callback1(false)
         }
 
     }

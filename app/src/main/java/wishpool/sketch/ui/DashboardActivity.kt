@@ -1,6 +1,7 @@
 package wishpool.sketch.ui
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.ActivityManager
 import android.content.*
 import android.net.Uri
@@ -11,6 +12,7 @@ import com.esafirm.imagepicker.features.*
 import com.esafirm.imagepicker.model.Image
 import com.google.android.gms.ads.MobileAds
 import wishpool.sketch.R
+import wishpool.sketch.databinding.ActivityDashboardBinding
 import wishpool.sketch.ui.martinbagica.ui.activity.MainActivity
 import wishpool.sketch.ui.pencil.ImageRemakeActivity
 import wishpool.sketch.utils.*
@@ -18,15 +20,29 @@ import wishpool.sketch.utils.*
 class DashboardActivity : BaseActivity() {
 
     private lateinit var adsUtil: AdsUtil
+    lateinit var binding: ActivityDashboardBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
+
+        binding = ActivityDashboardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         MobileAds.initialize(this) {}
 
         adsUtil = AdsUtil()
         adsUtil.loadAd(application)
+
+        binding.apply {
+
+            btnStart.setOnClickListener {
+
+                Log.d("TAG", "onCreate: btnStart ")
+                adsUtil.showAd(mContext as Activity) {
+                    pickImageWithLib()
+                }
+            }
+        }
 
 
     }
@@ -37,14 +53,6 @@ class DashboardActivity : BaseActivity() {
             R.id.btnRateUs -> gotothisLink("market://details?id=$packageName")
             R.id.btnMoreApps -> gotothisLink(AppConstant.moreAppsLink)*/
             R.id.btnHandDrawing -> openNextActivity(MainActivity::class.java)
-            R.id.btnStart -> {
-
-                adsUtil.showAd(this) {
-                    pickImageWithLib()
-                }
-
-            }
-
 
             R.id.btnGallery -> MyGalleryActivity.start(
                 mContext,
