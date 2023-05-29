@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_alignParentTop="true"
-        android:background="@color/colorPrimary">
+        android:background="@drawable/bg_tollbar">
 
         <ImageView
             android:id="@+id/ivBack"

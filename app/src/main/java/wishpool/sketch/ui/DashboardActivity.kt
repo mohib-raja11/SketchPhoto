@@ -1,7 +1,6 @@
 package wishpool.sketch.ui
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.ActivityManager
 import android.content.*
 import android.net.Uri
@@ -10,7 +9,7 @@ import android.util.Log
 import android.view.View
 import com.esafirm.imagepicker.features.*
 import com.esafirm.imagepicker.model.Image
-import com.google.android.gms.ads.MobileAds
+import wishpool.sketch.GlobalActivity
 import wishpool.sketch.R
 import wishpool.sketch.databinding.ActivityDashboardBinding
 import wishpool.sketch.ui.martinbagica.ui.activity.MainActivity
@@ -19,7 +18,6 @@ import wishpool.sketch.utils.*
 
 class DashboardActivity : BaseActivity() {
 
-    private lateinit var adsUtil: AdsUtil
     lateinit var binding: ActivityDashboardBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,19 +26,34 @@ class DashboardActivity : BaseActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        MobileAds.initialize(this) {}
 
-        adsUtil = AdsUtil()
-        adsUtil.loadAd(application)
 
         binding.apply {
 
-            btnStart.setOnClickListener {
+            loadAdmobNativeAd_100sdp(adParentView, adFrameContainer, shimmerViewContainer)
 
-                Log.d("TAG", "onCreate: btnStart ")
-                adsUtil.showAd(mContext as Activity) {
+            btnStart.setOnClickListener {
+                GlobalActivity.showAdmobInterstitialAd(mcon = this@DashboardActivity) {
                     pickImageWithLib()
                 }
+            }
+
+            btnHandDrawing.setOnClickListener { openNextActivity(MainActivity::class.java) }
+
+            btnGallery.setOnClickListener {
+                MyGalleryActivity.start(
+                    mContext,
+                    getAppSketchPhotoFolderPath(),
+                    getString(R.string.my_work)
+                )
+            }
+
+            btnGalleryDrawing.setOnClickListener {
+                MyGalleryActivity.start(
+                    mContext,
+                    getAppDrawingFolderPath(),
+                    getString(R.string.saved_drawaing)
+                )
             }
         }
 
@@ -51,7 +64,7 @@ class DashboardActivity : BaseActivity() {
         when (view.id) {
             /*R.id.btnPrivacy -> gotothisLink(AppConstant.privacyLink)
             R.id.btnRateUs -> gotothisLink("market://details?id=$packageName")
-            R.id.btnMoreApps -> gotothisLink(AppConstant.moreAppsLink)*/
+            R.id.btnMoreApps -> gotothisLink(AppConstant.moreAppsLink)
             R.id.btnHandDrawing -> openNextActivity(MainActivity::class.java)
 
             R.id.btnGallery -> MyGalleryActivity.start(
@@ -64,7 +77,7 @@ class DashboardActivity : BaseActivity() {
                 getAppDrawingFolderPath(),
                 getString(R.string.saved_drawaing)
             )
-
+                */
         }
     }
 

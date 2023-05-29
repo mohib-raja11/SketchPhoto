@@ -1,0 +1,88 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:padding="@dimen/_5sdp">
+
+    <View
+        android:id="@+id/ad_media"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@color/shimmerColor_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/ad_app_icon"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginStart="@dimen/_3sdp"
+        android:adjustViewBounds="true"
+        android:background="@color/shimmerColor_bg"
+        android:contentDescription="@string/app_name"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/ad_media"
+        app:layout_constraintTop_toTopOf="parent"
+    />
+
+    <TextView
+        android:id="@+id/txtAd"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_3sdp"
+        android:background="@color/shimmerColor_bg"
+        android:backgroundTint="@color/shimmerColor_bg"
+        android:gravity="center"
+        android:padding="@dimen/_3sdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_8sdp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ad_media"
+        app:layout_constraintTop_toBottomOf="@id/ad_app_icon" />
+
+    <TextView
+        android:id="@+id/ad_headline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:background="@color/shimmerColor_bg"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold"
+        android:layout_marginStart="@dimen/_4sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ad_app_icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ad_advertiser"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ad_headline"
+        app:layout_constraintStart_toStartOf="@+id/ad_headline"
+        app:layout_constraintTop_toBottomOf="@+id/ad_headline" />
+
+
+    <View
+        android:id="@+id/ad_call_to_action"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_28sdp"
+        android:background="@color/shimmerColor_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/_4sdp"
+       app:layout_constraintStart_toStartOf="@+id/ad_headline" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

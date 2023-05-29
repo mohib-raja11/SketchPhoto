@@ -17,7 +17,7 @@
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/btn_background"
+        android:background="@drawable/bg_tollbar"
         android:orientation="horizontal">
 
         <ImageButton
@@ -125,7 +125,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/btn_background"
+        android:background="@drawable/bg_tollbar"
         android:paddingBottom="8dp">
 
         <ImageButton
@@ -136,7 +136,6 @@
             android:layout_weight="1"
             android:background="@drawable/ic_rectangle_round"
             android:contentDescription="@string/app_name"
-            android:padding="4dp"
             android:scaleType="centerInside"
             android:src="@drawable/ic_delete" />
 
@@ -148,7 +147,6 @@
             android:layout_weight="1"
             android:background="@drawable/ic_rectangle_round"
             android:contentDescription="@string/app_name"
-            android:padding="4dp"
             android:scaleType="centerInside"
             android:src="@drawable/ic_save" />
 

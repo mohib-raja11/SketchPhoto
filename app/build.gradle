@@ -103,6 +103,9 @@ dependencies {
     //noinspection GradleDependency
     implementation 'com.squareup.picasso:picasso:2.8'
 
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
+
     implementation 'com.github.esafirm:android-image-picker:3.0.0'
     implementation 'com.github.QuadFlask:colorpicker:0.0.15'
 

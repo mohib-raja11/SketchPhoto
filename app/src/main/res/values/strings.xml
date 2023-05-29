@@ -44,5 +44,6 @@
 
 
     <string name="color_picker_default_title">Color Picker</string>
+    <string name="ad">Ad</string>
 
 </resources>

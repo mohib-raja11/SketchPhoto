@@ -9,13 +9,13 @@
         android:layout_height="match_parent"
         android:contentDescription="@string/app_name"
         android:scaleType="fitXY"
-        android:src="@drawable/bg_main" />
+        android:src="@drawable/bg_home" />
 
     <RelativeLayout
         android:id="@+id/text_layout"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/pic_maker_top_bg_height"
-        android:background="@drawable/btn_background"
+        android:background="@drawable/bg_tollbar"
         android:gravity="center_horizontal"
         android:paddingHorizontal="15dp">
 
