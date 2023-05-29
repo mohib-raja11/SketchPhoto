@@ -109,10 +109,9 @@ dependencies {
     implementation 'com.github.esafirm:android-image-picker:3.0.0'
     implementation 'com.github.QuadFlask:colorpicker:0.0.15'
 
-    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.9'
-    implementation 'com.google.firebase:firebase-analytics-ktx:20.1.2'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.3.7'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.3.0'
 
     implementation 'com.google.android.gms:play-services-ads:22.1.0'
-
 
 }

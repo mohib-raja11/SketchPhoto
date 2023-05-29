@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <ImageView
         android:layout_width="match_parent"
@@ -14,9 +14,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/adParentView"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:layout_above="@+id/adParentView">
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -29,17 +29,37 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/bg_home_top" />
 
-            <TextView
-                style="@style/appTextStyle"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_52sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_pencil" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_2sdp"/>
+
+                <TextView
+                    style="@style/appTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/redressed_regular"
+                    android:text="Well Come ! \n Pencil Sketch"
+                    android:textColor="@color/white"
+                    android:textSize="25dp" />
+
+            </LinearLayout>
+
+
+            <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:fontFamily="@font/redressed_regular"
-                android:text="Well Come ! \n Pencil Sketch"
-                android:textColor="@color/white"
-                android:textSize="22dp" />
-
-
+                android:layout_height="wrap_content"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -138,11 +158,11 @@
         android:id="@+id/adParentView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_70sdp"
+        android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="@dimen/_4sdp"
         android:layout_marginTop="@dimen/_4sdp"
         android:layout_marginBottom="@dimen/_10sdp"
         android:elevation="@dimen/_4sdp"
-        android:layout_alignParentBottom="true"
         android:padding="1dp"
         app:cardBackgroundColor="@color/bg_grey_whitish"
         app:cardCornerRadius="@dimen/_10sdp"
@@ -178,7 +198,6 @@
 
         </com.facebook.shimmer.ShimmerFrameLayout>
     </androidx.cardview.widget.CardView>
-
 
 
 </RelativeLayout>
