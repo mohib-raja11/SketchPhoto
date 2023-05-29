@@ -61,48 +61,47 @@
             android:visibility="invisible" />
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/colorLayout"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/_44sdp"
         android:layout_below="@+id/top_buttons"
         android:background="#d7dbdd"
-        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_15sdp"
         android:visibility="invisible">
 
         <ImageButton
             android:id="@+id/redButton"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_gravity="center"
-            android:layout_weight="1.0"
-            android:background="@android:color/transparent"
+            android:background="@drawable/bg_rounded_red"
             android:contentDescription="@string/app_name"
-            android:padding="8dp"
-            android:src="#ff0000" />
+            android:padding="8dp" />
 
         <ImageButton
             android:id="@+id/blueButton"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:layout_weight="1.00"
-            android:background="@android:color/transparent"
+            android:background="@drawable/bg_rounded_blue"
             android:contentDescription="@string/app_name"
-            android:padding="8dp"
-            android:src="#00008E" />
+            android:padding="8dp" />
 
         <ImageButton
             android:id="@+id/greenButton"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_alignParentEnd="true"
             android:layout_gravity="center"
-            android:layout_weight="1.0"
-            android:background="@android:color/transparent"
+            android:background="@drawable/bg_rounded_green"
             android:contentDescription="@string/app_name"
-            android:padding="8dp"
-            android:src="#47ec47" />
-    </LinearLayout>
+            android:padding="8dp" />
+
+
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
