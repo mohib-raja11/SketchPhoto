@@ -5,7 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
-import android.view.View
 import androidx.core.content.ContextCompat
 import wishpool.sketch.R
 import wishpool.sketch.databinding.ActivityDrawingBinding
@@ -60,17 +59,16 @@ class DrawingActivity : BaseActivity() {
     private fun setClicks() {
         binding.apply {
 
-
-            mainFillIv.setOnClickListener { view: View? -> onBackgroundFillOptionClick() }
-            mainColorIv.setOnClickListener { view: View? -> onColorOptionClick() }
-            mainStrokeIv.setOnClickListener { view: View? -> onStrokeOptionClick() }
-            mainUndoIv.setOnClickListener { view: View? -> onUndoOptionClick() }
-            mainRedoIv.setOnClickListener { view: View? -> onRedoOptionClick() }
-            ivDownload.setOnClickListener { view: View? -> requestPermissionsAndSaveBitmap() }
-            ivClear.setOnClickListener { view: View? -> clearDrawingWork() }
+            mainFillIv.setOnClickListener { onBackgroundFillOptionClick() }
+            mainColorIv.setOnClickListener { onColorOptionClick() }
+            mainStrokeIv.setOnClickListener { onStrokeOptionClick() }
+            mainUndoIv.setOnClickListener { onUndoOptionClick() }
+            mainRedoIv.setOnClickListener { onRedoOptionClick() }
+            ivDownload.setOnClickListener { requestPermissionsAndSaveBitmap() }
+            ivClear.setOnClickListener { clearDrawingWork() }
+            ivClose.setOnClickListener { finish() }
 
         }
-
     }
 
     private fun startFillBackgroundDialog() {
