@@ -11,7 +11,6 @@ import wishpool.sketch.R
 import wishpool.sketch.databinding.ActivityDrawingBinding
 import wishpool.sketch.ui.BaseActivity
 import wishpool.sketch.ui.martinbagica.domain.manager.FileManager
-import wishpool.sketch.ui.martinbagica.ui.component.DrawingView
 import wishpool.sketch.ui.martinbagica.ui.dialog.StrokeSelectorDialog
 import wishpool.sketch.utils.getAppSelectedColor
 import wishpool.sketch.utils.toast
@@ -20,9 +19,8 @@ class DrawingActivity : BaseActivity() {
     private var mCurrentBackgroundColor = 0
     private var mCurrentColor = 0
     private var mCurrentStroke = 0
-    private lateinit var mDrawingView: DrawingView
 
-    lateinit var binding : ActivityDrawingBinding
+    lateinit var binding: ActivityDrawingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,30 +39,37 @@ class DrawingActivity : BaseActivity() {
     fun clearDrawingWork() {
         AlertDialog.Builder(this).setTitle("Clear canvas")
             .setMessage("Are you sure you want to clear the canvas?")
-            .setPositiveButton("Yes") { dialog, which -> mDrawingView.clearCanvas() }
+            .setPositiveButton("Yes") { dialog, which -> binding.mainDrawingView.clearCanvas() }
             .setNegativeButton("Cancel", null).show()
     }
 
     private fun initDrawingView() {
-        mDrawingView = findViewById(R.id.main_drawing_view)
         mCurrentBackgroundColor = ContextCompat.getColor(this, android.R.color.white)
         mCurrentColor = ContextCompat.getColor(this, android.R.color.black)
         mCurrentStroke = 10
-        mDrawingView.setBackgroundColor(mCurrentBackgroundColor)
-        mDrawingView.setPaintColor(mCurrentColor)
-        mDrawingView.setPaintStrokeWidth(mCurrentStroke)
+
+        binding.apply {
+
+            mainDrawingView.setBackgroundColor(mCurrentBackgroundColor)
+            mainDrawingView.setPaintColor(mCurrentColor)
+            mainDrawingView.setPaintStrokeWidth(mCurrentStroke)
+        }
         setClicks()
     }
 
     private fun setClicks() {
-        findViewById<View>(R.id.main_fill_iv).setOnClickListener { view: View? -> onBackgroundFillOptionClick() }
-        findViewById<View>(R.id.main_color_iv).setOnClickListener { view: View? -> onColorOptionClick() }
-        findViewById<View>(R.id.main_stroke_iv).setOnClickListener { view: View? -> onStrokeOptionClick() }
-        findViewById<View>(R.id.main_undo_iv).setOnClickListener { view: View? -> onUndoOptionClick() }
-        findViewById<View>(R.id.main_redo_iv).setOnClickListener { view: View? -> onRedoOptionClick() }
-        findViewById<View>(R.id.ivDownload).setOnClickListener { view: View? -> requestPermissionsAndSaveBitmap() }
-        findViewById<View>(R.id.ivClear).setOnClickListener { view: View? -> clearDrawingWork() }
+        binding.apply {
 
+
+            mainFillIv.setOnClickListener { view: View? -> onBackgroundFillOptionClick() }
+            mainColorIv.setOnClickListener { view: View? -> onColorOptionClick() }
+            mainStrokeIv.setOnClickListener { view: View? -> onStrokeOptionClick() }
+            mainUndoIv.setOnClickListener { view: View? -> onUndoOptionClick() }
+            mainRedoIv.setOnClickListener { view: View? -> onRedoOptionClick() }
+            ivDownload.setOnClickListener { view: View? -> requestPermissionsAndSaveBitmap() }
+            ivClear.setOnClickListener { view: View? -> clearDrawingWork() }
+
+        }
 
     }
 
@@ -72,7 +77,7 @@ class DrawingActivity : BaseActivity() {
 
         getAppSelectedColor {
             mCurrentBackgroundColor = it
-            mDrawingView.setBackgroundColor(mCurrentBackgroundColor)
+            binding.mainDrawingView.setBackgroundColor(mCurrentBackgroundColor)
         }
     }
 
@@ -81,7 +86,7 @@ class DrawingActivity : BaseActivity() {
 
         getAppSelectedColor {
             mCurrentColor = it
-            mDrawingView.setPaintColor(mCurrentColor)
+            binding.mainDrawingView.setPaintColor(mCurrentColor)
         }
     }
 
@@ -89,7 +94,7 @@ class DrawingActivity : BaseActivity() {
         val dialog = StrokeSelectorDialog.newInstance(mCurrentStroke, MAX_STROKE_WIDTH)
         dialog.setOnStrokeSelectedListener { stroke: Int ->
             mCurrentStroke = stroke
-            mDrawingView.setPaintStrokeWidth(mCurrentStroke)
+            binding.mainDrawingView.setPaintStrokeWidth(mCurrentStroke)
         }
         dialog.show(supportFragmentManager, "StrokeSelectorDialog")
     }
@@ -106,7 +111,7 @@ class DrawingActivity : BaseActivity() {
     }
 
     private fun requestPermissionsAndSaveBitmap() {
-        val uri = FileManager.saveBitmap(this, mDrawingView.bitmap)
+        val uri = FileManager.saveBitmap(this, binding.mainDrawingView.bitmap)
         toast("Drawing saved successfully.")
 //        startShareDialog(uri!!)
     }
@@ -124,11 +129,11 @@ class DrawingActivity : BaseActivity() {
     }
 
     fun onUndoOptionClick() {
-        mDrawingView.undo()
+        binding.mainDrawingView.undo()
     }
 
     fun onRedoOptionClick() {
-        mDrawingView.redo()
+        binding.mainDrawingView.redo()
     }
 
     companion object {
