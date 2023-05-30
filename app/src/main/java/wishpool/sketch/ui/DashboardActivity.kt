@@ -12,7 +12,7 @@ import com.esafirm.imagepicker.model.Image
 import wishpool.sketch.GlobalActivity
 import wishpool.sketch.R
 import wishpool.sketch.databinding.ActivityDashboardBinding
-import wishpool.sketch.ui.martinbagica.ui.activity.MainActivity
+import wishpool.sketch.ui.martinbagica.ui.activity.DrawingActivity
 import wishpool.sketch.ui.pencil.ImageRemakeActivity
 import wishpool.sketch.utils.*
 
@@ -38,7 +38,7 @@ class DashboardActivity : BaseActivity() {
                 }
             }
 
-            btnHandDrawing.setOnClickListener { openNextActivity(MainActivity::class.java) }
+            btnHandDrawing.setOnClickListener { openNextActivity(DrawingActivity::class.java) }
 
             btnGallery.setOnClickListener {
                 MyGalleryActivity.start(

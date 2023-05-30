@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.View
 import androidx.core.content.ContextCompat
 import wishpool.sketch.R
+import wishpool.sketch.databinding.ActivityDrawingBinding
 import wishpool.sketch.ui.BaseActivity
 import wishpool.sketch.ui.martinbagica.domain.manager.FileManager
 import wishpool.sketch.ui.martinbagica.ui.component.DrawingView
@@ -15,14 +16,19 @@ import wishpool.sketch.ui.martinbagica.ui.dialog.StrokeSelectorDialog
 import wishpool.sketch.utils.getAppSelectedColor
 import wishpool.sketch.utils.toast
 
-class MainActivity : BaseActivity() {
+class DrawingActivity : BaseActivity() {
     private var mCurrentBackgroundColor = 0
     private var mCurrentColor = 0
     private var mCurrentStroke = 0
     private lateinit var mDrawingView: DrawingView
+
+    lateinit var binding : ActivityDrawingBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+
+        binding = ActivityDrawingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initDrawingView()
     }

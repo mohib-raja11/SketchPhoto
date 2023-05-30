@@ -19,6 +19,6 @@ class SplashActivity : BaseActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
             openNextActivity(DashboardActivity::class.java)
-        }, 3000)
+        }, 300)
     }
 }
