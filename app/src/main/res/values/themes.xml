@@ -1,6 +1,7 @@
 <resources>
-    <!-- Base application theme. -->
-    <style name="Theme.SketchPhoto" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+    <style name="appTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -14,6 +15,23 @@
         <item name="android:colorAccent">@color/colorAccent</item>
         <!-- Customize your theme here. -->
 
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+
+
+    </style>
+    <!-- Base application theme. -->
+
+    <style name="Theme.SketchPhoto" parent="appTheme">
+
+
+    </style>
+
+
+    <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
 
@@ -106,5 +124,11 @@
         <item name="android:layout_marginStart">4dp</item>
         <item name="android:layout_marginEnd">4dp</item>
         <item name="android:onClick">onClick</item>
+    </style>
+
+    <style name="colorIconStyle">
+        <item name="android:layout_width">@dimen/_25sdp</item>
+        <item name="android:layout_height">@dimen/_25sdp</item>
+        <item name="android:padding">@dimen/_5sdp</item>
     </style>
 </resources>
