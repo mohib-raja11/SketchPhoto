@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/second_RelativeLayout1"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <ImageView
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:id="@+id/top_buttons"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -23,7 +23,7 @@
         <ImageButton
             android:id="@+id/resetButton"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:layout_weight="1.0"
@@ -49,7 +49,7 @@
         <ImageButton
             android:id="@+id/done_button"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:layout_weight="1.0"
@@ -63,13 +63,13 @@
 
     <RelativeLayout
         android:id="@+id/colorLayout"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="?actionBarSize"
         android:layout_below="@+id/top_buttons"
         android:background="#d7dbdd"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:paddingHorizontal="@dimen/_15sdp"
-        android:visibility="visible">
+        android:visibility="invisible">
 
         <ImageButton
             android:id="@+id/redButton"
@@ -80,7 +80,7 @@
         <ImageButton
             android:id="@+id/blueButton"
             style="@style/colorIconStyle"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/bg_rounded_blue"
             android:contentDescription="@string/app_name" />
 
@@ -94,18 +94,12 @@
 
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_below="@+id/colorLayout" />
-
     <ImageView
         android:id="@+id/picImageView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_above="@+id/ll_bottom"
-        android:layout_below="@+id/recyclerView"
+        android:layout_below="@+id/colorLayout"
         android:layout_alignParentStart="true"
         android:adjustViewBounds="true"
         android:contentDescription="@string/app_name" />

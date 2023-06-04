@@ -35,7 +35,6 @@ import java.nio.IntBuffer
 import java.util.*
 
 class ImageRemakeActivity : BaseActivity() {
-
     companion object {
         var pic_result: Bitmap? = null
         var pic_forSketch: Bitmap? = null
@@ -80,7 +79,6 @@ class ImageRemakeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityImageRemakeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         val displaymetrics = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(displaymetrics)

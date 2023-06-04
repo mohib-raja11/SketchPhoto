@@ -14,63 +14,65 @@
     <RelativeLayout
         android:id="@+id/text_layout"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/pic_maker_top_bg_height"
+        android:layout_height="?actionBarSize"
         android:background="@drawable/bg_tollbar"
-        android:gravity="center_horizontal"
-        android:paddingHorizontal="15dp">
+        android:paddingHorizontal="@dimen/_12sdp">
 
         <TextView
             android:id="@+id/tvEditor"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_alignParentStart="true"
-            android:layout_gravity="center"
-            android:layout_toStartOf="@+id/doneEditLayoutBtn"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
             android:text="@string/editor"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/pic_maker_txt_size" />
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"/>
 
         <LinearLayout
             android:id="@+id/doneEditLayoutBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/selector"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:background="@drawable/bg_white"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/_6sdp"
+            android:paddingHorizontal="@dimen/_22sdp"
+            android:visibility="visible"
+            android:layout_centerVertical="true">
 
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center"
-                android:contentDescription="@string/app_name"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingHorizontal="10dp"
-                android:src="@drawable/pic_apply" />
+                android:text="@string/ef_done"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/pic_maker_btn_txt_size" />
+
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/picCropViewDone"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/selector"
+            android:background="@drawable/bg_white"
             android:gravity="center"
             android:orientation="horizontal"
+            android:paddingVertical="@dimen/_6sdp"
+            android:paddingHorizontal="@dimen/_22sdp"
             android:visibility="gone">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/pic_apply_txt"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:paddingHorizontal="10dp"
                 android:text="@string/apply"
-                android:textColor="#292929"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/pic_maker_btn_txt_size" />
 
         </LinearLayout>
@@ -169,7 +171,6 @@
         </HorizontalScrollView>
 
     </RelativeLayout>
-
 
     <LinearLayout
         android:id="@+id/progressView"

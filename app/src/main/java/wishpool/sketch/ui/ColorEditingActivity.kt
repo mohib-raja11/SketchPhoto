@@ -20,12 +20,12 @@ import jp.co.cyberagent.android.gpuimage.GPUImage
 import jp.co.cyberagent.android.gpuimage.GPUImageFilter
 import wishpool.sketch.R
 import wishpool.sketch.databinding.ActivityColorEditingBinding
+import wishpool.sketch.ui.pencil.GPUImageFilterTools.Applyeffects
 import wishpool.sketch.utils.getImageUriFromBitmap
 import wishpool.sketch.utils.toast
 import java.io.*
 
 class ColorEditingActivity : BaseActivity() {
-
 
     var mFilter: GPUImageFilter? = null
     var mGPUImage: GPUImage? = null
@@ -39,7 +39,6 @@ class ColorEditingActivity : BaseActivity() {
     private var imageheight = 0
     private var currentapiVersion = 0
     private var MaxResolution = 0
-
 
     var savedok = false
     var getimage = false
@@ -295,9 +294,8 @@ class ColorEditingActivity : BaseActivity() {
     }
 
     protected fun Image_effect(pos: Int) {
-        wishpool.sketch.ui.pencil.GPUImageFilterTools.Applyeffects(
-            pos,
-            this
+        Applyeffects(
+            pos, this
         ) { gpuimagefilter: GPUImageFilter? ->
             switchFilterTo(gpuimagefilter)
             mGPUImage!!.requestRender()

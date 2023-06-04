@@ -29,12 +29,18 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_22sdp" />
 
+        <ProgressBar
+            android:layout_width="@dimen/_33sdp"
+            android:layout_height="@dimen/_33sdp"
+            android:indeterminateTint="@color/white"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="By Wishpool"
             android:layout_gravity="end"
             android:layout_marginEnd="@dimen/_22sdp"/>
+
 
     </LinearLayout>
 </RelativeLayout>

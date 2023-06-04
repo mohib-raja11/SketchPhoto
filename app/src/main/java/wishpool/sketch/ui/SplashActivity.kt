@@ -13,13 +13,15 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
+    }
 
-        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+    override fun onResume() {
+        super.onResume()
+        Handler(Looper.getMainLooper()).postDelayed({
             openNextActivity(DashboardActivity::class.java)
             finish()
-        }, 300)
+        }, 3000)
     }
 }
