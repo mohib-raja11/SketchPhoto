@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="12dp"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/_22sdp">
+
+
+    <TextView
+        android:id="@+id/pic_reset_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Choose color codes"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/pic_maker_exit_txt_size"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#ff00bfff" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:text="Choose red color"
+        android:textColor="@color/red" />
+
+    <EditText
+        android:id="@+id/etRed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:text="1.6" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:text="Choose green color"
+        android:textColor="@color/greenbg" />
+
+
+    <EditText
+        android:id="@+id/etGreen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:text="1.0" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:text="Choose blue color"
+        android:textColor="@color/bluebg" />
+
+    <EditText
+        android:id="@+id/etBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:text="1.0" />
+
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_22sdp"
+        android:background="@color/stroke_gallery" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
+        <TextView
+            android:id="@+id/noBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
+            android:background="@drawable/selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="top|center"
+            android:paddingTop="12dp"
+            android:paddingBottom="15dp"
+            android:text="@string/cancel"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/pic_maker_btn_txt_size"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@color/stroke_gallery" />
+
+        <TextView
+            android:id="@+id/yesBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
+            android:background="@drawable/selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="top|center"
+            android:paddingTop="12dp"
+            android:paddingBottom="15dp"
+            android:text="@string/ef_ok"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/pic_maker_btn_txt_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

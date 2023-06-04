@@ -1,11 +1,13 @@
 package wishpool.sketch.ui
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
+import android.graphics.drawable.ColorDrawable
 import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Build
@@ -20,6 +22,8 @@ import jp.co.cyberagent.android.gpuimage.GPUImage
 import jp.co.cyberagent.android.gpuimage.GPUImageFilter
 import wishpool.sketch.R
 import wishpool.sketch.databinding.ActivityColorEditingBinding
+import wishpool.sketch.databinding.ColorPickerDialogBinding
+import wishpool.sketch.ui.pencil.GPUImageFilterTools
 import wishpool.sketch.ui.pencil.GPUImageFilterTools.Applyeffects
 import wishpool.sketch.utils.getImageUriFromBitmap
 import wishpool.sketch.utils.toast
@@ -91,6 +95,23 @@ class ColorEditingActivity : BaseActivity() {
                 colorLayout.visibility = View.INVISIBLE
             }
             effectButton.setOnClickListener { v: View? -> colorLayout.visibility = View.VISIBLE }
+            effectButton.setOnLongClickListener {
+
+                imageColorPickerDialog { red, green, blue ->
+                    run {
+
+                        GPUImageFilterTools.redValue = red
+                        GPUImageFilterTools.greenValue = green
+                        GPUImageFilterTools.blueValue = blue
+
+                        EffectAsnycFun(-1)
+                        doneButton.visibility = View.VISIBLE
+                        resetButton.visibility = View.VISIBLE
+
+                    }
+                }
+                true
+            }
 
             btnDelete.setOnClickListener { v: View? -> deleteCurrentImage() }
             saveBtn.setOnClickListener { v: View? ->
@@ -293,10 +314,8 @@ class ColorEditingActivity : BaseActivity() {
         }
     }
 
-    protected fun Image_effect(pos: Int) {
-        Applyeffects(
-            pos, this
-        ) { gpuimagefilter: GPUImageFilter? ->
+    private fun Image_effect(pos: Int) {
+        Applyeffects(pos) { gpuimagefilter: GPUImageFilter? ->
             switchFilterTo(gpuimagefilter)
             mGPUImage!!.requestRender()
         }
@@ -388,5 +407,28 @@ class ColorEditingActivity : BaseActivity() {
                 }
             }
         }
+    }
+
+    fun imageColorPickerDialog(callBack: (Float, Float, Float) -> Unit) {
+        val exit_dialog = Dialog(this)
+        exit_dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        val exitDialogBinding = ColorPickerDialogBinding.inflate(layoutInflater)
+
+        exitDialogBinding.apply {
+            exit_dialog.setContentView(root)
+            yesBtn.setOnClickListener {
+                exit_dialog.dismiss()
+
+                val red =  etRed.text.toString().toFloat()
+                val green =  etGreen.text.toString().toFloat()
+                val blue =  etBlue.text.toString().toFloat()
+
+                callBack.invoke(red,green,blue)
+
+            }
+            noBtn.setOnClickListener { exit_dialog.dismiss() }
+            exit_dialog.show()
+        }
+
     }
 }

@@ -72,7 +72,7 @@ class EditActivity : BaseActivity() {
     private var sketchFirstTimeDone = false
 
     private lateinit var binding: ActivityEditBinding
-    
+
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

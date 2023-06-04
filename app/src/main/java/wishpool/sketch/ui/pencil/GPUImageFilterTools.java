@@ -1,12 +1,7 @@
 package wishpool.sketch.ui.pencil;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
-
-import java.util.LinkedList;
-import java.util.List;
+import android.util.Log;
 
 import jp.co.cyberagent.android.gpuimage.GPUImageFilter;
 import jp.co.cyberagent.android.gpuimage.GPUImagePosterizeFilter;
@@ -15,30 +10,15 @@ import jp.co.cyberagent.android.gpuimage.GPUImageRGBFilter;
 public class GPUImageFilterTools {
 
     static Bitmap overlayBmp = null;
+    public  static float redValue = 1.5f;
+    public  static float greenValue = 1.0f;
+    public  static float blueValue = 1.0f;
 
-    public static void showDialog(final Context context,
-                                  final OnGpuImageFilterChosenListener listener) {
-        final FilterList filters = new FilterList();
-        filters.addFilter("Posterize", FilterType.POSTERIZE);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Choose a filter");
-        builder.setItems(
-                filters.names.toArray(new String[filters.names.size()]),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(final DialogInterface dialog,
-                                        final int item) {
-                        listener.onGpuImageFilterChosenListener(createFilterForType(
-                                context, filters.filters.get(item)));
-                    }
-                });
-        builder.create().show();
-    }
-
-    private static GPUImageFilter createFilterForType(final Context context,
-                                                      final FilterType type) {
+    private static GPUImageFilter createFilterForType(final FilterType type) {
         switch (type) {
+
+            case CUSTOM:
+                return new GPUImageRGBFilter(redValue, greenValue, blueValue);
 
             case POSTERIZE:
                 return new GPUImagePosterizeFilter();
@@ -59,51 +39,37 @@ public class GPUImageFilterTools {
     }
 
     private enum FilterType {
-        POSTERIZE, RED, GREEN, BLUE
+        CUSTOM, POSTERIZE, RED, GREEN, BLUE
     }
 
-    private static class FilterList {
-        public List<String> names = new LinkedList<String>();
-        public List<FilterType> filters = new LinkedList<FilterType>();
+    public static void Applyeffects(int pos, OnGpuImageFilterChosenListener ongpuimagefilterchosenlistener) {
 
-        public void addFilter(final String name, final FilterType filter) {
-            names.add(name);
-            filters.add(filter);
-        }
-    }
-
-    public static void Applyeffects(int i, Context context,
-                                    OnGpuImageFilterChosenListener ongpuimagefilterchosenlistener) {
-        switch (i) {
+        Log.d("mLogs", "Applyeffects: pos = "+pos);
+        switch (pos) {
             default:
                 return;
 
+            case -1:
+                ongpuimagefilterchosenlistener.onGpuImageFilterChosenListener(createFilterForType(FilterType.CUSTOM));
+                return;
             case 2:
                 //
-                ongpuimagefilterchosenlistener
-                        .onGpuImageFilterChosenListener(createFilterForType(
-                                context, FilterType.RED));
+                ongpuimagefilterchosenlistener.onGpuImageFilterChosenListener(createFilterForType(FilterType.RED));
                 return;
 
             case 1:
                 //
-                ongpuimagefilterchosenlistener
-                        .onGpuImageFilterChosenListener(createFilterForType(
-                                context, FilterType.BLUE));
+                ongpuimagefilterchosenlistener.onGpuImageFilterChosenListener(createFilterForType(FilterType.BLUE));
                 return;
 
             case 0:
                 //
-                ongpuimagefilterchosenlistener
-                        .onGpuImageFilterChosenListener(createFilterForType(
-                                context, FilterType.GREEN));
+                ongpuimagefilterchosenlistener.onGpuImageFilterChosenListener(createFilterForType(FilterType.GREEN));
 
                 return;
 
             case 3:
-                ongpuimagefilterchosenlistener
-                        .onGpuImageFilterChosenListener(createFilterForType(
-                                context, FilterType.POSTERIZE));
+                ongpuimagefilterchosenlistener.onGpuImageFilterChosenListener(createFilterForType(FilterType.POSTERIZE));
                 return;
 
         }
