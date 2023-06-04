@@ -35,7 +35,7 @@
             android:name=".ui.DashboardActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode" />
         <activity
-            android:name=".ui.pencil.ImageRemakeActivity"
+            android:name=".ui.pencil.EditActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode" />
         <activity
             android:name=".ui.ColorEditingActivity"

@@ -13,7 +13,7 @@ import wishpool.sketch.GlobalActivity
 import wishpool.sketch.R
 import wishpool.sketch.databinding.ActivityDashboardBinding
 import wishpool.sketch.ui.martinbagica.ui.activity.DrawingActivity
-import wishpool.sketch.ui.pencil.ImageRemakeActivity
+import wishpool.sketch.ui.pencil.EditActivity
 import wishpool.sketch.utils.*
 
 class DashboardActivity : BaseActivity() {
@@ -127,7 +127,7 @@ class DashboardActivity : BaseActivity() {
             return
         }
 
-        val intent = Intent(this, ImageRemakeActivity::class.java)
+        val intent = Intent(this, EditActivity::class.java)
         intent.data = uri
 
         startActivityForResult(intent, 5)

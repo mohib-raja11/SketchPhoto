@@ -34,7 +34,7 @@ import java.io.*
 import java.nio.IntBuffer
 import java.util.*
 
-class ImageRemakeActivity : BaseActivity() {
+class EditActivity : BaseActivity() {
     companion object {
         var pic_result: Bitmap? = null
         var pic_forSketch: Bitmap? = null
@@ -71,13 +71,12 @@ class ImageRemakeActivity : BaseActivity() {
     private var lineOne = true
     private var sketchFirstTimeDone = false
 
-    private lateinit var binding: ActivityImageRemakeBinding
-
-
+    private lateinit var binding: ActivityEditBinding
+    
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityImageRemakeBinding.inflate(layoutInflater)
+        binding = ActivityEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val displaymetrics = DisplayMetrics()
@@ -111,7 +110,7 @@ class ImageRemakeActivity : BaseActivity() {
                 val file = File(sendimagepath)
                 if (file.exists()) {
                     val uri = Uri.fromFile(file)
-                    val intent = Intent(this@ImageRemakeActivity, ColorEditingActivity::class.java)
+                    val intent = Intent(this@EditActivity, ColorEditingActivity::class.java)
                     intent.data = uri
                     startActivity(intent)
                 }
@@ -285,8 +284,8 @@ class ImageRemakeActivity : BaseActivity() {
         val viewBinding = PicBtnLayoutBinding.inflate(layoutInflater)
         viewBinding.apply {
 
-            btnImage.setOnClickListener(this@ImageRemakeActivity)
-            btnTxt.setOnClickListener(this@ImageRemakeActivity)
+            btnImage.setOnClickListener(this@EditActivity)
+            btnTxt.setOnClickListener(this@EditActivity)
 
             btnTxt.text = getString(R.string.edt_crop)
             btnImage.setImageResource(R.drawable.pic_crop)
@@ -765,7 +764,7 @@ class ImageRemakeActivity : BaseActivity() {
 
         when (type) {
             0 -> {
-                val sketchColorFilter2 = SketchColorFilter2(this@ImageRemakeActivity)
+                val sketchColorFilter2 = SketchColorFilter2(this@EditActivity)
 
                 if (colorPencil2Bitmap == null) {
                     try {
@@ -780,7 +779,7 @@ class ImageRemakeActivity : BaseActivity() {
             }
             1 -> {
                 val sketchFilter = SketchFilter(
-                    this@ImageRemakeActivity
+                    this@EditActivity
                 )
                 if (pencilsketchBitmap == null) {
                     try {
@@ -794,7 +793,7 @@ class ImageRemakeActivity : BaseActivity() {
                 }
             }
             2 -> {
-                val printFilter = SketchColorFilter(this@ImageRemakeActivity)
+                val printFilter = SketchColorFilter(this@EditActivity)
                 if (colorPencilBitmap == null) {
                     try {
                         colorPencilBitmap = printFilter.getSketchFromBH(bm1)
@@ -808,7 +807,7 @@ class ImageRemakeActivity : BaseActivity() {
             }
             3 -> {
                 val sketchFilter2 = SketchFilter2(
-                    this@ImageRemakeActivity
+                    this@EditActivity
                 )
                 if (pencil2Bitmap == null) {
                     try {
@@ -823,7 +822,7 @@ class ImageRemakeActivity : BaseActivity() {
             }
             4 -> {
                 val cSketchFilter = CSketchFilter(
-                    this@ImageRemakeActivity
+                    this@EditActivity
                 )
                 if (comicBitmap == null) {
                     try {
