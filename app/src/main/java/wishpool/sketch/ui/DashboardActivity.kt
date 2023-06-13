@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.widget.PopupMenu
 import com.esafirm.imagepicker.features.*
 import com.esafirm.imagepicker.model.Image
 import wishpool.sketch.GlobalActivity
@@ -43,22 +44,39 @@ class DashboardActivity : BaseActivity() {
 
             btnGallery.setOnClickListener {
                 MyGalleryActivity.start(
-                    mContext,
-                    getAppSketchPhotoFolderPath(),
-                    getString(R.string.my_work)
+                    mContext, getAppSketchPhotoFolderPath(), getString(R.string.my_work)
                 )
             }
 
             btnGalleryDrawing.setOnClickListener {
                 MyGalleryActivity.start(
-                    mContext,
-                    getAppDrawingFolderPath(),
-                    getString(R.string.saved_drawaing)
+                    mContext, getAppDrawingFolderPath(), getString(R.string.saved_drawaing)
                 )
             }
 
             ivMenu.setOnClickListener {
+                val popupMenu = PopupMenu(this@DashboardActivity, ivMenu)
+                popupMenu.menuInflater.inflate(R.menu.popup_menu, popupMenu.menu)
+                popupMenu.setOnMenuItemClickListener { menuItem ->
 
+                    if (menuItem.itemId == R.id.shareApp) {
+                        shareApp()
+
+                    } else if (menuItem.itemId == R.id.rateUs) {
+
+                        val url =
+                            "https://play.google.com/store/apps/details?id=wishpool.sketch.photo.drawing"
+                        openLink(url)
+
+                    } else if (menuItem.itemId == R.id.moreApps) {
+                        val url =
+                            "https://play.google.com/store/apps/developer?id=Wishpool+Technology"
+                        openLink(url)
+
+                    }
+                    true
+                }
+                popupMenu.show()
             }
         }
 

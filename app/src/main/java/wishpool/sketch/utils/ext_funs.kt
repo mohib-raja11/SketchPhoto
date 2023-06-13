@@ -5,11 +5,13 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Toast
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
 import java.io.ByteArrayOutputStream
 import java.io.File
+
 
 fun Context.toast(msg: String) {
     Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
@@ -78,4 +80,32 @@ fun Context.getImageUriFromBitmap(inImage: Bitmap): Uri {
     val path = MediaStore.Images.Media.insertImage(contentResolver, inImage, "Title", null)
     return Uri.parse(path)
 }
+
+fun Context.openLink(url: String) {
+    this.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+
+}
+
+fun Context.shareApp() {
+
+    try {
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.type = "text/plain"
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Sketch Photo Maker")
+        var shareMessage =
+            "\nLet me recommend you this awesome application to draw the artistic photo sketch\n\n"
+        shareMessage = """
+            ${shareMessage + "https://play.google.com/store/apps/details?id=wishpool.sketch.photo.drawing"}
+            
+            
+            """.trimIndent()
+        shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
+        this.startActivity(Intent.createChooser(shareIntent, "choose one"))
+    } catch (e: Exception) {
+
+        Log.e(TAG, "shareApp: ${e.message}")
+    }
+
+}
+
 
