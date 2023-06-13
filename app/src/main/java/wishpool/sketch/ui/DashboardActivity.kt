@@ -28,6 +28,7 @@ class DashboardActivity : BaseActivity() {
 
 
 
+
         binding.apply {
 
             loadAdmobNativeAd_100sdp(adParentView, adFrameContainer, shimmerViewContainer)
@@ -54,6 +55,10 @@ class DashboardActivity : BaseActivity() {
                     getAppDrawingFolderPath(),
                     getString(R.string.saved_drawaing)
                 )
+            }
+
+            ivMenu.setOnClickListener {
+
             }
         }
 

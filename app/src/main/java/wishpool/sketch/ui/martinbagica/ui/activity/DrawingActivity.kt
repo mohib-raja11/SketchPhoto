@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.Menu
 import androidx.core.content.ContextCompat
 import wishpool.sketch.R
 import wishpool.sketch.databinding.ActivityDrawingBinding
@@ -28,11 +27,6 @@ class DrawingActivity : BaseActivity() {
         setContentView(binding.root)
 
         initDrawingView()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
     }
 
     fun clearDrawingWork() {
