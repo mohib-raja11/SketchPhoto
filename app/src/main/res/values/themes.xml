@@ -16,22 +16,27 @@
         <!-- Customize your theme here. -->
 
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:colorBackground">@color/white</item>
 
+        <item name="popupMenuStyle">@style/PopupMenu</item>
 
+    </style>
+
+    <style name="PopupMenu" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@drawable/bg_home_top</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <!-- Base application theme. -->
-
     <style name="Theme.SketchPhoto" parent="appTheme">
-
 
     </style>
 
-
     <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
-<!--        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>-->
-<!--        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>-->
-<!--        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>-->
-<!--        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>-->
+        <!--        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>-->
+        <!--        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>-->
+        <!--        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>-->
+        <!--        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>-->
     </style>
 
 
@@ -52,7 +57,8 @@
 
 
     </style>
-    <style name="homeTileViewStyle" >
+
+    <style name="homeTileViewStyle">
 
         <item name="android:layout_height">?actionBarSize</item>
         <item name="android:layout_width">match_parent</item>
@@ -61,14 +67,14 @@
         <item name="backgroundTint">@color/white</item>
         <item name="backgroundColor">@color/white</item>
 
-       <item name="android:gravity">center_vertical</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:paddingStart">20dp</item>
         <item name="android:paddingEnd">20dp</item>
 
 
     </style>
 
-    <style name="homeTileImageStyle" >
+    <style name="homeTileImageStyle">
 
         <item name="android:layout_height">44dp</item>
         <item name="android:layout_width">44dp</item>
@@ -88,14 +94,14 @@
     </style>
 
     <style name="imagePickerTheme" parent="ef_BaseTheme">
-        
+
 
         <item name="colorPrimary">#7CAEF9</item>
         <item name="colorPrimaryDark">#3988ff</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="appButtonStyle" >
+    <style name="appButtonStyle">
 
         <item name="android:layout_height">70dp</item>
         <item name="android:layout_width">match_parent</item>
@@ -110,7 +116,7 @@
 
     </style>
 
-    <style name="appImageButtonStyle" >
+    <style name="appImageButtonStyle">
 
         <item name="android:layout_width">65dp</item>
         <item name="android:layout_height">90dp</item>

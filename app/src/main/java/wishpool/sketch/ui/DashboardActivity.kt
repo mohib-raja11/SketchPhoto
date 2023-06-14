@@ -27,9 +27,6 @@ class DashboardActivity : BaseActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
-
         binding.apply {
 
             loadAdmobNativeAd_100sdp(adParentView, adFrameContainer, shimmerViewContainer)
