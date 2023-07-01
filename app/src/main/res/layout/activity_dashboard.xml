@@ -114,6 +114,38 @@
         <androidx.cardview.widget.CardView style="@style/homeCardStyle">
 
             <LinearLayout
+                android:id="@+id/btnBubbleLevel"
+                style="@style/homeTileViewStyle"
+                android:background="@color/white">
+
+                <ImageView
+                    style="@style/homeTileImageStyle"
+                    android:src="@drawable/ic_bubble_level" />
+
+                <TextView
+                    style="@style/homeTileTextStyle"
+                    android:text="@string/bubble_level"
+                    android:textSize="24dp" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_3sdp"
+
+                    android:background="@drawable/bg_ad"
+                    android:paddingHorizontal="@dimen/_6sdp"
+                    android:paddingVertical="@dimen/_3sdp"
+                    android:text="Ad"
+                    android:textColor="@color/black" />
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView style="@style/homeCardStyle">
+
+            <LinearLayout
                 android:id="@+id/btnGallery"
                 style="@style/homeTileViewStyle"
                 android:background="@color/white">

@@ -73,6 +73,7 @@ class EditActivity : BaseActivity() {
 
     private lateinit var binding: ActivityEditBinding
 
+
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -105,14 +106,18 @@ class EditActivity : BaseActivity() {
 
             doneEditLayoutBtn.setOnClickListener {
 
-                saveBitmap(100, pic_result)
+                if(sketchFirstTimeDone){
+                    GlobalActivity.showAdmobInterstitialAd(mcon = this@EditActivity) {
+                        saveBitmap(100, pic_result)
 
-                val file = File(sendimagepath)
-                if (file.exists()) {
-                    val uri = Uri.fromFile(file)
-                    val intent = Intent(this@EditActivity, ColorEditingActivity::class.java)
-                    intent.data = uri
-                    startActivity(intent)
+                        val file = File(sendimagepath)
+                        if (file.exists()) {
+                            val uri = Uri.fromFile(file)
+                            val intent = Intent(this@EditActivity, ColorEditingActivity::class.java)
+                            intent.data = uri
+                            startActivity(intent)
+                        }
+                    }
                 }
             }
 

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import wishpool.sketch.GlobalActivity
 import wishpool.sketch.R
 import wishpool.sketch.utils.Executor
 
@@ -38,5 +39,11 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
     override fun onDestroy() {
         super.onDestroy()
         mExecutor.release()
+    }
+
+    protected fun withAdBackPress() {
+        GlobalActivity.showAdmobInterstitialAd(mcon = this@BaseActivity) {
+            super.onBackPressed()
+        }
     }
 }

@@ -51,6 +51,12 @@ class DashboardActivity : BaseActivity() {
                 )
             }
 
+            btnBubbleLevel.setOnClickListener {
+
+                val url = "https://play.google.com/store/apps/details?id=bubble.level.ruler.app"
+                openLink(url)
+            }
+
             ivMenu.setOnClickListener {
                 val popupMenu = PopupMenu(this@DashboardActivity, ivMenu)
                 popupMenu.menuInflater.inflate(R.menu.popup_menu, popupMenu.menu)

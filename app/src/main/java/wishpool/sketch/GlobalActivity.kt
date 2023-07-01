@@ -32,8 +32,7 @@ class GlobalActivity : Application() {
 
             InterstitialAd.load(
 
-                mcon, admobInerstitialAdId, adRequest,
-                object : InterstitialAdLoadCallback() {
+                mcon, admobInerstitialAdId, adRequest, object : InterstitialAdLoadCallback() {
                     override fun onAdFailedToLoad(adError: LoadAdError) {
                         Log.d(TAG, adError.message)
                         admobInterstitialAd = null
@@ -47,13 +46,12 @@ class GlobalActivity : Application() {
                         Log.d(TAG, "Ad was loaded.")
                         admobInterstitialAd = interstitialAd
                     }
-                }
-            )
+                })
         }
 
         fun showAdmobInterstitialAd(mcon: Activity, callback: (Boolean) -> Unit) {
 
-            loadAdmobAd(mcon)
+            loadAdmobAd(mcon.applicationContext)
 
             if (admobInterstitialAd != null) {
                 Log.d(TAG, "showAdmobInterstitialAd: showing adob ad")

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
+import wishpool.sketch.GlobalActivity
 import wishpool.sketch.R
 import wishpool.sketch.databinding.ActivityMygalleryBinding
 import wishpool.sketch.databinding.ItemGalleryBinding
@@ -72,7 +73,7 @@ class MyGalleryActivity : BaseActivity() {
 
     private fun setClicks() {
         binding.apply {
-            ivBack.setOnClickListener { finish() }
+            ivBack.setOnClickListener { withAdBackPress()}
         }
     }
 
@@ -187,4 +188,10 @@ class MyGalleryActivity : BaseActivity() {
 
         }
     }
+
+
+    override fun onBackPressed() {
+        withAdBackPress()
+    }
+
 }

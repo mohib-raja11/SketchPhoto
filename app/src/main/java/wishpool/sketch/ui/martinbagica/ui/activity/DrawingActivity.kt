@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import wishpool.sketch.GlobalActivity
 import wishpool.sketch.R
 import wishpool.sketch.databinding.ActivityDrawingBinding
 import wishpool.sketch.ui.BaseActivity
@@ -60,7 +61,7 @@ class DrawingActivity : BaseActivity() {
             mainRedoIv.setOnClickListener { onRedoOptionClick() }
             ivDownload.setOnClickListener { requestPermissionsAndSaveBitmap() }
             ivClear.setOnClickListener { clearDrawingWork() }
-            ivClose.setOnClickListener { finish() }
+            ivBack.setOnClickListener { withAdBackPress() }
 
         }
     }
@@ -130,5 +131,10 @@ class DrawingActivity : BaseActivity() {
 
     companion object {
         private const val MAX_STROKE_WIDTH = 50
+    }
+
+    override fun onBackPressed() {
+
+        withAdBackPress()
     }
 }
