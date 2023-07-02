@@ -61,7 +61,7 @@ class DrawingActivity : BaseActivity() {
             mainRedoIv.setOnClickListener { onRedoOptionClick() }
             ivDownload.setOnClickListener { requestPermissionsAndSaveBitmap() }
             ivClear.setOnClickListener { clearDrawingWork() }
-            ivBack.setOnClickListener { withAdBackPress() }
+            ivBack.setOnClickListener { finish() }
 
         }
     }
@@ -131,10 +131,5 @@ class DrawingActivity : BaseActivity() {
 
     companion object {
         private const val MAX_STROKE_WIDTH = 50
-    }
-
-    override fun onBackPressed() {
-
-        withAdBackPress()
     }
 }

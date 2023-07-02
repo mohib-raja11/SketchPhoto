@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -20,8 +21,10 @@ import wishpool.sketch.databinding.ActivityMygalleryBinding
 import wishpool.sketch.databinding.ItemGalleryBinding
 import wishpool.sketch.ui.MyGalleryActivity.RecyclerAdapter.MyHolderView
 import java.io.File
+import java.util.*
 
 class MyGalleryActivity : BaseActivity() {
+
     private lateinit var mainAdapter: RecyclerAdapter
 
     val filesList = arrayListOf<ImageModel>()
@@ -68,12 +71,11 @@ class MyGalleryActivity : BaseActivity() {
         }
 
         setClicks()
-
     }
 
     private fun setClicks() {
         binding.apply {
-            ivBack.setOnClickListener { withAdBackPress()}
+            ivBack.setOnClickListener { finish() }
         }
     }
 
@@ -84,7 +86,7 @@ class MyGalleryActivity : BaseActivity() {
 
     data class ImageModel(val imageName: String, val imagePath: String)
 
-    //***********************************Mohib: getting list of saved files************************************
+    //********Mohib: getting list of saved files*****************//
     @SuppressLint("NotifyDataSetChanged")
     private fun loadingImages() {
         val rootPath = baseFolderPath
@@ -148,14 +150,9 @@ class MyGalleryActivity : BaseActivity() {
         }
     }
 
-
     inner class RecyclerAdapter : RecyclerView.Adapter<MyHolderView>() {
         override fun onCreateViewHolder(parent: ViewGroup, i: Int): MyHolderView {
-
-
             val itemView = ItemGalleryBinding.inflate(layoutInflater, parent, false)
-
-
             return MyHolderView(itemView)
         }
 
@@ -170,9 +167,21 @@ class MyGalleryActivity : BaseActivity() {
                 })
 
             myHolderView.itemView.setOnClickListener {
-                val intent = Intent(this@MyGalleryActivity, ViewImageActivity::class.java)
-                intent.putExtra("ImgUrl", filesList[pos].imagePath)
-                startActivity(intent)
+
+                val bound = 5 + pos
+                val number = Random().nextInt(bound)
+
+                Log.d(TAG, "onBindViewHolder: bound = $bound number = $number")
+
+                val showAd = number % 3 == 0
+                if (!showAd) {
+                    gotoNextScreen(pos)
+                    return@setOnClickListener
+                }
+
+                GlobalActivity.showAdmobInterstitialAd(this@MyGalleryActivity) {
+                    gotoNextScreen(pos)
+                }
             }
         }
 
@@ -184,14 +193,12 @@ class MyGalleryActivity : BaseActivity() {
             RecyclerView.ViewHolder(itemView.root) {
             var tvName: TextView = itemView.tvName
             var iv1: ImageView = itemView.ivMain
-
-
         }
     }
 
-
-    override fun onBackPressed() {
-        withAdBackPress()
+    fun gotoNextScreen(pos: Int) {
+        val intent = Intent(this@MyGalleryActivity, ViewImageActivity::class.java)
+        intent.putExtra("ImgUrl", filesList[pos].imagePath)
+        startActivity(intent)
     }
-
 }

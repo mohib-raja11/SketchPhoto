@@ -40,10 +40,4 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
         super.onDestroy()
         mExecutor.release()
     }
-
-    protected fun withAdBackPress() {
-        GlobalActivity.showAdmobInterstitialAd(mcon = this@BaseActivity) {
-            super.onBackPressed()
-        }
-    }
 }
