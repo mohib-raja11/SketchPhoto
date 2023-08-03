@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "805112469443",
-    "project_id": "sketchphoto-7bcf7",
-    "storage_bucket": "sketchphoto-7bcf7.appspot.com"
+    "project_number": "820023919328",
+    "project_id": "sketchphoto-eaa92",
+    "storage_bucket": "sketchphoto-eaa92.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:805112469443:android:7b0f73ca4fc9dbeaebcf76",
+        "mobilesdk_app_id": "1:820023919328:android:80fa76dabdf3260a57c685",
         "android_client_info": {
           "package_name": "wishpool.sketch.photo.drawing"
         }
       },
       "oauth_client": [
         {
-          "client_id": "805112469443-vq4uouo9e6psml7mkf7poj4tat516uef.apps.googleusercontent.com",
+          "client_id": "820023919328-81v2r4a9efir1jmqaa58hh5it9d1den9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAdVLXcJbfUGORAZJ8zJCCbRUcVUOj9TYI"
+          "current_key": "AIzaSyCBTWNDGDFldyzzooxBckRxbUNRybbAfhs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "805112469443-vq4uouo9e6psml7mkf7poj4tat516uef.apps.googleusercontent.com",
+              "client_id": "820023919328-81v2r4a9efir1jmqaa58hh5it9d1den9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
