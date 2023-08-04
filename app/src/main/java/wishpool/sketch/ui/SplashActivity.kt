@@ -1,11 +1,13 @@
 package wishpool.sketch.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import wishpool.sketch.databinding.ActivitySplashBinding
 import wishpool.sketch.utils.openNextActivity
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity() {
 
     lateinit var binding: ActivitySplashBinding
@@ -22,6 +24,6 @@ class SplashActivity : BaseActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             openNextActivity(DashboardActivity::class.java)
             finish()
-        }, 3000)
+        }, 2000)
     }
 }
