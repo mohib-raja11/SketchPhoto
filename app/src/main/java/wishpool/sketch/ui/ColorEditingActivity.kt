@@ -2,7 +2,6 @@ package wishpool.sketch.ui
 
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -15,6 +14,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.exifinterface.media.ExifInterface
@@ -64,12 +64,15 @@ class ColorEditingActivity : BaseActivity() {
         maxResolution = screenwidth
         currentapiVersion = Build.VERSION.SDK_INT
         loadImageAsycTask()
-        
+
     }
 
     private fun initViews() {
 
         binding.apply {
+
+            binding.rlProgress.visibility = View.GONE
+
             greenButton.setOnClickListener {
                 EffectAsnycFun(0)
                 doneButton.visibility = View.VISIBLE
@@ -282,9 +285,12 @@ class ColorEditingActivity : BaseActivity() {
                 }
                 if (currentapiVersion <= 18) {
                     try {
-                        val intent = Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE")
+                        Log.d(TAG, "onDestroy: ")
+                        //MR: file now auto updated into local storage that's why commented
+                        
+                        /*val intent = Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE")
                         intent.data = Uri.fromFile(shareuri!!.path?.let { File(it) })
-                        sendBroadcast(intent)
+                        sendBroadcast(intent)*/
                     } catch (nullpointerexception: NullPointerException) {
                         nullpointerexception.printStackTrace()
                     } catch (exception: Exception) {
@@ -331,8 +337,7 @@ class ColorEditingActivity : BaseActivity() {
 
     fun loadImageAsycTask() {
         getimage = false
-        val dialog = ProgressDialog.show(mContext, "", "Loading...")
-        dialog.setCancelable(false)
+        binding.rlProgress.visibility = View.VISIBLE
         intentExtra
         mExecutor.runWorker {
             val orientation: Float
@@ -363,7 +368,7 @@ class ColorEditingActivity : BaseActivity() {
                     ).show()
                     finish()
                 }
-                dialog.dismiss()
+                binding.rlProgress.visibility = View.GONE
             }
         }
     }
