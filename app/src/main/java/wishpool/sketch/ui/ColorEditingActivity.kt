@@ -31,23 +31,23 @@ import java.io.*
 
 class ColorEditingActivity : BaseActivity() {
 
-    var mFilter: GPUImageFilter? = null
-    var mGPUImage: GPUImage? = null
+    private var mFilter: GPUImageFilter? = null
+    private var mGPUImage: GPUImage? = null
 
     private var shareuri: Uri? = null
 
-    private var share_bitmap: Bitmap? = null
+    private var shareBitmap: Bitmap? = null
 
     private var screenwidth = 0
     private var imagewidth = 0
     private var imageheight = 0
     private var currentapiVersion = 0
-    private var MaxResolution = 0
+    private var maxResolution = 0
 
-    var savedok = false
-    var getimage = false
+    private var savedok = false
+    private var getimage = false
 
-    lateinit var binding: ActivityColorEditingBinding
+    private lateinit var binding: ActivityColorEditingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,44 +57,42 @@ class ColorEditingActivity : BaseActivity() {
         setContentView(binding.root)
 
         initViews()
-        val displaymetrics: DisplayMetrics
-        displaymetrics = DisplayMetrics()
+        val displaymetrics = DisplayMetrics()
         mGPUImage = GPUImage(this)
         windowManager.defaultDisplay.getMetrics(displaymetrics)
         screenwidth = displaymetrics.widthPixels
-        MaxResolution = screenwidth
+        maxResolution = screenwidth
         currentapiVersion = Build.VERSION.SDK_INT
         loadImageAsycTask()
-
-
+        
     }
 
     private fun initViews() {
 
         binding.apply {
-            greenButton.setOnClickListener { v: View? ->
+            greenButton.setOnClickListener {
                 EffectAsnycFun(0)
                 doneButton.visibility = View.VISIBLE
                 resetButton.visibility = View.VISIBLE
             }
-            blueButton.setOnClickListener { v: View? ->
+            blueButton.setOnClickListener {
                 EffectAsnycFun(1)
                 doneButton.visibility = View.VISIBLE
                 resetButton.visibility = View.VISIBLE
             }
-            redButton.setOnClickListener { v: View? ->
+            redButton.setOnClickListener {
                 EffectAsnycFun(2)
                 doneButton.visibility = View.VISIBLE
                 resetButton.visibility = View.VISIBLE
             }
-            resetButton.setOnClickListener { v: View? ->
+            resetButton.setOnClickListener {
                 loadImageAsycTask()
                 colorLayout.visibility = View.INVISIBLE
             }
-            doneButton.setOnClickListener { v: View? ->
+            doneButton.setOnClickListener {
                 colorLayout.visibility = View.INVISIBLE
             }
-            effectButton.setOnClickListener { v: View? -> colorLayout.visibility = View.VISIBLE }
+            effectButton.setOnClickListener { colorLayout.visibility = View.VISIBLE }
             effectButton.setOnLongClickListener {
 
                 imageColorPickerDialog { red, green, blue ->
@@ -113,12 +111,12 @@ class ColorEditingActivity : BaseActivity() {
                 true
             }
 
-            btnDelete.setOnClickListener { v: View? -> deleteCurrentImage() }
-            saveBtn.setOnClickListener { v: View? ->
+            btnDelete.setOnClickListener { deleteCurrentImage() }
+            saveBtn.setOnClickListener {
                 val bitmap = mGPUImage!!.bitmapWithFilterApplied
                 saveImage(bitmap)
             }
-            shareBtn.setOnClickListener { v: View? ->
+            shareBtn.setOnClickListener {
                 val bitmap = mGPUImage!!.bitmapWithFilterApplied
                 val uri = getImageUriFromBitmap(bitmap)
                 val intent = Intent(Intent.ACTION_SEND)
@@ -131,15 +129,13 @@ class ColorEditingActivity : BaseActivity() {
                 )
             }
         }
-
-
     }
 
     private val intentExtra: Unit
-        private get() {
+        get() {
             val intent = intent
             shareuri = intent.data
-            MaxResolution = intent.getIntExtra("picresolution", screenwidth)
+            maxResolution = intent.getIntExtra("picresolution", screenwidth)
         }
 
     private fun getRealPathFromURI(uri: Uri?): String? {
@@ -155,9 +151,8 @@ class ColorEditingActivity : BaseActivity() {
     }
 
     private fun getImageOrientation(fileName: String): Float {
-        val i: Int
         val f: Float
-        i = try {
+        val i: Int = try {
             ExifInterface(fileName).getAttributeInt("Orientation", 1)
         } catch (ioexception: IOException) {
             ioexception.printStackTrace()
@@ -245,7 +240,7 @@ class ColorEditingActivity : BaseActivity() {
         } while (true)
     }
 
-    fun saveImage(bitmap: Bitmap?) {
+    private fun saveImage(bitmap: Bitmap?) {
         wishpool.sketch.constant.SaveToStorageUtil.saveReal(bitmap, mContext)
 
         mContext.toast(getString(R.string.img_saved_successfully))
@@ -259,9 +254,9 @@ class ColorEditingActivity : BaseActivity() {
 
     override fun onDestroy() {
         if (savedok) {
-            if (share_bitmap != null && !share_bitmap!!.isRecycled) {
-                share_bitmap!!.recycle()
-                share_bitmap = null
+            if (shareBitmap != null && !shareBitmap!!.isRecycled) {
+                shareBitmap!!.recycle()
+                shareBitmap = null
                 System.gc()
             }
 
@@ -270,9 +265,9 @@ class ColorEditingActivity : BaseActivity() {
 
         } else {
             if (shareuri == null) {
-                if (share_bitmap != null && !share_bitmap!!.isRecycled) {
-                    share_bitmap!!.recycle()
-                    share_bitmap = null
+                if (shareBitmap != null && !shareBitmap!!.isRecycled) {
+                    shareBitmap!!.recycle()
+                    shareBitmap = null
                     System.gc()
                 }
                 savedok = false
@@ -303,7 +298,7 @@ class ColorEditingActivity : BaseActivity() {
 
     private fun scanFile(file: String, isDelete: Boolean) {
         try {
-            MediaScannerConnection.scanFile(applicationContext, arrayOf(file), null) { s1, uri ->
+            MediaScannerConnection.scanFile(applicationContext, arrayOf(file), null) { _, uri ->
                 if (isDelete && uri != null) {
                     applicationContext.contentResolver.delete(uri, null, null)
                 }
@@ -340,27 +335,27 @@ class ColorEditingActivity : BaseActivity() {
         dialog.setCancelable(false)
         intentExtra
         mExecutor.runWorker {
-            val Orientation: Float
+            val orientation: Float
             val imagepath = getRealPathFromURI(shareuri)
             if (imagepath != null && imagepath.endsWith(".png") || imagepath!!.endsWith(".jpg") || imagepath.endsWith(
                     ".jpeg"
                 ) || imagepath.endsWith(".bmp")
             ) {
-                Orientation = java.lang.Float.valueOf(getImageOrientation(imagepath))
-                getAspectRatio(imagepath, MaxResolution.toFloat())
-                share_bitmap = getResizedOriginalBitmap(imagepath, Orientation)
+                orientation = java.lang.Float.valueOf(getImageOrientation(imagepath))
+                getAspectRatio(imagepath, maxResolution.toFloat())
+                shareBitmap = getResizedOriginalBitmap(imagepath, orientation)
                 getimage = true
             }
             runOnUiThread {
                 if (getimage) {
-                    if (share_bitmap == null || share_bitmap!!.height <= 5 || share_bitmap!!.width <= 5) {
+                    if (shareBitmap == null || shareBitmap!!.height <= 5 || shareBitmap!!.width <= 5) {
                         Toast.makeText(
                             applicationContext, "Image Format not supported .", Toast.LENGTH_SHORT
                         ).show()
                         finish()
                     } else {
-                        binding.picImageView.setImageBitmap(share_bitmap)
-                        mGPUImage!!.setImage(share_bitmap)
+                        binding.picImageView.setImageBitmap(shareBitmap)
+                        mGPUImage!!.setImage(shareBitmap)
                     }
                 } else {
                     Toast.makeText(
@@ -370,7 +365,6 @@ class ColorEditingActivity : BaseActivity() {
                 }
                 dialog.dismiss()
             }
-            null
         }
     }
 
@@ -387,14 +381,14 @@ class ColorEditingActivity : BaseActivity() {
                     binding.apply {
                         val bitmap = eff
                         try {
-                            eff = mGPUImage!!.getBitmapWithFilterApplied(share_bitmap)
+                            eff = mGPUImage!!.getBitmapWithFilterApplied(shareBitmap)
                             picImageView.setImageBitmap(eff)
                         } catch (nullpointerexception: NullPointerException) {
-                            picImageView.setImageBitmap(share_bitmap)
-                            mGPUImage!!.setImage(share_bitmap)
+                            picImageView.setImageBitmap(shareBitmap)
+                            mGPUImage!!.setImage(shareBitmap)
                         } catch (outofmemoryerror: OutOfMemoryError) {
-                            picImageView.setImageBitmap(share_bitmap)
-                            mGPUImage!!.setImage(share_bitmap)
+                            picImageView.setImageBitmap(shareBitmap)
+                            mGPUImage!!.setImage(shareBitmap)
                             System.gc()
                         } catch (ignored: Exception) {
                         }
@@ -403,7 +397,6 @@ class ColorEditingActivity : BaseActivity() {
                             System.gc()
                         }
                     }
-
                 }
             }
         }
@@ -419,16 +412,14 @@ class ColorEditingActivity : BaseActivity() {
             yesBtn.setOnClickListener {
                 exit_dialog.dismiss()
 
-                val red =  etRed.text.toString().toFloat()
-                val green =  etGreen.text.toString().toFloat()
-                val blue =  etBlue.text.toString().toFloat()
+                val red = etRed.text.toString().toFloat()
+                val green = etGreen.text.toString().toFloat()
+                val blue = etBlue.text.toString().toFloat()
 
-                callBack.invoke(red,green,blue)
-
+                callBack.invoke(red, green, blue)
             }
             noBtn.setOnClickListener { exit_dialog.dismiss() }
             exit_dialog.show()
         }
-
     }
 }
