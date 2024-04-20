@@ -34,7 +34,7 @@ class MyGalleryActivity : BaseActivity() {
     private var tvNoItem: TextView? = null
 
     var baseFolderPath = ""
-    var title = "My Work"
+    private var title = "My Work"
 
     private lateinit var binding: ActivityMygalleryBinding
 

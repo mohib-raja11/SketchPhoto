@@ -1,7 +1,6 @@
 package wishpool.sketch.ui
 
 import android.app.AlertDialog
-import android.app.WallpaperManager
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -9,17 +8,14 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import android.provider.MediaStore
-import android.view.Gravity
 import android.view.View
 import android.widget.Toast
+import com.squareup.picasso.Picasso
 import wishpool.sketch.R
 import wishpool.sketch.databinding.ActivityViewTheImageBinding
-import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
 import java.io.File
-import java.io.IOException
 
 class ViewImageActivity : BaseActivity() {
 
@@ -64,7 +60,8 @@ class ViewImageActivity : BaseActivity() {
     }
 
     private fun showFullImage() {
-        val intent = Intent(this@ViewImageActivity, wishpool.sketch.ui.FullScreenImageActivity::class.java)
+        val intent =
+            Intent(this@ViewImageActivity, wishpool.sketch.ui.FullScreenImageActivity::class.java)
         intent.putExtra("path", imgUrl)
         startActivityForResult(intent, 2)
     }
@@ -87,7 +84,9 @@ class ViewImageActivity : BaseActivity() {
     }
 
     private fun setWallpaper() {
-        if (bitmapForShare == null) {
+
+
+        /*if (bitmapForShare == null) {
             return
         }
         val myWallpaperManager = WallpaperManager.getInstance(applicationContext)
@@ -101,7 +100,7 @@ class ViewImageActivity : BaseActivity() {
             Handler().postDelayed({ finishAffinity() }, 1000)
         } catch (e: IOException) {
             e.printStackTrace()
-        }
+        }*/
     }
 
     private fun deleted() {

@@ -112,6 +112,7 @@ class DashboardActivity : BaseActivity() {
 
         val config = ImagePickerConfig {
             mode = ImagePickerMode.SINGLE
+            isShowCamera = false
             isFolderMode = true
             theme = R.style.imagePickerTheme
 

@@ -30,6 +30,7 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
+        Log.d(tag, "onCreate method called of clas")
     }
 
     override fun onClick(view: View) {

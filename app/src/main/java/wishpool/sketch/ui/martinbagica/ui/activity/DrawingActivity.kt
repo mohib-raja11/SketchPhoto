@@ -30,7 +30,7 @@ class DrawingActivity : BaseActivity() {
         initDrawingView()
     }
 
-    fun clearDrawingWork() {
+    private fun clearDrawingWork() {
         AlertDialog.Builder(this).setTitle("Clear canvas")
             .setMessage("Are you sure you want to clear the canvas?")
             .setPositiveButton("Yes") { dialog, which -> binding.mainDrawingView.clearCanvas() }
@@ -104,28 +104,28 @@ class DrawingActivity : BaseActivity() {
     }
 
     private fun requestPermissionsAndSaveBitmap() {
-        val uri = FileManager.saveBitmap(this, binding.mainDrawingView.bitmap)
+        FileManager.saveBitmap(this, binding.mainDrawingView.bitmap)
         toast("Drawing saved successfully.")
 //        startShareDialog(uri!!)
     }
 
-    fun onBackgroundFillOptionClick() {
+    private fun onBackgroundFillOptionClick() {
         startFillBackgroundDialog()
     }
 
-    fun onColorOptionClick() {
+    private fun onColorOptionClick() {
         startColorPickerDialog()
     }
 
-    fun onStrokeOptionClick() {
+    private fun onStrokeOptionClick() {
         startStrokeSelectorDialog()
     }
 
-    fun onUndoOptionClick() {
+    private fun onUndoOptionClick() {
         binding.mainDrawingView.undo()
     }
 
-    fun onRedoOptionClick() {
+    private fun onRedoOptionClick() {
         binding.mainDrawingView.redo()
     }
 
