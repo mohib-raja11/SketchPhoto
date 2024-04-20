@@ -471,6 +471,7 @@ class EditActivity : BaseActivity() {
         }
     }
 
+    @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         ExitDidalog(getString(R.string.pic_exit_txt))
     }
